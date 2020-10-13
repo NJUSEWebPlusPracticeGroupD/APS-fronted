@@ -10,8 +10,8 @@ import about from './views/about.vue'
 export default {
   name: 'App',
   components: {
-    about
-  }
+    about,
+  },
 }
 </script>
 
@@ -21,5 +21,10 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+html,
+body {
+  margin: 0;
 }
 </style>
