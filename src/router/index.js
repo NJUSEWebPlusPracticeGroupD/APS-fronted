@@ -4,10 +4,35 @@ import Router from 'vue-router'
 Vue.use(Router)
 export const constantRoutes = [
   {
-    path: '',
+    path: '/',
     // 重定向路径
-    redirect: './views/about'
+    redirect: '/about',
   },
+  {
+    path:'/about',
+    name:'about',
+    component:() => import('../views/About.vue')
+  },
+  {
+    path:'/orderGantt',
+    name:'orderGantt',
+    component:() => import('../views/OrderGantt.vue')
+  },
+  {
+    path:'/resourceGantt',
+    name:'resourceGantt',
+    component:() => import('../views/ResourceGantt.vue')
+  },
+  {
+    path:'/resourceLoader',
+    name:'resourceLoader',
+    component:() => import('../views/ResourceLoader.vue')
+  },
+  {
+    path:'/schedule',
+    name:'schedule',
+    component:() => import('../views/Schedule.vue')
+  }
 ]
 
 
@@ -24,5 +49,8 @@ const createRouter = () => new Router({
 
 const router = createRouter()
 
-
+export function resetRouter() {
+  const newRouter = createRouter()
+  router.matcher = newRouter.matcher // reset router
+}
 export default router

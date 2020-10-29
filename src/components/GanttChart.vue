@@ -1,0 +1,214 @@
+<template>
+  <div id="chartdiv" :style="style"></div>
+</template>
+
+<script>
+import * as am4core from '@amcharts/amcharts4/core'
+import * as am4charts from '@amcharts/amcharts4/charts'
+import am4themes_animated from '@amcharts/amcharts4/themes/animated'
+
+am4core.useTheme(am4themes_animated)
+
+
+export default {
+  name: 'GanttChart',
+  data(){
+    return{
+      style:{
+        height:100
+      }
+    }
+  },
+  props:{
+    datas : {
+      type: Array,
+      default: () =>
+        [
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 08:00',
+            toDate: '2018-01-01 10:00',
+            task: 'task1'
+          },
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 12:00',
+            toDate: '2018-01-01 15:00',
+            task: 'task2'
+          },
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 15:30',
+            toDate: '2018-01-01 21:30',
+            task: 'task4'
+          },
+
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 09:00',
+            toDate: '2018-01-01 12:00',
+            task: 'task3'
+          },
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 13:00',
+            toDate: '2018-01-01 17:00',
+            task: 'task5'
+          },
+
+          {
+            name: 'line2',
+            fromDate: '2018-01-01 11:00',
+            toDate: '2018-01-01 16:00',
+            task: 'task2'
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-01-01 16:00',
+            toDate: '2018-01-01 19:00',
+            task: 'task4'
+          },
+
+          {
+            name: '张三',
+            fromDate: '2018-01-01 16:00',
+            toDate: '2018-01-01 20:00',
+            task: 'task4'
+          },
+          {
+            name: '张三',
+            fromDate: '2018-01-01 20:30',
+            toDate: '2018-01-01 24:00',
+            task: 'task3'
+          },
+
+          {
+            name: '李四',
+            fromDate: '2018-01-01 13:00',
+            toDate: '2018-01-01 24:00',
+            task: 'task2'
+          }
+        ]
+    },
+    itemData: {
+      type: Array,
+      default: () =>
+        [
+          {
+            name: 'line1',
+            fromDate: '2018-01-01 12:00',
+            toDate: '2018-01-01 15:00',
+            task: 'task2'
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-01-01 11:00',
+            toDate: '2018-01-01 16:00',
+            task: 'task2'
+          },
+          {
+            name: '李四',
+            fromDate: '2018-01-01 13:00',
+            toDate: '2018-01-01 24:00',
+            task: 'task2'
+          }
+        ]
+    }
+
+  },
+  watch:{
+    datas: {
+      deep: true,
+      handler(val) {
+        this.createChart(val)
+      }
+    }
+  },
+  methods: {
+    createChart(datas) {
+      let chart = am4core.create('chartdiv', am4charts.XYChart)
+      chart.hiddenState.properties.opacity = 0 // this creates initial fade-in
+
+
+      chart.paddingRight = 30
+      chart.dateFormatter.inputDateFormat = 'yyyy-MM-dd HH:mm'
+
+
+      var colorSet = new am4core.ColorSet()
+      colorSet.saturation = 0.4
+
+      //datas添加颜色
+      var colorMap = {}
+      var nameMap={}
+      var index = 0
+      for (var item of datas) {
+        if (!colorMap[item['task']]) {
+          colorMap[item['task']] = colorSet.getIndex(Number(index)).brighten(0)
+          index = index + 3
+        }
+        item['color'] = colorMap[item['task']]
+        if(!nameMap[item['name']]){
+          nameMap[item['name']]=true
+        }
+      }
+
+      chart.data = datas
+      chart.height=Object.keys(nameMap).length*150
+      var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis())
+      categoryAxis.dataFields.category = 'name'
+      categoryAxis.renderer.grid.template.location = 0
+      categoryAxis.renderer.inversed = true
+
+      var dateAxis = chart.xAxes.push(new am4charts.DateAxis())
+      dateAxis.dateFormatter.dateFormat = 'yyyy-MM-dd HH:mm'
+      dateAxis.renderer.minGridDistance = 70
+      dateAxis.startIndex='2018-01-01 07:00'
+      dateAxis.endIndex='2018-01-02 07:00'
+      dateAxis.baseInterval = {count: 20, timeUnit: 'minute'}
+      dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime()
+      dateAxis.strictMinMax = true
+      dateAxis.renderer.tooltipLocation = 0
+
+      var series1 = chart.series.push(new am4charts.ColumnSeries())
+      series1.columns.template.width = am4core.percent(80)
+      series1.columns.template.height=am4core.percent(50)
+      series1.columns.template.tooltipText = '{task}: {openDateX} - {dateX}'
+
+      series1.dataFields.openDateX = 'fromDate'
+      series1.dataFields.dateX = 'toDate'
+      series1.dataFields.categoryY = 'name'
+      series1.columns.template.propertyFields.fill = 'color' // get color from data
+      series1.columns.template.propertyFields.stroke = 'color'
+      series1.columns.template.strokeOpacity = 1
+      chart.scrollbarX = new am4core.Scrollbar()
+      var that=this
+      series1.columns.template.events.on('hit', function (ev) {
+        var target = ev.target.dataItem.dataContext.task
+        console.log(target)
+        for (let item of  that.itemData) {
+          item['color'] = colorMap[item['task']]
+        }
+        chart.data =that.itemData
+      })
+    }
+  },
+  mounted() {
+    console.log(this.createChart)
+    this.createChart(this.datas)
+  },
+
+
+}
+</script>
+
+<style scoped>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+  Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  height:100%;
+}
+#chartdiv {
+  width: 100%;
+  height: 100%;
+}
+</style>
