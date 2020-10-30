@@ -1,6 +1,18 @@
 <template>
   <el-main class="main">
-    <GanttChart></GanttChart>
+    <el-date-picker
+      class="date-picker"
+      type="date"
+      placeholder="选择日期"
+      :default-value="defaultTime"
+    />
+    <el-button
+      type="info"
+      round
+    >
+      确定
+    </el-button>
+    <GanttChart />
   </el-main>
 </template>
 
@@ -11,6 +23,7 @@ export default {
   components: {GanttChart},
   data() {
     return {
+      defaultTime: new Date(2018,7,12)
 
     }
   },
@@ -24,7 +37,6 @@ export default {
   margin:20px 20px;
   padding: 60px;
   min-height: 400px;
-  overflow-scrolling: auto;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
@@ -38,5 +50,9 @@ export default {
 .main span{
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   font-size: 20px;
+}
+.date-picker{
+  margin-right: 40vh;
+  margin-bottom: 5vh;
 }
 </style>

@@ -1,5 +1,8 @@
 <template>
-  <div id="chartdiv" :style="style"></div>
+  <div
+    id="chartdiv"
+    :style="style"
+  />
 </template>
 
 <script>
@@ -12,13 +15,6 @@ am4core.useTheme(am4themes_animated)
 
 export default {
   name: 'GanttChart',
-  data(){
-    return{
-      style:{
-        height:100
-      }
-    }
-  },
   props:{
     datas : {
       type: Array,
@@ -116,6 +112,13 @@ export default {
     }
 
   },
+  data(){
+    return{
+      style:{
+        height:100
+      }
+    }
+  },
   watch:{
     datas: {
       deep: true,
@@ -123,6 +126,10 @@ export default {
         this.createChart(val)
       }
     }
+  },
+  mounted() {
+    console.log(this.createChart)
+    this.createChart(this.datas)
   },
   methods: {
     createChart(datas) {
@@ -162,10 +169,9 @@ export default {
       var dateAxis = chart.xAxes.push(new am4charts.DateAxis())
       dateAxis.dateFormatter.dateFormat = 'yyyy-MM-dd HH:mm'
       dateAxis.renderer.minGridDistance = 70
-      dateAxis.startIndex='2018-01-01 07:00'
-      dateAxis.endIndex='2018-01-02 07:00'
       dateAxis.baseInterval = {count: 20, timeUnit: 'minute'}
-      dateAxis.max = new Date(2018, 0, 1, 24, 0, 0, 0).getTime()
+      dateAxis.min=new Date(2018,0,1,7,0,0,0).getTime()
+      dateAxis.max = new Date(2018, 0, 2, 7, 0, 0, 0).getTime()
       dateAxis.strictMinMax = true
       dateAxis.renderer.tooltipLocation = 0
 
@@ -191,10 +197,6 @@ export default {
         chart.data =that.itemData
       })
     }
-  },
-  mounted() {
-    console.log(this.createChart)
-    this.createChart(this.datas)
   },
 
 
