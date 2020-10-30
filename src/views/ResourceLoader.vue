@@ -1,14 +1,10 @@
 <template>
-  <el-main class="main">
-   <GanttChart></GanttChart>
-  </el-main>
+  <el-main class="main" />
 </template>
 
 <script>
-import GanttChart from '@/components/GanttChart'
 export default {
   name: 'ResourceLoader',
-  components: {GanttChart},
   data() {
     return {
 

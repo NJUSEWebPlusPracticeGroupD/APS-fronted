@@ -25,8 +25,9 @@
         >
           <i
             class="el-icon-s-tools"
+            @click="saveTime"
           />
-          {{ time }}
+          {{ this.$store.getters.getTime }}
         </el-col>
       </el-header>
       <el-container>
@@ -34,6 +35,36 @@
         <router-view />
       </el-container>
     </el-container>
+    <el-dialog
+      title="修改时间"
+      :visible.sync="dialogVisible"
+      width="30%"
+    >
+      <el-date-picker
+        v-model="value"
+        class="date-picker"
+        type="datetime"
+        :placeholder="this.$store.getters.getTime"
+        :default-value="this.$store.getters.getTime"
+      />
+      <div />
+      <el-input
+        v-model="input"
+        class="input"
+        placeholder="请输入秒数的倍数"
+        style="width: 31vh"
+      />
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="dialogVisible = false">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="setTime"
+        >确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -44,17 +75,17 @@ export default {
   components:{PageAside},
   data(){
     return{
-      time:'2018-08-06 07:00:00',
-      date:'2018-08-06 07:00:00'
+      value:'',
+      input:1,
+      dialogVisible:false,
     }
-  },
-  beforeDestroy() {
-    this.clear()
   },
   created() {
     this.nowTimes()
   },
   methods:{
+
+    //格式化时间戳
     timeFormate(timeStamp) {
       let year = new Date(timeStamp).getFullYear()
       let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
@@ -62,8 +93,10 @@ export default {
       let hh =new Date(timeStamp).getHours() < 10? '0' + new Date(timeStamp).getHours(): new Date(timeStamp).getHours()
       let mm =new Date(timeStamp).getMinutes() < 10? '0' + new Date(timeStamp).getMinutes(): new Date(timeStamp).getMinutes()
       let ss =new Date(timeStamp).getSeconds() < 10? '0' + new Date(timeStamp).getSeconds(): new Date(timeStamp).getSeconds()
-      this.time = year + '-' + month + '-' + date +' '+hh+':'+mm+':'+ss
+      var time= year + '-' + month + '-' + date +' '+hh+':'+mm+':'+ss
+      this.$store.commit('setTime',time)
     },
+    //增加时间，num代表多少秒
     dateAdd(d,num){
       var date = new Date(d.getFullYear(),
         d.getMonth(),
@@ -80,15 +113,30 @@ export default {
     +':'+date.getMinutes()
     +':'+date.getSeconds()
     },
+    //现在的虚拟时间
     nowTimes(){
-      this.timeFormate(this.date)
-      this.date=this.dateAdd(new Date(this.date),1)
+      var time=this.dateAdd(new Date(this.$store.getters.getTime),this.$store.getters.getTimeOfSecond)
+      this.timeFormate(time)
       setInterval(this.nowTimes,1000)
       this.clear()
     },
+    //清空计时器
     clear(){
       clearInterval(this.nowTimes)
       this.nowTimes = null
+    },
+
+    //设置时间和改变时间速率
+    setTime(){
+      this.$store.commit('setTime',this.value)
+      this.$store.commit('setTimeOfSecond',this.input)
+      this.dialogVisible=false
+    },
+    
+    //时间dialog进入前
+    saveTime(){
+      this.value=this.$store.getters.getTime
+      this.dialogVisible=true
     }
   }
 }
@@ -118,6 +166,12 @@ export default {
 }
 .time-class{
   font-size:20px;
+}
+.el-icon-s-tools:hover{
+  cursor: pointer;
+}
+.input{
+  margin-top:4vh;
 }
 html,
 body {

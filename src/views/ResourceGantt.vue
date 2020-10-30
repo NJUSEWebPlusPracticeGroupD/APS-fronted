@@ -1,14 +1,16 @@
 <template>
   <el-main class="main">
     <el-date-picker
+      v-model="value"
       class="date-picker"
       type="date"
-      placeholder="选择日期"
-      :default-value="defaultTime"
+      :placeholder="time"
+      :default-value="time"
     />
     <el-button
       type="info"
       round
+      @click="getResource"
     >
       确定
     </el-button>
@@ -23,10 +25,15 @@ export default {
   components: {GanttChart},
   data() {
     return {
-      defaultTime: new Date(2018,7,12)
-
+      value:'',
+      time:this.$store.getters.getTime.slice(0,10)
     }
   },
+  methods:{
+    getResource(){
+      console.log(this.value)
+    }
+  }
 }
 </script>
 
