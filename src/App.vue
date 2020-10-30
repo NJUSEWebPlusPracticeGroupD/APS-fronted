@@ -132,7 +132,7 @@ export default {
       this.$store.commit('setTimeOfSecond',this.input)
       this.dialogVisible=false
     },
-    
+
     //时间dialog进入前
     saveTime(){
       this.value=this.$store.getters.getTime
