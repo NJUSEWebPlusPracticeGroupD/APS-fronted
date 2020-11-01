@@ -49,8 +49,6 @@ export default {
     height: 50px;
     width:30px;
     margin:5px auto;
-    -webkit-border-radius: 24px;
-    border-radius: 24px;
     overflow: hidden;
     position: relative;
     background: #e5e5e5;
@@ -60,8 +58,6 @@ export default {
       height: 0;
       width: 100%;
       display: block;
-      -webkit-border-radius: 24px;
-      border-radius: 24px;
       -webkit-transition: height 2s ease-out;
       -o-transition: height 2s ease-out;
       transition: height 2s ease-out;

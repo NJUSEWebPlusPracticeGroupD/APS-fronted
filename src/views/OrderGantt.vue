@@ -113,7 +113,7 @@ export default {
   },
   methods:{
     getOrder(){
-
+      //获取订单甘特数据，与后端交接
     }
   }
 }

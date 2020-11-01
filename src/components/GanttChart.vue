@@ -56,13 +56,13 @@ export default {
           },
 
           {
-            name: 'line1',
+            name: 'line2',
             fromDate: '2018-01-01 09:00',
             toDate: '2018-01-01 12:00',
             task: 'task3'
           },
           {
-            name: 'line1',
+            name: 'line2',
             fromDate: '2018-01-01 13:00',
             toDate: '2018-01-01 17:00',
             task: 'task5'
@@ -178,6 +178,17 @@ export default {
       series1.columns.template.propertyFields.stroke = 'color'
       series1.columns.template.strokeOpacity = 1
       chart.scrollbarX = new am4core.Scrollbar()
+
+      var columnTemplate = series1.columns.template
+      columnTemplate.strokeOpacity = 0
+      columnTemplate.propertyFields.fill = 'color'
+
+      var label = columnTemplate.createChild(am4core.Label)
+      label.text = '{task}'
+      label.align = 'center'
+      label.valign = 'middle'
+
+      //点击事件
       var that=this
       series1.columns.template.events.on('hit', function (ev) {
 
@@ -232,6 +243,15 @@ export default {
         series1.columns.template.propertyFields.stroke = 'color'
         series1.columns.template.strokeOpacity = 1
         chart.scrollbarX = new am4core.Scrollbar()
+
+        var columnTemplate = series1.columns.template
+        columnTemplate.strokeOpacity = 0
+        columnTemplate.propertyFields.fill = 'color'
+
+        var label = columnTemplate.createChild(am4core.Label)
+        label.text = '{task}'
+        label.align = 'center'
+        label.valign = 'middle'
       })
     }
   },

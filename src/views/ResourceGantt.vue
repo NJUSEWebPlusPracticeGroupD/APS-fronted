@@ -31,6 +31,7 @@ export default {
   },
   methods:{
     getResource(){
+      //获取资源甘特图需要的数据，与后端交互
       console.log(this.value)
     }
   }
