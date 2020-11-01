@@ -4,10 +4,11 @@
       <el-progress
         type="circle"
         :percentage="onTimeDelivery"
-        stroke-width="26"
-        :status="item==100?'success':''"
-        width="180"
+        stroke-width="32"
+        :status="onTimeDelivery==100?'success':''"
+        width="200"
       />
+      <div>{{ time }}</div>
     </div>
     <div>
       <el-date-picker
@@ -25,46 +26,87 @@
         确定
       </el-button>
     </div>
-    <el-col
-      :span="5"
-      style="min-height:1px;"
-    />
-    <el-col :span="4">
-      <div
-        v-for="(item) in orderArr"
-        :key="item"
-        class="orderId"
-      >
-        {{ item }}
-      </div>
-    </el-col>
-    <el-col :span="10">
-      <el-progress
-        v-for="(item) in progressArr"
-        :key="item"
-        :text-inside="true"
-        :stroke-width="26"
-        :percentage="item"
-        :status="item==100?'success':''"
-        class="progress"
+    <el-row
+      v-for="(item) in orderProgress"
+      :key="item"
+    >
+      <el-col
+        :span="5"
+        style="min-height:1px;"
       />
-    </el-col>
-    <el-col
-      :span="5"
-      style="min-height:1px;"
-    />
+      <el-col :span="4">
+        <div
+          class="orderId"
+        >
+          {{ item.orderId }}
+        </div>
+      </el-col>
+      <el-col :span="10">
+        <ProgressBar
+          :delay-date="`${item.dateDelay}`"
+          :date="`${item.date}`"
+        />
+      </el-col>
+      <el-col
+        :span="5"
+        style="min-height:1px;"
+      />
+    </el-row>
   </el-main>
 </template>
 
 <script>
-
+import  ProgressBar from '@/components/ProgressBar'
 export default {
   name: 'OrderGantt',
+  components:{
+    ProgressBar
+  },
   data() {
     return {
-      onTimeDelivery:50,
-      progressArr:[20,30,40,100,20,30],
-      orderArr:[41234,41523,41789,45236,55554,65421],
+      onTimeDelivery:100,
+      orderProgress:[
+        {
+          orderId:41234,
+          date:20,
+          dateDelay:10,
+        },
+        {
+          orderId:41523,
+          date:80,
+          dateDelay:'',
+        },
+        {
+          orderId:41888,
+          date:60,
+          dateDelay:20,
+        },
+        {
+          orderId:51666,
+          date:60,
+          dateDelay:'',
+        },
+        {
+          orderId:64850,
+          date:100,
+          dateDelay:'',
+        },
+        {
+          orderId:98564,
+          date:90,
+          dateDelay:10,
+        },
+        {
+          orderId:65732,
+          date:30,
+          dateDelay:20,
+        },
+        {
+          orderId:41253,
+          date:60,
+          dateDelay:'',
+        },
+      ],
       value:'',
       time:this.$store.getters.getTime.slice(0,10)
     }
