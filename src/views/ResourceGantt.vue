@@ -14,6 +14,9 @@
     >
       确定
     </el-button>
+    <div class="delay">
+      延期
+    </div>
     <GanttChart />
   </el-main>
 </template>
@@ -47,6 +50,14 @@ export default {
   min-height: 400px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
+}
+.delay{
+  padding-top:1vh;
+  float:right;
+  margin-right: 10vh;
+  background-color: #D07473;
+  width: 50px;
+  height:30px
 }
 .main:hover{
   margin:10px 20px 30px 20px;

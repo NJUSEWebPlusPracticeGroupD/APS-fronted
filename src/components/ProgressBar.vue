@@ -10,7 +10,7 @@
         > {{ date }}</span>
         <span
           class="progress"
-          :style="{'width':`${delayDate}%`,'background-color':'#FF3978','position': 'absolute','left':`${date}%`}"
+          :style="{'width':`${delayDate}%`,'background-color':'#D07473','position': 'absolute','left':`${date}%`}"
         > {{ delayDate }}</span>
       </div>
     </div>

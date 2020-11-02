@@ -40,72 +40,82 @@ export default {
             name: 'line1',
             fromDate: '2018-01-01 08:00',
             toDate: '2018-01-01 10:00',
-            task: 'task1'
+            task: 'task1',
+            delay:false
           },
           {
             name: 'line1',
             fromDate: '2018-01-01 12:00',
             toDate: '2018-01-01 15:00',
-            task: 'task2'
+            task: 'task2',
+            delay:true
           },
           {
             name: 'line1',
             fromDate: '2018-01-01 15:30',
             toDate: '2018-01-01 21:30',
-            task: 'task4'
+            task: 'task4',
+            delay:false
           },
 
           {
             name: 'line2',
             fromDate: '2018-01-01 09:00',
-            toDate: '2018-01-01 12:00',
-            task: 'task3'
+            toDate: '2018-01-01 11:00',
+            task: 'task3',
+            delay:false
           },
           {
             name: 'line2',
             fromDate: '2018-01-01 13:00',
             toDate: '2018-01-01 17:00',
-            task: 'task5'
+            task: 'task5',
+            delay:false
           },
 
           {
             name: 'line2',
             fromDate: '2018-01-01 11:00',
             toDate: '2018-01-01 16:00',
-            task: 'task2'
+            task: 'task2',
+            delay:false
           },
           {
             name: 'line2',
             fromDate: '2018-01-01 16:00',
             toDate: '2018-01-01 19:00',
-            task: 'task4'
+            task: 'task4',
+            delay:false
           },
 
           {
             name: '张三',
             fromDate: '2018-01-01 16:00',
             toDate: '2018-01-01 20:00',
-            task: 'task4'
+            task: 'task4',
+            delay:false
           },
           {
             name: '张三',
             fromDate: '2018-01-01 20:30',
             toDate: '2018-01-01 24:00',
-            task: 'task3'
+            task: 'task3',
+            delay:false
           },
 
           {
             name: '李四',
             fromDate: '2018-01-01 13:00',
             toDate: '2018-01-01 24:00',
-            task: 'task2'
+            task: 'task2',
+            delay:false
           }
         ]
     },
   },
   data(){
     return{
-      showChart1:true
+      showChart1:true,
     }
   },
   watch:{
@@ -142,10 +152,17 @@ export default {
       var index = 0
       for (var item of datas) {
         if (!colorMap[item['task']]) {
+          if(index===6){
+            index=index+6
+          }
           colorMap[item['task']] = colorSet.getIndex(Number(index)).brighten(0)
           index = index + 2
         }
         item['color'] = colorMap[item['task']]
+        if(item['delay']==true){
+          item['color'] = colorSet.getIndex(9).brighten(0)
+          console.log(item['name']+' delay')
+        }
         if(!nameMap[item['name']]){
           nameMap[item['name']]=true
         }
@@ -211,7 +228,12 @@ export default {
         var itemData=[]
         for (let item of  that.datas) {
           if(item.task===target){
-            item['color'] = colorMap[item['task']]
+            if(item['delay']===true){
+              item['color'] = colorSet.getIndex(that.delayColor).brighten(0)
+            }
+            else {
+              item['color'] = colorMap[item['task']]
+            }
             itemData.push(item)
           }
         }

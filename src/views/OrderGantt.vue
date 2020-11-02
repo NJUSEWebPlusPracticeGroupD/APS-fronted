@@ -5,9 +5,10 @@
         type="circle"
         :percentage="onTimeDelivery"
         stroke-width="32"
-        :status="onTimeDelivery==100?'success':''"
+        :status="onTimeDelivery===100?'success':''"
         width="200"
       />
+
       <div>{{ time }}</div>
     </div>
     <div>
@@ -25,6 +26,9 @@
       >
         确定
       </el-button>
+      <div class="delay">
+        延期
+      </div>
     </div>
     <el-row
       v-for="(item) in orderProgress"
@@ -129,6 +133,14 @@ export default {
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
+.delay{
+  padding-top:1vh;
+  float:right;
+  margin-right: 10vh;
+  background-color: #D07473;
+  width: 50px;
+  height:30px
+}
 .main:hover{
   margin:10px 20px 30px 20px;
 }
@@ -140,6 +152,7 @@ export default {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   font-size: 20px;
 }
+
 .onTimeDelivery{
   margin-bottom: 5vh;
 }
