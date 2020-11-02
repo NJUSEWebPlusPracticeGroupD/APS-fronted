@@ -4,20 +4,16 @@
   height: 100%;}"
   >
     <div
-      v-if="showChart1"
-      id="chartdiv1"
-    />
-    <div
       v-if="!showChart1"
-      style="{width: 100%;
-  height: 100%;}"
     >
       <i
         class="el-icon-back"
         @click="backToChart1"
       />
-      <div id="chartdiv2" />
     </div>
+    <div
+      id="chartdiv1"
+    />
   </div>
 </template>
 
@@ -57,7 +53,6 @@ export default {
             task: 'task4',
             delay:false
           },
-
           {
             name: 'line2',
             fromDate: '2018-01-01 09:00',
@@ -72,7 +67,6 @@ export default {
             task: 'task5',
             delay:false
           },
-
           {
             name: 'line2',
             fromDate: '2018-01-01 11:00',
@@ -132,7 +126,8 @@ export default {
   },
   methods: {
     backToChart1(){
-      this.showChart1=true
+      this.showChart1=true,
+      this.createChart(this.datas)
     },
     createChart(datas) {
       let chart = am4core.create('chartdiv1', am4charts.XYChart)
@@ -156,12 +151,11 @@ export default {
             index=index+6
           }
           colorMap[item['task']] = colorSet.getIndex(Number(index)).brighten(0)
-          index = index + 2
+          index = index + 3
         }
         item['color'] = colorMap[item['task']]
         if(item['delay']==true){
           item['color'] = colorSet.getIndex(9).brighten(0)
-          console.log(item['name']+' delay')
         }
         if(!nameMap[item['name']]){
           nameMap[item['name']]=true
@@ -205,13 +199,17 @@ export default {
       label.align = 'center'
       label.valign = 'middle'
 
+
+
+
+
       //点击事件
-      var that=this
+      const that = this
       series1.columns.template.events.on('hit', function (ev) {
 
         that.showChart1=false
 
-        let chart = am4core.create('chartdiv2', am4charts.XYChart)
+        let chart = am4core.create('chartdiv1', am4charts.XYChart)
         chart.hiddenState.properties.opacity = 0 // this creates initial fade-in
 
 
@@ -229,7 +227,7 @@ export default {
         for (let item of  that.datas) {
           if(item.task===target){
             if(item['delay']===true){
-              item['color'] = colorSet.getIndex(that.delayColor).brighten(0)
+              item['color'] = colorSet.getIndex(9).brighten(0)
             }
             else {
               item['color'] = colorMap[item['task']]
