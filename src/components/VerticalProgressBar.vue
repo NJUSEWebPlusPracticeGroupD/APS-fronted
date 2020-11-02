@@ -8,7 +8,7 @@
       <div class="bar">
         <span
           class="progress"
-          :style="{'height':`${item.value*10}%`}"
+          :style="item.value<=2?{'height':`${item.value*10}%`,'background-color':'#d6a3dc'}:item.value<=4?{'height':`${item.value*10}%`,'background-color':'#f7db70'}:item.value<=6?{'height':`${item.value*10}%`,'background-color':'#eabebf'}:item.value<=8?{'height':`${item.value*10}%`,'background-color':'#75cce8'}:{'height':`${item.value*10}%`,'background-color':'#a5dee5'}"
         />
       </div>
       <div class="sfont">
@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style  lang="less" scoped>
-.haoroomflex{display: flex;margin:0 15px;}
+.haoroomflex{display: flex;margin:0;}
 .onebar{
   flex:1;
   text-align: center;
@@ -43,11 +43,11 @@ export default {
   display: inline-block;
   .sfont{
     color:#999;
-    font-size:14px;
+    font-size:22px;
   }
   .bar{
     height: 50px;
-    width:30px;
+    width:35px;
     margin:5px auto;
     overflow: hidden;
     position: relative;
@@ -61,7 +61,6 @@ export default {
       -webkit-transition: height 2s ease-out;
       -o-transition: height 2s ease-out;
       transition: height 2s ease-out;
-      background: #3990FF
 
     }
   }

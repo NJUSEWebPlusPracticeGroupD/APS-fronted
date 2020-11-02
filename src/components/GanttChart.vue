@@ -34,82 +34,85 @@ export default {
         [
           {
             name: 'line1',
-            fromDate: '2018-01-01 08:00',
-            toDate: '2018-01-01 10:00',
+            fromDate: '2018-08-01 08:00',
+            toDate: '2018-08-01 10:00',
             task: 'task1',
             delay:false
           },
           {
             name: 'line1',
-            fromDate: '2018-01-01 12:00',
-            toDate: '2018-01-01 15:00',
+            fromDate: '2018-08-01 12:00',
+            toDate: '2018-08-01 15:00',
             task: 'task2',
             delay:true
           },
           {
             name: 'line1',
-            fromDate: '2018-01-01 15:30',
-            toDate: '2018-01-01 21:30',
+            fromDate: '2018-08-01 15:30',
+            toDate: '2018-08-01 21:30',
             task: 'task4',
             delay:false
           },
           {
             name: 'line2',
-            fromDate: '2018-01-01 09:00',
-            toDate: '2018-01-01 11:00',
+            fromDate: '2018-08-01 09:00',
+            toDate: '2018-08-01 11:00',
             task: 'task3',
             delay:false
           },
           {
             name: 'line2',
-            fromDate: '2018-01-01 13:00',
-            toDate: '2018-01-01 17:00',
+            fromDate: '2018-08-01 13:00',
+            toDate: '2018-08-01 17:00',
             task: 'task5',
             delay:false
           },
           {
             name: 'line2',
-            fromDate: '2018-01-01 11:00',
-            toDate: '2018-01-01 16:00',
+            fromDate: '2018-08-01 11:00',
+            toDate: '2018-08-01 16:00',
             task: 'task2',
             delay:false
           },
           {
             name: 'line2',
-            fromDate: '2018-01-01 16:00',
-            toDate: '2018-01-01 19:00',
+            fromDate: '2018-08-01 16:00',
+            toDate: '2018-08-01 19:00',
             task: 'task4',
             delay:false
           },
 
           {
             name: '张三',
-            fromDate: '2018-01-01 16:00',
-            toDate: '2018-01-01 20:00',
+            fromDate: '2018-08-01 16:00',
+            toDate: '2018-08-01 20:00',
             task: 'task4',
             delay:false
           },
           {
             name: '张三',
-            fromDate: '2018-01-01 20:30',
-            toDate: '2018-01-01 24:00',
+            fromDate: '2018-08-01 20:30',
+            toDate: '2018-08-01 24:00',
             task: 'task3',
             delay:false
           },
 
           {
             name: '李四',
-            fromDate: '2018-01-01 13:00',
-            toDate: '2018-01-01 24:00',
+            fromDate: '2018-08-01 13:00',
+            toDate: '2018-08-01 24:00',
             task: 'task2',
             delay:false
           }
         ]
     },
+
   },
   data(){
     return{
       showChart1:true,
+      beginTime:'',
+      lastTime:''
     }
   },
   watch:{
@@ -121,10 +124,16 @@ export default {
     }
   },
   mounted() {
-    console.log(this.createChart)
     this.createChart(this.datas)
+    this.beginTime=this.datas[0].fromDate.slice(0,10)+' 07:00'
+    this.lastTime=this.addTime(this.beginTime,1)
   },
   methods: {
+    addTime(time,num){
+      var date=new Date(time)
+      date.setTime(date.getTime()+num*86400000 )
+      return date.toString()[0,10]
+    },
     backToChart1(){
       this.showChart1=true,
       this.createChart(this.datas)
@@ -172,8 +181,8 @@ export default {
       dateAxis.dateFormatter.dateFormat = 'yyyy-MM-dd HH:mm'
       dateAxis.renderer.minGridDistance = 70
       dateAxis.baseInterval = {count: 20, timeUnit: 'minute'}
-      dateAxis.min=new Date(2018,0,1,7,0,0,0).getTime()
-      dateAxis.max = new Date(2018, 0, 2, 7, 0, 0, 0).getTime()
+      dateAxis.min=new Date(new Date(this.beginTime)).getTime()
+      dateAxis.max = new Date(new Date(this.lastTime)).getTime()
       dateAxis.strictMinMax = true
       dateAxis.renderer.tooltipLocation = 0
 
@@ -246,8 +255,8 @@ export default {
         dateAxis.dateFormatter.dateFormat = 'yyyy-MM-dd HH:mm'
         dateAxis.renderer.minGridDistance = 70
         dateAxis.baseInterval = {count: 20, timeUnit: 'minute'}
-        dateAxis.min=new Date(2018,0,1,7,0,0,0).getTime()
-        dateAxis.max = new Date(2018, 0, 2, 7, 0, 0, 0).getTime()
+        dateAxis.min=new Date(new Date(that.beginTime)).getTime()
+        dateAxis.max = new Date(new Date(that.lastTime)).getTime()
         dateAxis.strictMinMax = true
         dateAxis.renderer.tooltipLocation = 0
 
