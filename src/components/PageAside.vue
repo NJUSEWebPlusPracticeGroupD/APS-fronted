@@ -1,38 +1,60 @@
 <template>
   <el-aside class="aside">
-    <el-menu class="menu">
+    <el-menu
+      class="menu"
+    >
       <router-link to="/about">
-        <el-menu-item class="menu-item" index="1">
+        <el-menu-item
+          class="menu-item"
+          index="1"
+        >
           <template slot="title">
-            <i class="el-icon-s-home"></i>首页
+            <i class="el-icon-s-home" />
+            <span slot="title">首页</span>
           </template>
         </el-menu-item>
       </router-link>
       <router-link to="/resourceGantt">
-        <el-menu-item class="menu-item" index="2">
+        <el-menu-item
+          class="menu-item"
+          index="2"
+        >
           <template slot="title">
-            <i class="el-icon-menu"></i>资源甘特图
+            <i class="el-icon-menu" />
+            <span slot="title">资源甘特图</span>
           </template>
         </el-menu-item>
       </router-link>
       <router-link to="/resourceLoader">
-        <el-menu-item class="menu-item" index="3">
+        <el-menu-item
+          class="menu-item"
+          index="3"
+        >
           <template slot="title">
-            <i class="el-icon-s-data"></i>资源负载图
+            <i class="el-icon-s-data" />
+            <span slot="title">资源负载图</span>
           </template>
         </el-menu-item>
       </router-link>
       <router-link to="/orderGantt">
-        <el-menu-item class="menu-item" index="4">
+        <el-menu-item
+          class="menu-item"
+          index="4"
+        >
           <template slot="title">
-            <i class="el-icon-s-order"></i>订单甘特图
+            <i class="el-icon-s-order" />
+            <span slot="title">订单甘特图</span>
           </template>
         </el-menu-item>
       </router-link>
       <router-link to="/schedule">
-        <el-menu-item class="menu-item" index="5">
+        <el-menu-item
+          class="menu-item"
+          index="5"
+        >
           <template slot="title">
-            <i class="el-icon-s-tools"></i>排程
+            <i class="el-icon-files" />
+            <span slot="title">排程</span>
           </template>
         </el-menu-item>
       </router-link>
@@ -42,7 +64,12 @@
 
 <script>
 export default {
-  name: 'PageAside'
+  name: 'PageAside',
+  data(){
+    return {
+      isCollapse: true
+    }
+  }
 }
 </script>
 
@@ -50,7 +77,7 @@ export default {
 .aside{
   background:#f5f6fa;;
   width: 200px;
-  min-height:500px;
+  min-height:400px;
   margin:20px;
   border-radius: 10px;
   text-align: left;
@@ -61,6 +88,10 @@ export default {
 }
 .menu{
   background-color:transparent;
+}
+.menu :not(.el-menu--collapse) {
+  width: 50px;
+  min-height: 30px;
 }
 .menu-item{
   font-family: "Avenir", Helvetica, Arial, sans-serif;

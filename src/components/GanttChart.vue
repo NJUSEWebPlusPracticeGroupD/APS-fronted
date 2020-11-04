@@ -3,14 +3,11 @@
     style=" {width: 100%;
   height: 100%;}"
   >
-    <div
+    <el-page-header
       v-if="!showChart1"
-    >
-      <i
-        class="el-icon-back"
-        @click="backToChart1"
-      />
-    </div>
+      content="订单详情"
+      @back="backToChart1"
+    />
     <div
       id="chartdiv1"
     />
@@ -293,11 +290,11 @@ export default {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
   Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-  height:100%;
+  min-height:100%;
 }
 #chartdiv1 {
   width: 100%;
-  height: 100%;
+  min-height: 100%;
   float: left;
 }
 #chartdiv2 {

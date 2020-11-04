@@ -8,7 +8,8 @@
       <div class="bar">
         <span
           class="progress"
-          :style="item.value<=2?{'height':`${item.value*10}%`,'background-color':'#d6a3dc'}:item.value<=4?{'height':`${item.value*10}%`,'background-color':'#f7db70'}:item.value<=6?{'height':`${item.value*10}%`,'background-color':'#eabebf'}:item.value<=8?{'height':`${item.value*10}%`,'background-color':'#75cce8'}:{'height':`${item.value*10}%`,'background-color':'#a5dee5'}"
+          :style="item.value<=2?{'height':`${item.value*10}%`,'background-color':'#d6a3dc'}:item.value<=4?{'height':`${item.value*10}%`,'background-color':'#f7db70'}:item.value<=6?{'height':`${item.value*10}%`,'background-color':'#eabebf'}:item.value<=8?{'height':`${item.value*10}%`,'background-color':'#75cce8'}:
+            {'height':`${item.value*10}%`,'background-color':'#94e277'}"
         />
       </div>
       <div class="sfont">

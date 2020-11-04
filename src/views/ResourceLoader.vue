@@ -9,7 +9,7 @@
             type="circle"
             :percentage="totalEquipmentLoadRate"
             stroke-width="32"
-            :color="totalEquipmentLoadRate<=20?'#d6a3dc':totalEquipmentLoadRate<=40?'#f7db70':totalEquipmentLoadRate<=60?'#eabebf':totalEquipmentLoadRate<=80?'#75cceb':'#a5dee5'"
+            :color="totalEquipmentLoadRate<=20?'#d6a3dc':totalEquipmentLoadRate<=40?'#f7db70':totalEquipmentLoadRate<=60?'#eabebf':totalEquipmentLoadRate<=80?'#75cceb':'#94e277'"
             width="200"
           />
         </div>
@@ -20,7 +20,7 @@
             type="circle"
             :percentage="totalPersonnelLoadRate"
             stroke-width="32"
-            :color="totalPersonnelLoadRate<=20?'#d6a3dc':totalPersonnelLoadRate<=40?'#f7db70':totalPersonnelLoadRate<=60?'#eabebf':totalPersonnelLoadRate<=80?'#75cceb':'#a5dee5'"
+            :color="totalPersonnelLoadRate<=20?'#d6a3dc':totalPersonnelLoadRate<=40?'#f7db70':totalPersonnelLoadRate<=60?'#eabebf':totalPersonnelLoadRate<=80?'#75cceb':'#94e277'"
             width="200"
           />
         </div>
@@ -41,6 +41,7 @@
     <el-row
       v-for="(item,index1) in data"
       :key="index1"
+      style="margin-bottom: 1vh"
     >
       <div class="id">
         {{ item.name }}
@@ -119,9 +120,7 @@ export default {
     nextDate(){
       this.beginTime=this.addTime(this.beginTime,-1)
       this.setTimeString()
-      var lastDate=this.addTime( this.beginTime,7)
       //跟后端交互
-      console.log(lastDate)
     },
     initDateRate(){
       //初始化七天的数据，跟后端交互
@@ -138,7 +137,7 @@ export default {
   background-color: #FFFFFF;
   margin:20px 20px;
   padding: 60px;
-  height:800px;
+  min-height:400px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
@@ -190,7 +189,7 @@ export default {
   margin-top:10vh;
 }
 .id{
-  height:8vh;
+  height:7vh;
   width: 12vh;
   font-size: 3.2vh;
   padding-top:4vh;

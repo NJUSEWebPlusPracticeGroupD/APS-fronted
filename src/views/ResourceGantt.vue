@@ -1,19 +1,20 @@
 <template>
   <el-main class="main">
-    <el-date-picker
-      v-model="value"
-      class="date-picker"
-      type="date"
-      :placeholder="time"
-      :default-value="time"
-    />
-    <el-button
-      type="info"
-      round
-      @click="getResource"
-    >
-      确定
-    </el-button>
+    <el-row>
+      <el-date-picker
+        v-model="value"
+        class="date-picker"
+        type="date"
+        :placeholder="time"
+        :default-value="time"
+      />
+      <div
+        class="button"
+        @click="getResource"
+      >
+        <i class="el-icon-right" />
+      </div>
+    </el-row>
     <div class="delay">
       延期
     </div>
@@ -71,7 +72,20 @@ export default {
   font-size: 20px;
 }
 .date-picker{
-  margin-right: 40vh;
+  margin-right: 5vh;
   margin-bottom: 5vh;
+  float: left;
+}
+.button{
+  float: left;
+  color: #5daf34;
+  width: 80px;
+  height:35px;
+  border: 1px solid #5daf34;
+  border-radius: 10px;
+  line-height: 35px;
+}
+.button:hover{
+  cursor: pointer;
 }
 </style>

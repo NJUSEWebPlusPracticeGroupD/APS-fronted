@@ -6,7 +6,7 @@
       <div class="bar">
         <span
           class="progress"
-          :style="date!=100?{'width':`${date}%`,'background-color':'#3990FF'}:{'width':`${date}%`,'background-color':'rgb(19, 206, 102)'}"
+          :style="date!=100?{'width':`${date}%`,'background-color':'#75cce8'}:{'width':`${date}%`,'background-color':'#94e277'}"
         > {{ date }}</span>
         <span
           class="progress"
@@ -45,8 +45,8 @@ export default {
     font-size:14px;
   }
   .bar{
-    height: 30px;
-    width:500px;
+    height: 35px;
+    width:600px;
     margin:5px auto;
     -webkit-border-radius: 24px;
     border-radius: 24px;

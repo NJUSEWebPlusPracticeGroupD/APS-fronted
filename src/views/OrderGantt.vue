@@ -1,17 +1,17 @@
 <template>
   <el-main class="main">
     <div class="onTimeDelivery">
+      <h4>按期交货率</h4>
+      <h5>{{ timeString }}</h5>
       <el-progress
         type="circle"
         :percentage="onTimeDelivery"
         stroke-width="32"
-        :status="onTimeDelivery===100?'success':''"
+        :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
         width="200"
       />
-
-      <div>{{ time }}</div>
     </div>
-    <div>
+    <el-row>
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -19,40 +19,54 @@
         :placeholder="time"
         :default-value="time"
       />
-      <el-button
-        type="info"
-        round
+      <div
+        class="button"
         @click="getOrder"
       >
-        确定
-      </el-button>
+        <i class="el-icon-right" />
+      </div>
       <div class="delay">
         延期
       </div>
-    </div>
+    </el-row>
+    <el-row>
+      <el-col :span="5">
+        <div
+          class="orderId"
+        >
+          订单编号
+        </div>
+      </el-col>
+      <el-col :span="12">
+        <div style="margin:1.5vh auto">
+          订单进度
+        </div>
+      </el-col>
+      <el-col
+        :span="7"
+        style="min-height:1px;"
+      />
+    </el-row>
+
     <el-row
       v-for="(item) in orderProgress"
       :key="item"
     >
-      <el-col
-        :span="5"
-        style="min-height:1px;"
-      />
-      <el-col :span="4">
+      <el-col :span="5">
         <div
           class="orderId"
         >
           {{ item.orderId }}
         </div>
       </el-col>
-      <el-col :span="10">
+      <el-col :span="12">
         <ProgressBar
           :delay-date="`${item.dateDelay}`"
           :date="`${item.date}`"
         />
       </el-col>
       <el-col
-        :span="5"
+        :span="7"
         style="min-height:1px;"
       />
     </el-row>
@@ -69,6 +83,7 @@ export default {
   data() {
     return {
       onTimeDelivery:100,
+      timeString:'',
       orderProgress:[
         {
           orderId:41234,
@@ -115,7 +130,20 @@ export default {
       time:this.$store.getters.getTime.slice(0,10)
     }
   },
+  beforeMount() {
+    this.setTimeString()
+  },
   methods:{
+    timeFormate(timeStamp) {
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      return year + '年' + month + '月' + date + '日之前'
+    },
+    setTimeString(){
+      var date=new Date(this.time)
+      this.timeString=this.timeFormate(date)
+    },
     getOrder(){
       //获取订单甘特数据，与后端交接
     }
@@ -154,11 +182,14 @@ export default {
 }
 
 .onTimeDelivery{
-  margin-bottom: 5vh;
+  width:35vh;
+  margin: 0 auto 5vh;
+  border: 0.5vh solid black;
+  height:45vh;
+  position: relative;
 }
 .orderId{
-  height:4vh;
-  border:1px solid  #f5f6fa;
+  height:4.2vh;
   margin:1.5vh 7vh;
   padding-top:1.2vh;
 }
@@ -167,7 +198,19 @@ export default {
   margin:1.9vh 0;
 }
 .date-picker{
-  margin-right: 30vh;
-  margin-bottom: 5vh;
+  margin:0 5vh 5vh 10vh;
+  float: left;
+}
+.button{
+  float: left;
+  color: #5daf34;
+  width: 80px;
+  height:35px;
+  border: 1px solid #5daf34;
+  border-radius: 10px;
+  line-height: 35px;
+}
+.button:hover {
+  cursor: pointer
 }
 </style>
