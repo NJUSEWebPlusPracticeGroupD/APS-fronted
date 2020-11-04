@@ -11,7 +11,7 @@ export const constantRoutes = [
   {
     path:'/about',
     name:'about',
-    component:() => import('../views/About.vue')
+    component:() => import('../views/about.vue')
   },
   {
     path:'/orderGantt',
