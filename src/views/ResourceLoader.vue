@@ -8,9 +8,9 @@
           <el-progress
             type="circle"
             :percentage="totalEquipmentLoadRate"
-            stroke-width="32"
+            stroke-width="26"
             :color="totalEquipmentLoadRate<=20?'#d6a3dc':totalEquipmentLoadRate<=40?'#f7db70':totalEquipmentLoadRate<=60?'#eabebf':totalEquipmentLoadRate<=80?'#75cceb':'#94e277'"
-            width="200"
+            width="160"
           />
         </div>
         <div class="totalPersonnelLoad">
@@ -19,13 +19,32 @@
           <el-progress
             type="circle"
             :percentage="totalPersonnelLoadRate"
-            stroke-width="32"
+            stroke-width="26"
             :color="totalPersonnelLoadRate<=20?'#d6a3dc':totalPersonnelLoadRate<=40?'#f7db70':totalPersonnelLoadRate<=60?'#eabebf':totalPersonnelLoadRate<=80?'#75cceb':'#94e277'"
-            width="200"
+            width="160"
           />
         </div>
       </div>
     </div>
+    <el-row>
+      <p style="float:left; ">
+        选择查看时间：
+      </p>
+      <el-date-picker
+        v-model="value"
+        class="date-picker"
+        type="date"
+        :placeholder="beginTime"
+        :default-value="beginTime"
+      />
+      <el-button
+        round
+        class="button"
+        @click="getRatesByTime"
+      >
+        确定
+      </el-button>
+    </el-row>
     <div class="datePaging">
       <i
         class="el-icon-arrow-left"
@@ -73,6 +92,7 @@ export default {
   },
   data() {
     return {
+      value:'',
       totalEquipmentLoadRate:50,
       totalPersonnelLoadRate:80,
       beginTime:this.$store.getters.getTime.slice(0,10),
@@ -125,6 +145,9 @@ export default {
     initDateRate(){
       //初始化七天的数据，跟后端交互
 
+    },
+    getRatesByTime(){
+      //选择初始时间
     }
   }
 
@@ -159,42 +182,56 @@ export default {
   font-size: 20px;
 }
 .totalResource{
-  height:45vh;
-  position: relative;
+  height:270px;
+  width:600px ;
+  display: inline-block;
+  margin: 0 auto;
+}
+.date-picker{
+  margin:8px 10px 2px 10px;
+  float: left;
+}
+.button{
+  float: left;
+  margin:8px;
+  color: #5daf34;
+  width: 80px;
+  border: 1px solid #5daf34;
+  border-radius: 10px;
 }
 .rateContainer{
   float: left;
-  margin-left: 1.5vh;
+  margin-left:10px;
 }
 .rateBar{
   display: inline-block;
-  width:13.6vh;
+  width:100px;
 }
 .totalEquipmentLoad{
-  width:35vh;
-  position: absolute;
-  left:28vh;
-  height: 100%;
-  border: 0.5vh solid black;
+  height:280px;
+  width:230px;
+  display: inline-block;
+  margin: -30px 20px 20px;
+  border: 2px solid black;
 }
 .totalPersonnelLoad{
-  width:35vh;
-  position: absolute;
-  right:28vh;
-  height: 100%;
-  border: 0.5vh solid black;
+  height:280px;
+  width:230px;
+  display: inline-block;
+  margin: -30px 20px 20px;
+  border: 2px solid black;
 }
 .datePaging{
-  height:20vh;
-  margin-top:10vh;
+  height:90px;
+  margin-top:20px;
 }
 .id{
-  height:7vh;
-  width: 12vh;
-  font-size: 3.2vh;
-  padding-top:4vh;
+  height:60px;
+  width: 90px;
+  font-size: 24px;
+  padding-top:20px;
   float: left;
-  border: 0.3vh solid black;
+  border: 2px solid black;
   display: inline-block;
 }
 </style>

@@ -8,12 +8,13 @@
         :placeholder="time"
         :default-value="time"
       />
-      <div
+      <el-button
+        round
         class="button"
         @click="getResource"
       >
-        <i class="el-icon-right" />
-      </div>
+        确定
+      </el-button>
     </el-row>
     <div class="delay">
       延期
@@ -72,18 +73,16 @@ export default {
   font-size: 20px;
 }
 .date-picker{
-  margin-right: 5vh;
-  margin-bottom: 5vh;
+  margin:8px 10px 2px 10px;
   float: left;
 }
 .button{
   float: left;
+  margin:8px;
   color: #5daf34;
   width: 80px;
-  height:35px;
   border: 1px solid #5daf34;
   border-radius: 10px;
-  line-height: 35px;
 }
 .button:hover{
   cursor: pointer;

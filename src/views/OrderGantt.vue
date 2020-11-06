@@ -1,17 +1,22 @@
 <template>
   <el-main class="main">
     <div class="onTimeDelivery">
-      <h4>按期交货率</h4>
-      <h5>{{ timeString }}</h5>
+      <h3 style="font-size: 30px;margin-bottom: -5px">
+        按期交货率
+      </h3>
+      <h3>{{ timeString }}</h3>
       <el-progress
         type="circle"
         :percentage="onTimeDelivery"
-        stroke-width="32"
+        stroke-width="26"
         :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
-        width="200"
+        width="160"
       />
     </div>
-    <el-row>
+    <el-row style="position: absolute ;left:0px;top:10px;">
+      <p style="float:left;margin-left: 60px;display: inline-block">
+        选择查看时间：
+      </p>
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -19,12 +24,13 @@
         :placeholder="time"
         :default-value="time"
       />
-      <div
+      <el-button
+        round
         class="button"
         @click="getOrder"
       >
-        <i class="el-icon-right" />
-      </div>
+        确定
+      </el-button>
       <div class="delay">
         延期
       </div>
@@ -51,6 +57,7 @@
     <el-row
       v-for="(item) in orderProgress"
       :key="item"
+      style="margin-bottom: 10px;"
     >
       <el-col :span="5">
         <div
@@ -158,13 +165,15 @@ export default {
   margin:20px 20px;
   padding: 60px;
   min-height: 400px;
+  position: relative;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
 .delay{
-  padding-top:1vh;
-  float:right;
-  margin-right: 10vh;
+  position: absolute;
+  right:-300px;
+  padding-top:6px;
+  top:310px;
   background-color: #D07473;
   width: 50px;
   height:30px
@@ -182,33 +191,28 @@ export default {
 }
 
 .onTimeDelivery{
-  width:35vh;
-  margin: 0 auto 5vh;
-  border: 0.5vh solid black;
-  height:45vh;
+  height:260px;
+  width:400px;
+  margin: 20px auto 30px;
   position: relative;
 }
 .orderId{
-  height:4.2vh;
-  margin:1.5vh 7vh;
-  padding-top:1.2vh;
+  height:40px;
+  margin:10px 40px;
+  padding-top:8px;
 }
-.progress{
-  height:5vh;
-  margin:1.9vh 0;
-}
+
 .date-picker{
-  margin:0 5vh 5vh 10vh;
+  margin:8px 10px 2px 10px;
   float: left;
 }
 .button{
   float: left;
+  margin:8px;
   color: #5daf34;
   width: 80px;
-  height:35px;
   border: 1px solid #5daf34;
   border-radius: 10px;
-  line-height: 35px;
 }
 .button:hover {
   cursor: pointer

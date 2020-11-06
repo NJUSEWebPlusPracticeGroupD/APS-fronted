@@ -1,7 +1,8 @@
 <template>
   <el-aside class="aside">
     <el-menu
-      class="menu"
+      class="el-menu-vertical-demo"
+      background-color="#f5f6fa"
     >
       <router-link to="/about">
         <el-menu-item
@@ -47,17 +48,40 @@
           </template>
         </el-menu-item>
       </router-link>
-      <router-link to="/schedule">
-        <el-menu-item
-          class="menu-item"
-          index="5"
-        >
-          <template slot="title">
-            <i class="el-icon-files" />
-            <span slot="title">排程</span>
-          </template>
-        </el-menu-item>
-      </router-link>
+      <el-submenu
+        class="menu-item"
+        index="5"
+      >
+        <template slot="title">
+          <i class="el-icon-files" />
+          <span
+            slot="title"
+            style="font-size: 18px"
+          >排程</span>
+        </template>
+        <el-menu-item-group class="menu-item">
+          <router-link to="/orderProductionTable">
+            <el-menu-item index="5-1">
+              订单—生产单关系表
+            </el-menu-item>
+          </router-link>
+          <router-link to="/planTable">
+            <el-menu-item index="5-2">
+              订单计划表
+            </el-menu-item>
+          </router-link>
+          <router-link to="/productionResourceTable">
+            <el-menu-item index="5-3">
+              生产单-资源关系表
+            </el-menu-item>
+          </router-link>
+          <router-link to="/productionTable">
+            <el-menu-item index="5-4">
+              生产单
+            </el-menu-item>
+          </router-link>
+        </el-menu-item-group>
+      </el-submenu>
     </el-menu>
   </el-aside>
 </template>
@@ -75,7 +99,7 @@ export default {
 
 <style scoped>
 .aside{
-  background:#f5f6fa;;
+
   width: 200px;
   min-height:400px;
   margin:20px;

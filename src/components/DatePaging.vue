@@ -51,10 +51,10 @@ export default {
 <style scoped>
 .item-date{
   display: inline-block;
-  width:14.2vh;
-  height:5vh;
-  padding-top:2vh;
+  width:105px;
+  height:50px;
+  padding-top:10px;
   float: left;
-  border: 0.3vh solid black;
+  border: 2px solid black;
 }
 </style>
