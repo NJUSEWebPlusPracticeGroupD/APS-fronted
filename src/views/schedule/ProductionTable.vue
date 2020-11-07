@@ -143,9 +143,15 @@ export default {
     }
   },
   methods: {
+    timeFormate(timeStamp) {
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      return year + '-' + month + '-' + date
+    },
     getProductionData(){
       if(this.value){
-        this.time=this.value
+        this.time=this.timeFormate(this.value)
       }
       this.timeDialog=false
 

@@ -3,7 +3,9 @@
     <div>
       <div class="totalResource">
         <div class="totalEquipmentLoad">
-          <h4>设备总负载</h4>
+          <h4 style="font-size: 20px">
+            设备总负载
+          </h4>
           <h5>{{ timeString }}</h5>
           <el-progress
             type="circle"
@@ -14,7 +16,9 @@
           />
         </div>
         <div class="totalPersonnelLoad">
-          <h4>人员总负载</h4>
+          <h4 style="font-size: 20px">
+            人员总负载
+          </h4>
           <h5>{{ timeString }}</h5>
           <el-progress
             type="circle"
@@ -212,18 +216,16 @@ export default {
   width:230px;
   display: inline-block;
   margin: -30px 20px 20px;
-  border: 2px solid black;
 }
 .totalPersonnelLoad{
   height:280px;
   width:230px;
   display: inline-block;
   margin: -30px 20px 20px;
-  border: 2px solid black;
 }
 .datePaging{
   height:90px;
-  margin-top:20px;
+  margin-top:40px;
 }
 .id{
   height:60px;

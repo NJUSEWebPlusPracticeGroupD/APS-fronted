@@ -124,9 +124,10 @@
       <el-date-picker
         v-model="value"
         class="date-picker"
-        type="date"
         :placeholder="time"
         :default-value="time"
+        type="date"
+        :picker-options="pickerOptions"
       />
       <span
         slot="footer"
@@ -160,13 +161,21 @@ export default {
       value:'',
       beginTime:'',
       lastTime:'',
+
+      //设置时间限制
+      pickerOptions: {
+        disabledDate: time => {
+          return time.getTime() > new Date(this.lastTime).getTime() || time.getTime() <  new Date(this.beginTime).getTime()
+        }
+      },
+
       
       //plan订单需要的数据
       tableData: [{
         orderNumber: 1,
         isSplit: '否',
         startTime: '2020-01-29',
-        endTime: '2020-01-29',
+        endTime: '2020-01-31',
         turnToOrderProductionTable:true
       }, {
         orderNumber: 2,
@@ -283,6 +292,12 @@ export default {
     }
   },
   methods: {
+    timeFormate(timeStamp) {
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      return year + '-' + month + '-' + date
+    },
     exportExcel(id,title){
       var fix = document.querySelector('.el-table__fixed')
       var wb
@@ -332,7 +347,7 @@ export default {
 
       this.beginTime=row.startTime
       this.time=this.beginTime
-      this.lastTime=row.lastTime
+      this.lastTime=row.endTime
       this.search=''
 
       /*
@@ -347,7 +362,7 @@ export default {
 
     getOrderProductionData(){
       if(this.value){
-        this.time=this.value
+        this.time=this.timeFormate(this.value)
       }
       this.timeDialog=false
       /*
