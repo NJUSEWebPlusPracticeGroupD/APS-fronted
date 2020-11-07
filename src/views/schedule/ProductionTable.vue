@@ -1,48 +1,67 @@
 <template>
   <el-main class="main">
-    <div
-      style="float:right;margin:-30px 38px 0 0;font-size:20px"
-    >
-      {{ time }}
-    </div>
+    <el-row style="margin-top:30px">
+      <div
+        class="time"
+        @click="timeDialog=true"
+      >
+        {{ time }}
+      </div>
+    </el-row>
     <div
       class="allPage"
     >
       <div
-        style="display: inline; float: left; padding-left: 4%; "
+        style="display: inline; float: left; padding-left:20px; "
       >
-        <el-row style="margin:10px 0 20px">
-          <el-date-picker
-            v-model="value"
-            class="date-picker"
-            type="date"
-            :placeholder="time"
-            :default-value="time"
+        <el-row style="margin: -20px 0 30px 0">
+          <el-input
+            v-model="search"
+            style="width:28%;float:left"
+            placeholder="输入关键字搜索"
           />
-          <el-button
-            round
-            class="button"
-            @click="getProductionData"
-          >
-            确定
-          </el-button>
-          <div
-            class="toexcel"
-            style="float:left;margin-left: 50%"
-          >
-            <el-button
-              type="primary"
-              plain
-              icon="el-icon-download"
-              @click="exportExcel"
-            >
-              导出表单
-            </el-button>
-          </div>
         </el-row>
-        <GanttTable :order-production-data="orderProductionData" />
+        <div
+          class="toexcel"
+        >
+          <el-button
+            type="primary"
+            plain
+            icon="el-icon-download"
+            @click="exportOrderProductionExcel"
+          >
+            导出表单
+          </el-button>
+        </div>
+        <GanttTable
+          :order-production-data="orderProductionData"
+          :search="search"
+        />
       </div>
     </div>
+    <el-dialog
+      title="查找时间"
+      :visible.sync="timeDialog"
+      width="30%"
+    >
+      <el-date-picker
+        v-model="value"
+        class="date-picker"
+        type="date"
+        :placeholder="time"
+        :default-value="time"
+      />
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="timeDialog = false">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="getProductionData"
+        >确 定</el-button>
+      </span>
+    </el-dialog>
   </el-main>
 </template>
 
@@ -58,6 +77,8 @@ export default {
     return {
       value:'',
       time:this.$store.getters.getTime.slice(0,10),
+      timeDialog:false,
+      search:'',
       
       
       
@@ -123,7 +144,11 @@ export default {
   },
   methods: {
     getProductionData(){
-      this.time=this.value
+      if(this.value){
+        this.time=this.value
+      }
+      this.timeDialog=false
+
       //后端交互，获取数据
     },
     exportExcel() {
@@ -158,28 +183,24 @@ export default {
 .main:hover{
   margin:10px 20px 30px 20px;
 }
-.toexcel{
+.toexcel {
   display: inline;
-  float: left;
+  float: right;
   margin-left:20px;
 }
-.table{
-  width: 750px;
-  margin-bottom: 20px;
+.allPage{
+  padding-top:20px;
 }
-.date-picker{
-  margin:8px 10px 2px 0px;
-  float: left;
-}
-.button{
-  float: left;
-  margin:8px;
-  color: #5daf34;
-  width: 80px;
-  border: 1px solid #5daf34;
+.time{
+  float:right;
+  margin:-50px 28px 0 0;
+  font-size:20px;
+  border: 1px solid #fff;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, .12), 0 0 5px rgba(0, 0, 0, .04);
   border-radius: 10px;
-}
-.button:hover {
-  cursor: pointer
+  cursor: pointer;
+  padding-top:15px;
+  width:150px;
+  height:40px
 }
 </style>

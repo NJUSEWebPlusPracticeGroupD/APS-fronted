@@ -1,8 +1,8 @@
 <template>
   <el-table
     class="orderProductionTable"
-    style="width: 900px"
-    :data="orderProductionData.filter(data => !search || data.resource.toLowerCase().includes(search.toLowerCase()))"
+    style="width: 750px"
+    :data="orderProductionData.filter(data => !search || data.resource.toString().toLowerCase().includes(search.toLowerCase()))"
   >
     <el-table-column
       prop="resource"
@@ -137,6 +137,9 @@
 export default {
   name: 'GantTable',
   props:{
+    search:{
+      type:String,
+    },
     orderProductionData:{
       default:()=>[
         {
@@ -197,14 +200,12 @@ export default {
       ]
     }
   },
-  data(){
-    return{
-      search:''
-    }
-  }
+
 }
 </script>
 
 <style scoped>
+.orderProductionTable{
 
+}
 </style>

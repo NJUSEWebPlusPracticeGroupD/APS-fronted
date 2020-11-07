@@ -1,5 +1,12 @@
 <template>
   <el-main class="main">
+    <el-row style="margin: 20px 0 30px 0">
+      <el-input
+        v-model="search"
+        style="width:28%;float:left"
+        placeholder="输入关键字搜索"
+      />
+    </el-row>
     <div
       class="productionResourceTable"
       style="display: inline; float: left; margin-left: 20px;"

@@ -1,14 +1,24 @@
 <template>
   <el-main class="main">
+    <div
+      v-if="showPlanTable"
+      style="overflow: hidden;margin-bottom: 20px"
+    >
+      <el-input
+        v-model="search"
+        style="width:28%;float:left"
+        placeholder="输入关键字搜索"
+      />
+    </div>
     <el-page-header
       v-if="!showPlanTable"
       content="生产单详情"
       @back="backToPlanTable"
     />
-
     <div
       v-if="!showPlanTable"
-      style="float:right;margin:-30px 38px 0 0;font-size:20px"
+      class="time"
+      @click="timeDialog=true"
     >
       {{ time }}
     </div>
@@ -17,38 +27,31 @@
     >
       <div
         v-if="!showPlanTable"
-        style="display: inline; float: left; padding-left: 4%; "
+        style="display: inline; float: left; padding-left: 20px; "
       >
-        <el-row style="margin:5px 0">
-          <el-date-picker
-            v-model="value"
-            class="date-picker"
-            type="date"
-            :placeholder="time"
-            :default-value="time"
+        <el-row style="margin: 10px 0">
+          <el-input
+            v-model="search"
+            style="width:28%;float:left"
+            placeholder="输入关键字搜索"
           />
-          <el-button
-            round
-            class="button"
-            @click="getOrderProductionData"
-          >
-            确定
-          </el-button>
-          <div
-            class="toexcel"
-            style="float:left;margin-left: 50%"
-          >
-            <el-button
-              type="primary"
-              plain
-              icon="el-icon-download"
-              @click="exportOrderProductionExcel"
-            >
-              导出表单
-            </el-button>
-          </div>
         </el-row>
-        <GanttTable :order-production-data="orderProductionData" />
+        <div
+          class="toexcel"
+        >
+          <el-button
+            type="primary"
+            plain
+            icon="el-icon-download"
+            @click="exportOrderProductionExcel"
+          >
+            导出表单
+          </el-button>
+        </div>
+        <GanttTable
+          :order-production-data="orderProductionData"
+          :search="search"
+        />
       </div>
 
 
@@ -58,10 +61,9 @@
         >
           <el-table
             class="table"
-            :data="tableData.filter(data => !search || data.orderNumber.toLowerCase().includes(search.toLowerCase()))"
+            :data="tableData.filter(data => !search || data.orderNumber.toString().toLowerCase().includes(search.toLowerCase()))"
             hieght="250"
             row-key="orderNumber"
-            border
             @cell-click="turnToOrderProductionTable"
           >
             <el-table-column
@@ -112,6 +114,31 @@
         </div>
       </div>
     </div>
+
+
+    <el-dialog
+      title="查找时间"
+      :visible.sync="timeDialog"
+      width="30%"
+    >
+      <el-date-picker
+        v-model="value"
+        class="date-picker"
+        type="date"
+        :placeholder="time"
+        :default-value="time"
+      />
+      <span
+        slot="footer"
+        class="dialog-footer"
+      >
+        <el-button @click="timeDialog = false">取 消</el-button>
+        <el-button
+          type="primary"
+          @click="getOrderProductionData"
+        >确 定</el-button>
+      </span>
+    </el-dialog>
   </el-main>
 </template>
 
@@ -126,6 +153,7 @@ export default {
   components: {GanttTable},
   data() {
     return {
+      timeDialog:false,
       search:'',
       showPlanTable:true,
       time:this.$store.getters.getTime,
@@ -289,6 +317,7 @@ export default {
 
     backToPlanTable(){
       this.showPlanTable=true
+      this.search=''
     },
 
     turnToOrderProductionTable(row){
@@ -304,6 +333,7 @@ export default {
       this.beginTime=row.startTime
       this.time=this.beginTime
       this.lastTime=row.lastTime
+      this.search=''
 
       /*
        与后端交互
@@ -316,7 +346,10 @@ export default {
 
 
     getOrderProductionData(){
-      this.time=this.value
+      if(this.value){
+        this.time=this.value
+      }
+      this.timeDialog=false
       /*
       与后端交互
      根据time获取当天的生产单数据
@@ -331,7 +364,6 @@ export default {
 <style>
     .allPage {
       padding-top:20px;
-      overflow: hidden;
     }
     .planTable{
       display: inline;
@@ -351,26 +383,23 @@ export default {
     }
     .toexcel{
       display: inline;
-      float: left;
+      float: right;
       margin-left:20px;
     }
     .table{
      width: 750px;
       margin-bottom: 20px;
     }
-    .date-picker{
-      margin:8px 10px 2px 0px;
-      float: left;
-    }
-    .button{
-      float: left;
-      margin:8px;
-      color: #5daf34;
-      width: 80px;
-      border: 1px solid #5daf34;
+    .time{
+      float:right;
+      margin:-50px 28px 0 0;
+      font-size:20px;
+      border: 1px solid #fff;
+      box-shadow: 0 1px 5px rgba(0, 0, 0, .12), 0 0 5px rgba(0, 0, 0, .04);
       border-radius: 10px;
-    }
-    .button:hover {
-      cursor: pointer
+      cursor: pointer;
+      padding-top:15px;
+      width:150px;
+      height:40px
     }
 </style>
