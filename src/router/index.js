@@ -29,11 +29,6 @@ export const constantRoutes = [
     component:() => import('../views/ResourceLoader.vue')
   },
   {
-    path:'/orderProductionTable',
-    name:'orderProductionTable',
-    component:() => import('../views/schedule/OrderProductionTable.vue')
-  },
-  {
     path:'/planTable',
     name:'planTable',
     component:() => import('../views/schedule/PlanTable.vue')

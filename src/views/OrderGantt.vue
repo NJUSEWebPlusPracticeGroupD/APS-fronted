@@ -13,10 +13,7 @@
         width="160"
       />
     </div>
-    <el-row style="position: absolute ;left:0px;top:10px;">
-      <p style="float:left;margin-left: 60px;display: inline-block">
-        选择查看时间：
-      </p>
+    <el-row style="position:relative;margin-bottom: 10px">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -148,12 +145,16 @@ export default {
       return year + '年' + month + '月' + date + '日之前'
     },
     setTimeString(){
-      var date=new Date(this.time)
+      let date=new Date(this.time)
       this.timeString=this.timeFormate(date)
     },
+
+
     getOrder(){
       //获取订单甘特数据，与后端交接
     }
+
+
   }
 }
 </script>
@@ -163,7 +164,7 @@ export default {
 .main{
   background-color: #FFFFFF;
   margin:20px 20px;
-  padding: 60px;
+  padding: 40px;
   min-height: 400px;
   position: relative;
   border-radius: 10px;
@@ -171,9 +172,10 @@ export default {
 }
 .delay{
   position: absolute;
-  right:-300px;
+  top:-50px;
+  right:150px;
+  float: right;
   padding-top:6px;
-  top:310px;
   background-color: #D07473;
   width: 50px;
   height:30px
@@ -193,7 +195,7 @@ export default {
 .onTimeDelivery{
   height:260px;
   width:400px;
-  margin: 20px auto 30px;
+  margin: -20px auto 30px;
   position: relative;
 }
 .orderId{
@@ -202,13 +204,15 @@ export default {
   padding-top:8px;
 }
 
-.date-picker{
-  margin:8px 10px 2px 10px;
-  float: left;
+.date-picker {
+  position: absolute;
+  top: -50px;
+  left: 60px;
 }
 .button{
-  float: left;
-  margin:8px;
+  position: absolute;
+  top: -50px;
+  left: 290px;
   color: #5daf34;
   width: 80px;
   border: 1px solid #5daf34;

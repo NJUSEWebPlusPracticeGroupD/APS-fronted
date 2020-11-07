@@ -60,13 +60,8 @@
           >排程</span>
         </template>
         <el-menu-item-group class="menu-item">
-          <router-link to="/orderProductionTable">
-            <el-menu-item index="5-1">
-              订单—生产单关系表
-            </el-menu-item>
-          </router-link>
           <router-link to="/planTable">
-            <el-menu-item index="5-2">
+            <el-menu-item index="5-1">
               订单计划表
             </el-menu-item>
           </router-link>

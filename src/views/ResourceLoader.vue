@@ -26,7 +26,7 @@
         </div>
       </div>
     </div>
-    <el-row>
+    <el-row style="margin: 15px 0">
       <p style="float:left; ">
         选择查看时间：
       </p>
