@@ -58,7 +58,7 @@
         >
           <el-table
             class="table"
-            :data="tableData"
+            :data="tableData.filter(data => !search || data.orderNumber.toLowerCase().includes(search.toLowerCase()))"
             hieght="250"
             row-key="orderNumber"
             border
@@ -126,6 +126,7 @@ export default {
   components: {GanttTable},
   data() {
     return {
+      search:'',
       showPlanTable:true,
       time:this.$store.getters.getTime,
       value:'',

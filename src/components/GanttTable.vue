@@ -2,8 +2,7 @@
   <el-table
     class="orderProductionTable"
     style="width: 900px"
-    :data="orderProductionData"
-    border
+    :data="orderProductionData.filter(data => !search || data.resource.toLowerCase().includes(search.toLowerCase()))"
   >
     <el-table-column
       prop="resource"
@@ -196,6 +195,11 @@ export default {
           time24:'订单1',
         },
       ]
+    }
+  },
+  data(){
+    return{
+      search:''
     }
   }
 }

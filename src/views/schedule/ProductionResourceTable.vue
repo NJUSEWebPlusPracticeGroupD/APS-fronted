@@ -6,32 +6,30 @@
     >
       <el-table
         class="table"
-        :data="tableData"
+        :data="tableData.filter(data => !search || data.orderId.toLowerCase().includes(search.toLowerCase()))"
         style="width: 721px; margin-bottom: 20px;"
         row-key="id"
-        border
-        default-expand-all
       >
         <el-table-column
-          prop="productNumber"
+          prop="orderId"
           label="生产单编号"
           width="180"
+          fixed
         />
+
         <el-table-column
-          prop="resourceNumber"
-          label="资源编号"
-          width="180"
-        />
-        <el-table-column
-          prop="resourceType"
-          label="资源种类"
-          width="180"
-        />
-        <el-table-column
-          prop="resourceNum"
-          label="资源数量"
-          width="180"
-        />
+          v-for="col in cols"
+          :key="col.prop"
+          :label="col.label"
+          :prop="col.prop"
+        >
+          <!--          <template slot-scope="scope">-->
+          <!--            <i-->
+          <!--              v-if="scope.row[`${(col.prop)}`]"-->
+          <!--              class="el-icon-check"-->
+          <!--            />-->
+          <!--          </template>-->
+        </el-table-column>
       </el-table>
     </div>
     <div
@@ -59,24 +57,40 @@ export default {
   name: 'ProductionResourceTable',
   data() {
     return {
-      tableData: [{
-        id: 1,
-        productNumber: 1,
-        children: [
-          {
-            id: 11,
-            resourceNumber: 23,
-            resourceType: 0,
-            resourceNum: 4,
-          }],
+      search:'',
 
-      },
+      tableData: [
+        {
+          orderId:'订单01',
+          resource2:'√',
+          resource3:'√'
+        },
+        {
+          orderId:'订单02',
+          resource1:'√',
+          resource4:'√',
+        },
       ],
+
+      cols:[
+        {prop:'resource1',label:'资源1'},
+        {prop:'resource2',label:'资源2'},
+        {prop:'resource3',label:'资源3'},
+        {prop:'resource4',label:'资源4'},
+      ]
     }
   },
   methods: {
     exportExcel() {
-      const wb = XLSX.utils.table_to_book(document.querySelector('.table'))
+      var fix = document.querySelector('.el-table__fixed')
+      var wb
+      var xlsxParam = { raw: true }//转换成excel时，使用原始的格式
+      if (fix) {
+        wb = XLSX.utils.table_to_book(document.querySelector('.table').removeChild(fix),xlsxParam)
+        document.querySelector('.table').appendChild(fix)
+      } else {
+        wb = XLSX.utils.table_to_book(document.querySelector('.table'), xlsxParam)
+      }
       const wbout = XLSX.write(wb, {
         bookType: 'xlsx',
         bookSST: true,

@@ -16,12 +16,20 @@ export default {
   props:{
     beginDate:{
       type:String,
-      default:()=>this.$store.getters.getTime.slice(0,10)
     }
   },
   data(){
     return{
       dates:[]
+    }
+  },
+  watch:{
+    beginDate: {
+      deep: true,
+      handler() {
+        this.dates=[]
+        this.getDates()
+      }
     }
   },
   beforeMount() {
