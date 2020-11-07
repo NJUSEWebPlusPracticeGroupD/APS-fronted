@@ -17,7 +17,6 @@
     >
       <div
         v-if="!showPlanTable"
-        class="orderProductionTable"
         style="display: inline; float: left; padding-left: 4%; "
       >
         <el-row style="margin:5px 0">
@@ -43,13 +42,13 @@
               type="primary"
               plain
               icon="el-icon-download"
-              @click="exportExcel"
+              @click="exportOrderProductionExcel"
             >
               导出表单
             </el-button>
           </div>
         </el-row>
-        <GantTable :order-production-data="orderProductionData" />
+        <GanttTable :order-production-data="orderProductionData" />
       </div>
 
 
@@ -106,7 +105,7 @@
             type="primary"
             plain
             icon="el-icon-download"
-            @click="exportExcel"
+            @click="exportPlanExcel"
           >
             导出表单
           </el-button>
@@ -120,11 +119,11 @@
 <script>
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
-import GantTable from '@/components/GantTable'
+import GanttTable from '@/components/GanttTable'
 
 export default {
   name: 'PlanTable',
-  components: {GantTable},
+  components: {GanttTable},
   data() {
     return {
       showPlanTable:true,
@@ -255,8 +254,16 @@ export default {
     }
   },
   methods: {
-    exportExcel() {
-      const wb = XLSX.utils.table_to_book(document.querySelector('.table'))
+    exportExcel(id,title){
+      var fix = document.querySelector('.el-table__fixed')
+      var wb
+      var xlsxParam = { raw: true }//转换成excel时，使用原始的格式
+      if (fix) {
+        wb = XLSX.utils.table_to_book(document.querySelector(id).removeChild(fix),xlsxParam)
+        document.querySelector(id).appendChild(fix)
+      } else {
+        wb = XLSX.utils.table_to_book(document.querySelector(id), xlsxParam)
+      }
       const wbout = XLSX.write(wb, {
         bookType: 'xlsx',
         bookSST: true,
@@ -265,12 +272,18 @@ export default {
       try {
         FileSaver.saveAs(
           new Blob([wbout], { type: 'application/octet--stream' }),
-          '订单计划表.xlsx',
+          title+'.xlsx',
         )
       } catch (e) {
         if (typeof console !== 'undefined') console.log(e, wbout)
       }
       return wbout
+    },
+    exportOrderProductionExcel(){
+      this.exportExcel('.orderProductionTable','订单-生产单关系表')
+    },
+    exportPlanExcel() {
+      this.exportExcel('.table','订单表')
     },
 
     backToPlanTable(){

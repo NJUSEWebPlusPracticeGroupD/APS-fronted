@@ -1,51 +1,47 @@
 <template>
   <el-main class="main">
     <div
-      class="productionTable"
-      style="display: inline; float: left; "
+      style="float:right;margin:-30px 38px 0 0;font-size:20px"
     >
-      <el-table
-        class="table"
-        :data="tableData"
-        style="width: 721px; margin-bottom: 20px;"
-        row-key="id"
-        border
-        default-expand-all
-      >
-        <el-table-column
-          prop="productNumber"
-          label="生产单编号"
-          width="180"
-        />
-        <el-table-column
-          prop="task"
-          label="生产产品"
-          width="180"
-        />
-        <el-table-column
-          prop="startTime"
-          label="开始时间"
-          width="180"
-        />
-        <el-table-column
-          prop="endTime"
-          label="结束时间"
-          width="180"
-        />
-      </el-table>
+      {{ time }}
     </div>
     <div
-      class="toexcel"
-      style="display: inline; float: left; margin-left: 4%; "
+      class="allPage"
     >
-      <el-button
-        type="primary"
-        plain
-        icon="el-icon-download"
-        @click="exportExcel"
+      <div
+        style="display: inline; float: left; padding-left: 4%; "
       >
-        导出表单
-      </el-button>
+        <el-row style="margin:10px 0 20px">
+          <el-date-picker
+            v-model="value"
+            class="date-picker"
+            type="date"
+            :placeholder="time"
+            :default-value="time"
+          />
+          <el-button
+            round
+            class="button"
+            @click="getProductionData"
+          >
+            确定
+          </el-button>
+          <div
+            class="toexcel"
+            style="float:left;margin-left: 50%"
+          >
+            <el-button
+              type="primary"
+              plain
+              icon="el-icon-download"
+              @click="exportExcel"
+            >
+              导出表单
+            </el-button>
+          </div>
+        </el-row>
+        <GanttTable :order-production-data="orderProductionData" />
+      </div>
     </div>
   </el-main>
 </template>
@@ -53,79 +49,83 @@
 <script>
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
+import GanttTable from '@/components/GanttTable'
 
 export default {
   name: 'ProductionTable',
+  components: {GanttTable},
   data() {
     return {
-      tableData: [{
-        id: 1,
-        productNumber: 1,
-        startTime: '2020-01-02 00:00',
-        endTime: '2020-01-02 00:00',
-        task: '22',
-        children: [
+      value:'',
+      time:this.$store.getters.getTime.slice(0,10),
+      
+      
+      
+      orderProductionData:
+        [
           {
-            id: 11,
-            productNumber: 11,
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
+            resource:'资源01',
+            time1:'',
+            time2:'订单1',
+            time3:'订单2',
+            time4:'',
+            time5:'订单1',
+            time6:'',
+            time7:'订单1',
+            time8:'订单2',
+            time9:'',
+            time10:'',
+            time11:'订单1',
+            time12:'订单1',
+            time13:'',
+            time14:'',
+            time15:'',
+            time16:'订单1',
+            time17:'订单2',
+            time18:'订单1',
+            time19:'',
+            time20:'订单2',
+            time21:'订单1',
+            time22:'',
+            time23:'',
+            time24:'订单2',
+
           },
           {
-            id: 22,
-            productNumber: 12,
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
+            resource:'资源02',
+            time1:'',
+            time2:'',
+            time3:'',
+            time4:'',
+            time5:'订单1',
+            time6:'',
+            time7:'订单1',
+            time8:'',
+            time9:'',
+            time10:'',
+            time11:'订单2',
+            time12:'订单1',
+            time13:'',
+            time14:'',
+            time15:'',
+            time16:'订单2',
+            time17:'订单2',
+            time18:'订单1',
+            time19:'',
+            time20:'订单1',
+            time21:'订单1',
+            time22:'',
+            time23:'',
+            time24:'订单1',
           },
-        ],
-      }, {
-        productionNumber: 1,
-        tasks: [
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-        ],
-      }, {
-        productionNumber: 1,
-        tasks: [
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-        ],
-      }, {
-        productionNumber: 1,
-        tasks: [
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-          {
-            startTime: '2020-01-02 00:00',
-            endTime: '2020-01-02 00:00',
-            task: '22',
-          },
-        ],
-      }],
+        ]
     }
   },
   methods: {
+    getProductionData(){
+      this.time=this.value
+      //后端交互，获取数据
+    },
     exportExcel() {
       const wb = XLSX.utils.table_to_book(document.querySelector('.table'))
       const wbout = XLSX.write(wb, {
@@ -157,5 +157,29 @@ export default {
 }
 .main:hover{
   margin:10px 20px 30px 20px;
+}
+.toexcel{
+  display: inline;
+  float: left;
+  margin-left:20px;
+}
+.table{
+  width: 750px;
+  margin-bottom: 20px;
+}
+.date-picker{
+  margin:8px 10px 2px 0px;
+  float: left;
+}
+.button{
+  float: left;
+  margin:8px;
+  color: #5daf34;
+  width: 80px;
+  border: 1px solid #5daf34;
+  border-radius: 10px;
+}
+.button:hover {
+  cursor: pointer
 }
 </style>
