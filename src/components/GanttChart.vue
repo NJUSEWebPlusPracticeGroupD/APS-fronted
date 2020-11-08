@@ -25,16 +25,15 @@ am4core.useTheme(am4themes_animated);
 export default {
   name: 'GanttChart',
   props:{
-    datas : {
-      type: Array,
+    "datas": {
+
       default: () =>
         [
           {
             name: 'line1',
             fromDate: '2018-08-01 08:00',
             toDate: '2018-08-01 10:00',
-            task: 'task1',
-            delay:false
+            task: 'task1'
           },
           {
             name: 'line1',
@@ -83,15 +82,14 @@ export default {
             name: '张三',
             fromDate: '2018-08-01 16:00',
             toDate: '2018-08-01 20:00',
-            task: 'task4',
-            delay:false
+            task: 'task4'
           },
           {
             name: '张三',
             fromDate: '2018-08-01 20:30',
             toDate: '2018-08-01 24:00',
             task: 'task3',
-            delay:false
+            delay: false
           },
 
           {
@@ -99,7 +97,7 @@ export default {
             fromDate: '2018-08-01 13:00',
             toDate: '2018-08-01 24:00',
             task: 'task2',
-            delay:false
+            delay: false
           }
         ]
     },

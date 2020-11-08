@@ -51,8 +51,8 @@ export default {
 <style scoped>
 .item-date{
   display: inline-block;
-  width:14.2vh;
-  height:5vh;
+  width:  14.2vh;
+  height: 5vh;
   padding-top:2vh;
   float: left;
   border: 0.3vh solid black;

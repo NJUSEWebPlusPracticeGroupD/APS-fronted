@@ -23,7 +23,7 @@ export default {
   props: {
     date: {
       type:Number,
-      default:()=>100
+      default:()=> 90
     },
     delayDate:{
       type:Number,

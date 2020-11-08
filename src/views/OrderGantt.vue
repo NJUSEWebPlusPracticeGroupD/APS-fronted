@@ -87,44 +87,44 @@ export default {
       orderProgress:[
         {
           orderId:41234,
-          date:20,
-          dateDelay:10,
+          date: 20,
+          dateDelay:10
         },
         {
           orderId:41523,
-          date:80,
-          dateDelay:'',
+          date: 80,
+          dateDelay:''
         },
         {
           orderId:41888,
-          date:60,
-          dateDelay:20,
+          date: 60,
+          dateDelay:20
         },
         {
           orderId:51666,
-          date:60,
-          dateDelay:'',
+          date: 60,
+          dateDelay:0
         },
         {
           orderId:64850,
           date:100,
-          dateDelay:'',
+          dateDelay:0
         },
         {
           orderId:98564,
           date:90,
-          dateDelay:10,
+          dateDelay:10
         },
         {
           orderId:65732,
-          date:30,
-          dateDelay:20,
+          date: 30,
+          dateDelay: 20
         },
         {
           orderId:41253,
           date:60,
-          dateDelay:'',
-        },
+          dateDelay:0
+        }
       ],
       value:'',
       time:this.$store.getters.getTime.slice(0,10)
