@@ -12,7 +12,7 @@ const name = process.env.VUE_APP_TITLE || 'APS' // page title
 // For example, Mac: sudo npm run
 // You can change the port by the following method:
 // port = 9527 npm run dev OR npm run dev --port = 9527
-const port = process.env.port || process.env.npm_config_port || 3000 // dev port
+const port = process.env.port || process.env.npm_config_port || 3000; // dev port
 module.exports = {
   /**
    * You will need to set publicPath if you plan to deploy your site under a sub path,
@@ -32,8 +32,18 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
+    },
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000/api',
+        changeOrigin: false,
+        pathRewrite: {
+          '^/api': '/'
+        }
+      }
     }
   },
+
   configureWebpack: {
     name: name,
     resolve: {

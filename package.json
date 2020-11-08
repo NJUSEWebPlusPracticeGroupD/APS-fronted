@@ -11,6 +11,7 @@
   "dependencies": {
     "@amcharts/amcharts4": "^4.10.9",
     "animejs": "^3.2.1",
+    "axios": "latest",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "file-saver": "^2.0.2",
@@ -19,7 +20,7 @@
     "vue-router": "^3.4.6",
     "vuejs-progress-bar": "^1.2.2",
     "vuex": "^3.5.1",
-    "axios": "latest",
+    "webpack-merge": "latest",
     "xlsx": "^0.16.8"
   },
   "devDependencies": {
