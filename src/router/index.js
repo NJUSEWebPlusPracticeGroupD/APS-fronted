@@ -11,7 +11,7 @@ export const constantRoutes = [
   {
     path:'/about',
     name:'about',
-    component:() => import('../views/about.vue')
+    component:() => import('../views/About.vue')
   },
   {
     path:'/orderGantt',
@@ -29,10 +29,21 @@ export const constantRoutes = [
     component:() => import('../views/ResourceLoader.vue')
   },
   {
-    path:'/schedule',
-    name:'schedule',
-    component:() => import('../views/Schedule.vue')
-  }
+    path:'/planTable',
+    name:'planTable',
+    component:() => import('../views/schedule/PlanTable.vue')
+  },
+  {
+    path:'/productionResourceTable',
+    name:'productionResourceTable',
+    component:() => import('../views/schedule/ProductionResourceTable.vue')
+  },
+  {
+    path:'/productionTable',
+    name:'productionTable',
+    component:() => import('../views/schedule/ProductionTable.vue')
+  },
+
 ]
 
 

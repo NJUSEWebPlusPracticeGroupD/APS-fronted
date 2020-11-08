@@ -1,17 +1,19 @@
 <template>
   <el-main class="main">
     <div class="onTimeDelivery">
-      <h4>按期交货率</h4>
-      <h5>{{ timeString }}</h5>
+      <h3 style="font-size: 30px;margin-bottom: -5px">
+        按期交货率
+      </h3>
+      <h3>{{ timeString }}</h3>
       <el-progress
         type="circle"
         :percentage="onTimeDelivery"
-        stroke-width="32"
+        stroke-width="26"
         :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
-        width="200"
+        width="160"
       />
     </div>
-    <el-row>
+    <el-row style="position:relative;margin-bottom: 10px">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -19,12 +21,13 @@
         :placeholder="time"
         :default-value="time"
       />
-      <div
+      <el-button
+        round
         class="button"
         @click="getOrder"
       >
-        <i class="el-icon-right" />
-      </div>
+        确定
+      </el-button>
       <div class="delay">
         延期
       </div>
@@ -51,6 +54,7 @@
     <el-row
       v-for="(item) in orderProgress"
       :key="item"
+      style="margin-bottom: 10px;"
     >
       <el-col :span="5">
         <div
@@ -141,12 +145,16 @@ export default {
       return year + '年' + month + '月' + date + '日之前'
     },
     setTimeString(){
-      var date=new Date(this.time)
+      let date=new Date(this.time)
       this.timeString=this.timeFormate(date)
     },
+
+
     getOrder(){
       //获取订单甘特数据，与后端交接
     }
+
+
   }
 }
 </script>
@@ -156,15 +164,18 @@ export default {
 .main{
   background-color: #FFFFFF;
   margin:20px 20px;
-  padding: 60px;
+  padding: 40px;
   min-height: 400px;
+  position: relative;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
 .delay{
-  padding-top:1vh;
-  float:right;
-  margin-right: 10vh;
+  position: absolute;
+  top:-50px;
+  right:150px;
+  float: right;
+  padding-top:6px;
   background-color: #D07473;
   width: 50px;
   height:30px
@@ -182,33 +193,30 @@ export default {
 }
 
 .onTimeDelivery{
-  width:35vh;
-  margin: 0 auto 5vh;
-  border: 0.5vh solid black;
-  height:45vh;
+  height:260px;
+  width:400px;
+  margin: -20px auto 30px;
   position: relative;
 }
 .orderId{
-  height:4.2vh;
-  margin:1.5vh 7vh;
-  padding-top:1.2vh;
+  height:40px;
+  margin:10px 40px;
+  padding-top:8px;
 }
-.progress{
-  height:5vh;
-  margin:1.9vh 0;
-}
-.date-picker{
-  margin:0 5vh 5vh 10vh;
-  float: left;
+
+.date-picker {
+  position: absolute;
+  top: -50px;
+  left: 60px;
 }
 .button{
-  float: left;
+  position: absolute;
+  top: -50px;
+  left: 290px;
   color: #5daf34;
   width: 80px;
-  height:35px;
   border: 1px solid #5daf34;
   border-radius: 10px;
-  line-height: 35px;
 }
 .button:hover {
   cursor: pointer
