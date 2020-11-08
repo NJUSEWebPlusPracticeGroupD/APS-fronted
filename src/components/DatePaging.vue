@@ -60,8 +60,8 @@ export default {
 .item-date{
   display: inline-block;
   width:105px;
-  height:50px;
-  padding-top:10px;
+  height:40px;
+  padding-top:20px;
   float: left;
   border: 2px solid black;
 }
