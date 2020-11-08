@@ -19,87 +19,15 @@ import * as am4core from '@amcharts/amcharts4/core'
 import * as am4charts from '@amcharts/amcharts4/charts'
 import am4themes_animated from '@amcharts/amcharts4/themes/animated'
 
-am4core.useTheme(am4themes_animated)
+am4core.useTheme(am4themes_animated);
 
 
 export default {
   name: 'GanttChart',
   props:{
-    "datas": {
-
-      default: () =>
-        [
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 08:00',
-            toDate: '2018-08-01 10:00',
-            task: 'task1'
-          },
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 12:00',
-            toDate: '2018-08-01 15:00',
-            task: 'task2',
-            delay:true
-          },
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 15:30',
-            toDate: '2018-08-01 21:30',
-            task: 'task4',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 09:00',
-            toDate: '2018-08-01 11:00',
-            task: 'task3',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 13:00',
-            toDate: '2018-08-01 17:00',
-            task: 'task5',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 11:00',
-            toDate: '2018-08-01 16:00',
-            task: 'task2',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 16:00',
-            toDate: '2018-08-01 19:00',
-            task: 'task4',
-            delay:false
-          },
-
-          {
-            name: '张三',
-            fromDate: '2018-08-01 16:00',
-            toDate: '2018-08-01 20:00',
-            task: 'task4'
-          },
-          {
-            name: '张三',
-            fromDate: '2018-08-01 20:30',
-            toDate: '2018-08-01 24:00',
-            task: 'task3',
-            delay: false
-          },
-
-          {
-            name: '李四',
-            fromDate: '2018-08-01 13:00',
-            toDate: '2018-08-01 24:00',
-            task: 'task2',
-            delay: false
-          }
-        ]
+    datas: {
+      type: Array,
+      required: true
     },
 
   },
