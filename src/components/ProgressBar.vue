@@ -6,12 +6,12 @@
       <div class="bar">
         <span
           class="progress"
-          :style="date!=100?{'width':`${date}%`,'background-color':'#75cce8'}:{'width':`${date}%`,'background-color':'#94e277'}"
-        > {{ date }}</span>
+          :style="data!=100?{'width':`${data}%`,'background-color':'#75cce8'}:{'width':`${data}%`,'background-color':'#94e277'}"
+        > {{ data }}</span>
         <span
           class="progress"
-          :style="{'width':`${delayDate}%`,'background-color':'#D07473','position': 'absolute','left':`${date}%`}"
-        > {{ delayDate }}</span>
+          :style="{'width':`${delayData}%`,'background-color':'#D07473','position': 'absolute','left':`${data}%`}"
+        > {{ delayData }}</span>
       </div>
     </div>
   </div>
@@ -21,11 +21,11 @@
 export default {
   name: 'ProgressBar',
   props: {
-    date: {
+    data: {
       type:Number,
       default:()=> 90
     },
-    delayDate:{
+    delayData:{
       type:Number,
       default:()=>0
     }

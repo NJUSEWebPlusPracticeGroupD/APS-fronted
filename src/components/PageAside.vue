@@ -2,7 +2,7 @@
   <el-aside class="aside">
     <el-menu
       class="el-menu-vertical-demo"
-      background-color="transparent"
+      background-color="#f5f6fa"
     >
       <router-link to="/about">
         <el-menu-item
@@ -94,8 +94,8 @@ export default {
 
 <style scoped>
 .aside{
-  //background-color: transparent;
-  width: 20%;
+
+  width: 200px;
   min-height:400px;
   margin:20px;
   border-radius: 10px;
@@ -103,7 +103,7 @@ export default {
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
 .aside:hover{
-  margin: 10px 20px;
+  margin:10px 20px;
 }
 .menu{
   background-color:transparent;
@@ -125,11 +125,5 @@ a {
 .router-link-active {
   color:black;
   text-decoration: none;
-}
-span{
-  color: #e5e5e5;
-}
-.el-menu-item{
-  color: #e5e5e5;
 }
 </style>

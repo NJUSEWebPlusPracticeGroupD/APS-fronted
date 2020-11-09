@@ -13,7 +13,9 @@
         width="160"
       />
     </div>
-    <el-row style="position:relative;margin-bottom: 10px">
+
+
+    <el-row style="margin-bottom: 10px;margin-top:80px;">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -28,52 +30,107 @@
       >
         确定
       </el-button>
-      <div class="delay">
-        延期
-      </div>
-    </el-row>
-    <el-row>
-      <el-col :span="5">
-        <div
-          class="orderId"
-        >
-          订单编号
-        </div>
-      </el-col>
-      <el-col :span="12">
-        <div style="margin:1.5vh auto">
-          订单进度
-        </div>
-      </el-col>
-      <el-col
-        :span="7"
-        style="min-height:1px;"
-      />
+      <el-popover
+        placement="left-start"
+        style="float: right;margin-top:-50px;margin-right:4%;"
+        width="180"
+        trigger="hover"
+      >
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            延期订单:
+          </div><div style="margin-left:52px;background-color:#D07473;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            未完成订单:
+          </div><div style="margin-left:38px;background-color:#75cce8;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            已完成订单:
+          </div><div style="margin-left:38px;background-color:#94e277;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-button slot="reference">
+          颜色提示
+        </el-button>
+      </el-popover>
     </el-row>
 
-    <el-row
-      v-for="(item) in orderProgress"
-      :key="item"
-      style="margin-bottom: 10px;"
+
+    <el-table
+      class="table"
+      :data="orderProgress"
+      max-height="500"
+      row-key="orderId"
     >
-      <el-col :span="5">
-        <div
-          class="orderId"
-        >
-          {{ item.orderId }}
-        </div>
-      </el-col>
-      <el-col :span="12">
-        <ProgressBar
-          :delay-date="`${item.dateDelay}`"
-          :date="`${item.date}`"
-        />
-      </el-col>
-      <el-col
-        :span="7"
-        style="min-height:1px;"
+      <el-table-column
+        prop="orderId"
+        label="订单编号"
+        height="60"
+        width="120"
+        align="center"
       />
-    </el-row>
+      <el-table-column
+        height="60"
+        label="订单进度"
+        align="center"
+      >
+        <template slot-scope="scope">
+          <ProgressBar
+            :delay-data="scope.row.dataDelay"
+            :data="scope.row.data"
+          />
+        </template>
+      </el-table-column>
+    </el-table>
+
+
+
+
+
+    <!--    <el-row>-->
+    <!--      <el-col :span="5">-->
+    <!--        <div-->
+    <!--          class="orderId"-->
+    <!--        >-->
+    <!--          订单编号-->
+    <!--        </div>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="12">-->
+    <!--        <div style="margin:1.5vh auto">-->
+    <!--          订单进度-->
+    <!--        </div>-->
+    <!--      </el-col>-->
+    <!--      <el-col-->
+    <!--        :span="7"-->
+    <!--        style="min-height:1px;"-->
+    <!--      />-->
+    <!--    </el-row>-->
+
+    <!--    <el-row-->
+    <!--      v-for="(item) in orderProgress"-->
+    <!--      :key="item"-->
+    <!--      style="margin-bottom: 10px;"-->
+    <!--    >-->
+    <!--      <el-col :span="5">-->
+    <!--        <div-->
+    <!--          class="orderId"-->
+    <!--        >-->
+    <!--          {{ item.orderId }}-->
+    <!--        </div>-->
+    <!--      </el-col>-->
+    <!--      <el-col :span="12">-->
+    <!--        <ProgressBar-->
+    <!--          :delay-date="`${item.dateDelay}`"-->
+    <!--          :date="`${item.date}`"-->
+    <!--        />-->
+    <!--      </el-col>-->
+    <!--      <el-col-->
+    <!--        :span="7"-->
+    <!--        style="min-height:1px;"-->
+    <!--      />-->
+    <!--    </el-row>-->
   </el-main>
 </template>
 
@@ -91,43 +148,43 @@ export default {
       orderProgress:[
         {
           orderId:41234,
-          date: 20,
-          dateDelay:10
+          data: 20,
+          dataDelay:10
         },
         {
           orderId:41523,
-          date: 80,
-          dateDelay:''
+          data: 80,
+          dataDelay:''
         },
         {
           orderId:41888,
-          date: 60,
-          dateDelay:20
+          data: 60,
+          dataDelay:20
         },
         {
           orderId:51666,
-          date: 60,
-          dateDelay:0
+          data: 60,
+          dataDelay:''
         },
         {
           orderId:64850,
-          date:100,
-          dateDelay:0
+          data:100,
+          dataDelay:''
         },
         {
           orderId:98564,
-          date:90,
-          dateDelay:10
+          data:90,
+          dataDelay:10
         },
         {
           orderId:65732,
-          date: 30,
-          dateDelay: 20
+          data: 30,
+          dataDelay: 20
         },
         {
           orderId:41253,
-          date:60,
-          dateDelay:0
+          data:60,
+          dataDelay:''
         }
       ],
       value:'',
@@ -162,7 +219,7 @@ export default {
 <style scoped>
 
 .main{
-  background-color:#3f5c6d2c;
+  background-color: #FFFFFF;
   margin:20px 20px;
   padding: 40px;
   min-height: 400px;
@@ -207,12 +264,12 @@ export default {
 .date-picker {
   position: absolute;
   top: -50px;
-  left: 60px;
+  left: 10px;
 }
 .button{
   position: absolute;
   top: -50px;
-  left: 290px;
+  left: 250px;
   color: #5daf34;
   width: 80px;
   border: 1px solid #5daf34;

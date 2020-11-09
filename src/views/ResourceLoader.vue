@@ -31,9 +31,6 @@
       </div>
     </div>
     <el-row style="margin: 15px 0">
-      <p style="float:left; ">
-        选择查看时间：
-      </p>
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -48,48 +45,86 @@
       >
         确定
       </el-button>
+      <el-popover
+        placement="left-start"
+        style="float: right"
+        width="130"
+        trigger="hover"
+      >
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            0~20% :
+          </div><div style="margin-left:38px;background-color:#d6a3dc;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            20~40%  :
+          </div><div style="margin-left:30px;background-color:#f7db70;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            40~60%  :
+          </div><div style="margin-left:30px;background-color:#eabebf;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            60~80%  :
+          </div><div style="margin-left:30px;background-color:#75cceb;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            80~100% :
+          </div><div style="margin-left:22px;background-color:#94e277;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-button slot="reference">
+          颜色提示
+        </el-button>
+      </el-popover>
     </el-row>
     <div class="datePaging">
-      <i
-        class="el-icon-caret-left"
-        @click="preDate"
-      />
-      <DatePaging :begin-date="beginTime" />
-      <i
-        class="el-icon-caret-right"
-        @click="nextDate"
+      <!--      <i-->
+      <!--        class="el-icon-caret-left"-->
+      <!--        @click="preDate"-->
+      <!--      />-->
+      <DatePaging
+        :begin-date="beginTime"
+        :data="data"
       />
     </div>
-    <el-row
-      v-for="(item,index1) in data"
-      :key="index1"
-      style="margin-bottom: 1vh"
-    >
-      <div class="id">
-        {{ item.name }}
-      </div>
-      <div
-        v-for="(each,index2) in item.rates"
-        :key="index2"
-        class="rateContainer"
-      >
-        <vertical-progress-bar
-          class="rateBar"
-          :bar-data="[{date:`${each}`,value:(`${each}`)/10}]"
-        />
-      </div>
-    </el-row>
+    <!--      <i-->
+    <!--        class="el-icon-caret-right"-->
+    <!--        @click="nextDate"-->
+    <!--      />-->
+    <!--    </div>-->
+    <!--    <el-row-->
+    <!--      v-for="(item,index1) in data"-->
+    <!--      :key="index1"-->
+    <!--      style="margin-bottom: 1vh"-->
+    <!--    >-->
+    <!--      <div class="id">-->
+    <!--        {{ item.name }}-->
+    <!--      </div>-->
+    <!--      <div-->
+    <!--        v-for="(each,index2) in item.rates"-->
+    <!--        :key="index2"-->
+    <!--        class="rateContainer"-->
+    <!--      >-->
+    <!--        <vertical-progress-bar-->
+    <!--          class="rateBar"-->
+    <!--          :bar-data="[{date:`${each}`,value:(`${each}`)/10}]"-->
+    <!--        />-->
+    <!--      </div>-->
+    <!--    </el-row>-->
   </el-main>
 </template>
 
 <script>
 
-import VerticalProgressBar from '@/components/VerticalProgressBar'
 import DatePaging from '@/components/DatePaging'
 
 export default {
   name: 'ResourceLoader',
-  components: {DatePaging, VerticalProgressBar},
+  components: {DatePaging},
   props:{
 
   },
@@ -102,12 +137,10 @@ export default {
       timeString:'2018年7月5日~2018年7月13日',
       data:[
         {
-          date:'2018-07-13',
           name:'line1',
           rates:[30,20,40,50,80,20,10]
         },
         {
-          date:'2018-07-13',
           name:'line2',
           rates:[30,50,45,50,82,60,100]
         }
@@ -161,7 +194,7 @@ export default {
 <style scoped>
 
 .main{
-  background-color:#3f5c6d2c;
+  background-color: #FFFFFF;
   margin:20px 20px;
   padding: 60px;
   min-height:400px;

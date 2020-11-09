@@ -58,16 +58,12 @@
       <div v-if="showPlanTable">
         <div
           class="planTable"
-          style="background-color: transparent"
         >
           <el-table
             class="table"
             :data="tableData.filter(data => !search || data.orderNumber.toString().toLowerCase().includes(search.toLowerCase()))"
-            hieght="250"
+            height="500"
             row-key="orderNumber"
-            @cell-click="turnToOrderProductionTable"
-
-
           >
             <el-table-column
               prop="orderNumber"
@@ -172,7 +168,7 @@ export default {
         }
       },
 
-
+      
       //plan订单需要的数据
       tableData: [{
         orderNumber: 1,
@@ -230,10 +226,10 @@ export default {
         isSplit: '否',
         turnToOrderProductionTable:true,
       }],
-
-
+      
+      
       //生产单需要的数据
-      orderProductionData:
+      orderProductionData: 
         [
           {
             resource:'资源01',
@@ -291,7 +287,7 @@ export default {
             time24:'订单1',
           },
         ]
-
+      
     }
   },
   methods: {
@@ -384,7 +380,7 @@ export default {
       padding-top:20px;
     }
     .planTable{
-      //display: inline;
+      display: inline;
       float: left;
       margin-left: 20px;
     }
@@ -405,10 +401,8 @@ export default {
       margin-left:20px;
     }
     .table{
-      width: 750px;
+     width: 750px;
       margin-bottom: 20px;
-      border-radius: 5px;
-      background: transparent;
     }
     .time{
       float:right;

@@ -13,7 +13,7 @@
         />
       </div>
       <div class="sfont">
-        {{ item.date }}
+        {{ item.data }}%
       </div>
     </div>
   </div>
@@ -26,7 +26,7 @@ export default {
       type: Array,
       default() {
         return [
-          {date: '50', value: 5},
+          {data: '50', value: 5},
         ]
       }
     }

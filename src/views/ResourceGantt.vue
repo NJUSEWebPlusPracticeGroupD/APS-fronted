@@ -1,6 +1,6 @@
 <template>
   <el-main class="main">
-    <el-row style="margin-top: 0">
+    <el-row>
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -11,23 +11,42 @@
       <el-button
         round
         class="button"
-        v-model="value"
         @click="getResource"
-
       >
         确定
       </el-button>
-      <div class="delay">
-        延期
-      </div>
+
+      <el-popover
+        placement="left-start"
+        style="float: right;margin-right:4%;"
+        width="120"
+        trigger="hover"
+      >
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            延期订单:
+          </div><div style="margin-left:30px;background-color:#D07473;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            同一订单:<div style="margin-left:20px;vertical-align: center;display:table-cell;height: 30px;line-height: 30px">
+              相同颜色
+            </div>
+          </div>
+        </el-row>
+        <el-button slot="reference">
+          颜色提示
+        </el-button>
+      </el-popover>
     </el-row>
-    <GanttChart v-bind:datas="GanntData" > </GanttChart>
+
+    <GanttChart :datas="GanntData" />
   </el-main>
 </template>
 
 <script>
 import GanttChart from '@/components/GanttChart'
-import {testRequest,getResourceGantt} from '@/api/getGraphic'
+import {testRequest} from '@/api/getGraphic'
 export default {
   name: 'ResourceGantt',
   components: {
@@ -124,86 +143,9 @@ export default {
       // console.log(GanttChart.props.datas);
       // console.log("hi3");
 
-      console.log(this.value);
-      // testRequest(this.value).then(res => {
-      //   console.log(res)
-      // });
-      getResourceGantt(new Date(this.value)).then(res => {
-        console.log(res);
-        this.GanntData = res;
-      }).then(res2 =>{
-        this.GanntData = [
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 08:00',
-            toDate: '2018-08-01 10:00',
-            task: 'task1'
-          },
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 12:00',
-            toDate: '2018-08-01 15:00',
-            task: 'task2',
-            delay:true
-          },
-          {
-            name: 'line1',
-            fromDate: '2018-08-01 15:30',
-            toDate: '2018-08-01 21:30',
-            task: 'task4',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 09:00',
-            toDate: '2018-08-01 11:00',
-            task: 'task3',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 13:00',
-            toDate: '2018-08-01 17:00',
-            task: 'task5',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 11:00',
-            toDate: '2018-08-01 16:00',
-            task: 'task2',
-            delay:false
-          },
-          {
-            name: 'line2',
-            fromDate: '2018-08-01 16:00',
-            toDate: '2018-08-01 19:00',
-            task: 'task4',
-            delay:false
-          },
 
-          {
-            name: '张三',
-            fromDate: '2018-08-01 16:00',
-            toDate: '2018-08-01 20:00',
-            task: 'task4'
-          },
-          {
-            name: '张三',
-            fromDate: '2018-08-01 20:30',
-            toDate: '2018-08-01 24:00',
-            task: 'task3',
-            delay: false
-          },
-
-          {
-            name: '李四',
-            fromDate: '2018-08-01 13:00',
-            toDate: '2018-08-01 24:00',
-            task: 'task2',
-            delay: false
-          }
-        ]
+      testRequest().then(res => {
+        console.log(res)
       })
     }
   }
@@ -213,10 +155,10 @@ export default {
 <style scoped>
 
 .main{
-  background-color:#3f5c6d2c;
+  background-color: #FFFFFF;
   margin:20px 20px;
   padding: 60px;
-  min-height: 300px;
+  min-height: 400px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
@@ -224,11 +166,9 @@ export default {
   padding-top:1vh;
   float:right;
   margin-right: 10vh;
-  margin-top: 10px;
   background-color: #D07473;
   width: 50px;
-  height:30px;
-  border-radius: 5px;
+  height:30px
 }
 .main:hover{
   margin:10px 20px 30px 20px;

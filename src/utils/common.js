@@ -2,26 +2,26 @@ import chinaCity from '../data/china-city'
 
 function formatDate (date, fmt) {
   if (/(y+)/.test(fmt)) {
-      fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
+    fmt = fmt.replace(RegExp.$1, (date.getFullYear() + '').substr(4 - RegExp.$1.length))
   }
   let o = {
-      'M+': date.getMonth() + 1,
-      'd+': date.getDate(),
-      'h+': date.getHours(),
-      'm+': date.getMinutes(),
-      's+': date.getSeconds()
+    'M+': date.getMonth() + 1,
+    'd+': date.getDate(),
+    'h+': date.getHours(),
+    'm+': date.getMinutes(),
+    's+': date.getSeconds()
   }
   for (let k in o) {
-      if (new RegExp(`(${k})`).test(fmt)) {
-          let str = o[k] + ''
-          fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
-      }
+    if (new RegExp(`(${k})`).test(fmt)) {
+      let str = o[k] + ''
+      fmt = fmt.replace(RegExp.$1, (RegExp.$1.length === 1) ? str : padLeftZero(str))
+    }
   }
   return fmt
 }
 
 function padLeftZero (str) {
-    return ('00' + str).substr(str.length)
+  return ('00' + str).substr(str.length)
 }
 
 /*
@@ -29,12 +29,12 @@ function padLeftZero (str) {
 */
 function getPrivinceList () {
   let _provinceList = []
-    for (let i = 0; i < chinaCity.length; i++) {
-      let item = {}
-      item.value = chinaCity[i].value
-      item.label = chinaCity[i].label
-      _provinceList.push(item)
-    }
+  for (let i = 0; i < chinaCity.length; i++) {
+    let item = {}
+    item.value = chinaCity[i].value
+    item.label = chinaCity[i].label
+    _provinceList.push(item)
+  }
   return _provinceList
 }
 
@@ -43,11 +43,11 @@ function getPrivinceList () {
 */
 function getCityByProvince (privince) {
   let cityList = {}
-    for (let i = 0; i < chinaCity.length; i++) {
-      if (privince === chinaCity[i].label) {
-        cityList = chinaCity[i].children
-      }
+  for (let i = 0; i < chinaCity.length; i++) {
+    if (privince === chinaCity[i].label) {
+      cityList = chinaCity[i].children
     }
+  }
   console.log(cityList)
   return cityList
 }
@@ -97,12 +97,12 @@ function getLocalStorageAndTime (key, exp = 6000000) {
   }
   // 与过期时间比较
   if (new Date().getTime() - dataObj.time > exp) {
-   // 过期删除返回null
-   removeLocalStorage(key)
-   console.log(key + '已过期')
-   return null
+    // 过期删除返回null
+    removeLocalStorage(key)
+    console.log(key + '已过期')
+    return null
   } else {
-   return dataObj.data
+    return dataObj.data
   }
 }
 

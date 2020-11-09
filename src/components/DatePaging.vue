@@ -1,25 +1,70 @@
 <template>
-  <div>
-    <ul
-      v-for="(item) in dates"
-      :key="item"
+  <el-table
+    class="table"
+    :data="tableData"
+    max-height="500"
+    row-key="name"
+  >
+    <el-table-column
+      prop="name"
+      height="60"
+      align="center"
     >
-      <li class="item-date">
-        {{ item }}
-      </li>
-    </ul>
-  </div>
+      <template
+        slot="header"
+      >
+        <i
+          style="font-size:24px"
+          class="el-icon-caret-left table-header-icon"
+          @click="preDate"
+        />
+      </template>
+    </el-table-column>
+    <el-table-column
+      v-for="date in dates"
+      :key="date"
+      height="60"
+      :label="date"
+      :prop="date"
+    >
+      <template slot-scope="scope">
+        <vertical-progress-bar
+          :bar-data="[{'data':scope.row[`${(date)}`].toString(),'value':(scope.row[`${(date)}`])/10}]"
+        />
+      </template>
+    </el-table-column>
+    <el-table-column
+      height="60"
+      align="center"
+    >
+      <template
+        slot="header"
+      >
+        <i
+          style="font-size:24px"
+          class="el-icon-caret-right table-header-icon"
+          @click="nextDate"
+        />
+      </template>
+    </el-table-column>
+  </el-table>
 </template>
 <script>
+import VerticalProgressBar from '@/components/VerticalProgressBar'
 export default {
   name: 'DatePaging',
+  components: {VerticalProgressBar},
   props:{
     beginDate:{
       type:String,
+    },
+    data:{
+      type:Array,
     }
   },
   data(){
     return{
+      tableData:[],
       dates:[]
     }
   },
@@ -27,20 +72,33 @@ export default {
     beginDate: {
       deep: true,
       handler() {
-        this.dates=[]
-        this.getDates()
+        this.getTableData()
       }
     }
   },
   beforeMount() {
-    this.getDates()
+    this.getTableData()
   },
   methods:{
-    getDates(){
-      for(var i=0;i<7;i++){
+    getTableData(){
+      console.log(this.data)
+      this.tableData=[]
+      this.dates=[]
+      for(let i=0;i<7;i++){
         this.dates.push(this.addTime(this.beginDate,i))
       }
+      var data=this.data
+      console.log(this.data)
+      for(let j=0;j<data.length;j++){
+        var item={}
+        item['name']=data[j]['name']
+        for(let i=0;i<7;i++){
+          item[this.dates[i]]=data[j]['rates'][i]
+        }
+        this.tableData.push(item)
+      }
     },
+
     timeFormate(timeStamp) {
       let year = new Date(timeStamp).getFullYear()
       let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
@@ -59,10 +117,14 @@ export default {
 <style scoped>
 .item-date{
   display: inline-block;
-  width:105px;
+  width:15%;
   height:40px;
   padding-top:20px;
   float: left;
   border: 2px solid black;
+}
+.table-header-icon{
+  cursor: pointer;
+  font-size: 20px;
 }
 </style>
