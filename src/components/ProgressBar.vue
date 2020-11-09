@@ -1,5 +1,8 @@
 <template>
-  <div class="haoroomflex">
+  <div
+    class="haoroomflex"
+    style="background-color: transparent"
+  >
     <div
       class="onebar"
     >

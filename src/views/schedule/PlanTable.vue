@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <div
       v-if="showPlanTable"
       style="overflow: hidden;margin-bottom: 20px"
@@ -27,7 +30,7 @@
     >
       <div
         v-if="!showPlanTable"
-        style="display: inline; float: left; padding-left: 20px; "
+        style="display: inline; float: left; padding-left: 20px;width:100%"
       >
         <el-row style="margin: 10px 0">
           <el-input
@@ -36,6 +39,8 @@
             placeholder="输入关键字搜索"
           />
         </el-row>
+
+
         <div
           class="toexcel"
         >
@@ -384,8 +389,24 @@ export default {
       float: left;
       margin-left: 20px;
     }
+    .planTable{
+      height: 100%;
+    }
+    .planTable /deep/ .el-table , .el-table__expanded-cell {
+      background-color: transparent;
+    }
+
+    .planTable /deep/ .el-table tr {
+      background-color: transparent!important;
+    }
+    .planTable /deep/ .el-table th {
+      background-color: transparent!important;
+    }
+    .planTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
+      background-color: transparent;
+    }
      .main{
-       background-color:#3f5c6d2c;
+       background-color: #FFFFFF;
        margin:20px 20px;
        padding: 60px;
        min-height: 400px;

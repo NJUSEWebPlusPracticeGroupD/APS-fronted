@@ -1,53 +1,59 @@
 <template>
-  <el-table
-    class="table"
-    :data="tableData"
-    max-height="500"
-    row-key="name"
-  >
-    <el-table-column
-      prop="name"
-      height="60"
-      align="center"
+  <div class="user_skills">
+    <el-table
+      style="background-color: transparent"
+      :data="tableData"
+      max-height="500"
+      row-key="name"
     >
-      <template
-        slot="header"
+      <el-table-column
+        prop="name"
+        height="60"
+        width="100"
+        align="center"
       >
-        <i
-          style="font-size:24px"
-          class="el-icon-caret-left table-header-icon"
-          @click="preDate"
-        />
-      </template>
-    </el-table-column>
-    <el-table-column
-      v-for="date in dates"
-      :key="date"
-      height="60"
-      :label="date"
-      :prop="date"
-    >
-      <template slot-scope="scope">
-        <vertical-progress-bar
-          :bar-data="[{'data':scope.row[`${(date)}`].toString(),'value':(scope.row[`${(date)}`])/10}]"
-        />
-      </template>
-    </el-table-column>
-    <el-table-column
-      height="60"
-      align="center"
-    >
-      <template
-        slot="header"
+        <template
+          slot="header"
+        >
+          <i
+            style="font-size:24px"
+            class="el-icon-caret-left table-header-icon"
+            @click="preDate"
+          />
+        </template>
+      </el-table-column>
+      <el-table-column
+        v-for="date in dates"
+        :key="date"
+        height="60"
+        width="100"
+        :label="date"
+        :prop="date"
+        align="center"
       >
-        <i
-          style="font-size:24px"
-          class="el-icon-caret-right table-header-icon"
-          @click="nextDate"
-        />
-      </template>
-    </el-table-column>
-  </el-table>
+        <template slot-scope="scope">
+          <vertical-progress-bar
+            :bar-data="[{'data':scope.row[`${(date)}`].toString(),'value':(scope.row[`${(date)}`])/10}]"
+          />
+        </template>
+      </el-table-column>
+      <el-table-column
+        height="60"
+        width="100"
+        align="center"
+      >
+        <template
+          slot="header"
+        >
+          <i
+            style="font-size:24px"
+            class="el-icon-caret-right table-header-icon"
+            @click="nextDate"
+          />
+        </template>
+      </el-table-column>
+    </el-table>
+  </div>
 </template>
 <script>
 import VerticalProgressBar from '@/components/VerticalProgressBar'
@@ -109,12 +115,33 @@ export default {
       var date=new Date(time)
       date.setTime(date.getTime()+num*86400000 )
       return this.timeFormate(date)
+    },
+    preDate() {
+      //响应父组件的方法，其中subClickFtn为父组件的点击事件
+      this.$emit('subPreDateFtn')
+    },
+    nextDate() {
+      //响应父组件的方法，其中subClickFtn为父组件的点击事件
+      this.$emit('subNextDateFtn')
     }
   }
 }
 </script>
 
 <style scoped>
+.user_skills /deep/ .el-table , .el-table__expanded-cell {
+  background-color: transparent;
+}
+
+.user_skills /deep/ .el-table tr {
+  background-color: transparent!important;
+}
+.user_skills /deep/ .el-table th {
+  background-color: transparent!important;
+}
+.user_skills /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
+  background-color: transparent;
+}
 .item-date{
   display: inline-block;
   width:15%;

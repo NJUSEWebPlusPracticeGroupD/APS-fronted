@@ -1,27 +1,22 @@
 <template>
-
   <div id="app">
     <el-container class="container">
       <el-header
         class="header"
         height="80px"
       >
-        <el-col :span="14">
+        <el-col :span="8">
           <i
             class="el-icon-monitor"
           />
           NJUERP
         </el-col>
         <el-col
-          :span="6"
+          :span="12"
           style="min-height:1px;"
         />
         <el-col
-          :span="6"
-          style="min-height:1px;"
-        />
-        <el-col
-          :span="10"
+          :span="4"
           class="time-class"
         >
           <i
@@ -41,19 +36,22 @@
       :visible.sync="dialogVisible"
       width="30%"
     >
+      调整时间:
       <el-date-picker
         v-model="value"
         class="date-picker"
+        style="width: 50%; margin-left:22%;"
         type="datetime"
         :placeholder="this.$store.getters.getTime"
         :default-value="this.$store.getters.getTime"
       />
       <div />
+      更改时间速度（默认1s）:
       <el-input
         v-model="input"
         class="input"
         placeholder="请输入秒数的倍数"
-        style="width: 31vh"
+        style="width: 50%"
       />
       <span
         slot="footer"
@@ -131,12 +129,14 @@ export default {
     setTime(){
       this.$store.commit('setTime',this.value)
       this.$store.commit('setTimeOfSecond',this.input)
+      this.clear()
       this.dialogVisible=false
     },
 
     //时间dialog进入前
     saveTime(){
       this.value=this.$store.getters.getTime
+      this.clear()
       this.dialogVisible=true
     }
   }
@@ -157,7 +157,7 @@ export default {
 
   z-index: -1;
   zoom: 1;
-  background-image: url("~@/assets/timg1.jpg");
+  background-image: url("~@/assets/cloud.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center 0;
@@ -173,10 +173,10 @@ export default {
 }
 .header {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color:  #3f5c6d2c;
-  color: #eeeeee;
+  color: #000000;
   text-align: left;
   font-size: 60px;
+  font-weight: bold;
   font-family: "Papyrus";
   line-height: 10%;
   width: 100%;
@@ -184,6 +184,7 @@ export default {
 }
 .time-class{
   font-size:20px;
+margin-top: 20px;
 }
 .el-icon-s-tools:hover{
   cursor: pointer;

@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <div>
       <div class="totalResource">
         <div class="totalEquipmentLoad">
@@ -89,6 +92,8 @@
       <DatePaging
         :begin-date="beginTime"
         :data="data"
+        @subPreDate="preDate"
+        @subNextDate="nextDate"
       />
     </div>
     <!--      <i-->

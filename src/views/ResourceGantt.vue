@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <el-row>
       <el-date-picker
         v-model="value"

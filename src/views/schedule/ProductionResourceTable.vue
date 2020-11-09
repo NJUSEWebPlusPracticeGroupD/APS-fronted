@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <el-row style="margin: 20px 0 30px 0">
       <el-input
         v-model="search"
@@ -148,5 +151,21 @@ export default {
 .table{
   width: 500px;
   margin-bottom: 20px;
+}
+.productionResourceTable{
+  height: 100%;
+}
+.productionResourceTable /deep/ .el-table , .el-table__expanded-cell {
+  background-color: transparent;
+}
+
+.productionResourceTable /deep/ .el-table tr {
+  background-color: transparent!important;
+}
+.productionResourceTable /deep/ .el-table th {
+  background-color: transparent!important;
+}
+.productionResourceTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
+  background-color: transparent;
 }
 </style>

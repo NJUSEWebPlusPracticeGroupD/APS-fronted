@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <el-row style="margin-top:30px">
       <div
         class="time"
@@ -12,7 +15,7 @@
       class="allPage"
     >
       <div
-        style="display: inline; float: left; padding-left:20px; "
+        style="display: inline; float: left; padding-left:20px;width: 100% "
       >
         <el-row style="margin: -20px 0 30px 0">
           <el-input

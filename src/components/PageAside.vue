@@ -1,8 +1,11 @@
 <template>
-  <el-aside class="aside">
+  <el-aside
+    class="aside"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <el-menu
       class="el-menu-vertical-demo"
-      background-color="#f5f6fa"
+      background-color="transparent"
     >
       <router-link to="/about">
         <el-menu-item
@@ -94,7 +97,7 @@ export default {
 
 <style scoped>
 .aside{
-
+  background-color:#3f5c6d2c;
   width: 200px;
   min-height:400px;
   margin:20px;

@@ -1,5 +1,8 @@
 <template>
-  <div class="haoroomflex">
+  <div
+    class="haoroomflex"
+    style="background-color: transparent"
+  >
     <div
       v-for="(item,index) in barData"
       :key="index"
@@ -40,16 +43,18 @@ export default {
   flex:1;
   text-align: center;
   min-width: 30px;
+  margin-left: 10px;
   max-width: 100px;
   display: inline-block;
   .sfont{
     color:#999;
     font-size:22px;
+    margin-left:-20px;
   }
   .bar{
     height: 50px;
     width:35px;
-    margin:5px auto;
+    margin:5px 5px;
     overflow: hidden;
     position: relative;
     background: #e5e5e5;

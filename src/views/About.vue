@@ -20,7 +20,8 @@ export default {
 <style scoped>
 
   .main{
-    background-color:#3f5c6d2c;
+    /*background-color:#3f5c6d2c;*/
+    background-color:rgba(255,255,255,0.8);
     margin:20px 20px;
     padding: 40px;
     height: 400px;

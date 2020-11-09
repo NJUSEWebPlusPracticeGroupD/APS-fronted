@@ -1,5 +1,8 @@
 <template>
-  <el-main class="main">
+  <el-main
+    class="main"
+    style=" background-color:rgba(255,255,255,0.8);"
+  >
     <div class="onTimeDelivery">
       <h3 style="font-size: 30px;margin-bottom: -5px">
         按期交货率
@@ -58,32 +61,34 @@
     </el-row>
 
 
-    <el-table
-      class="table"
-      :data="orderProgress"
-      max-height="500"
-      row-key="orderId"
-    >
-      <el-table-column
-        prop="orderId"
-        label="订单编号"
-        height="60"
-        width="120"
-        align="center"
-      />
-      <el-table-column
-        height="60"
-        label="订单进度"
-        align="center"
+    <div class="user_skills">
+      <el-table
+        :data="orderProgress"
+        min-height="500"
+        row-key="orderId"
       >
-        <template slot-scope="scope">
-          <ProgressBar
-            :delay-data="scope.row.dataDelay"
-            :data="scope.row.data"
-          />
-        </template>
-      </el-table-column>
-    </el-table>
+        <el-table-column
+          prop="orderId"
+          label="订单编号"
+          height="60"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          height="60"
+          width="650"
+          label="订单进度"
+          align="center"
+        >
+          <template slot-scope="scope">
+            <ProgressBar
+              :delay-data="scope.row.dataDelay"
+              :data="scope.row.data"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
 
 
 
@@ -217,6 +222,22 @@ export default {
 </script>
 
 <style scoped>
+.user_skills{
+  height: 100%;
+}
+.user_skills /deep/ .el-table , .el-table__expanded-cell {
+  background-color: transparent;
+}
+
+.user_skills /deep/ .el-table tr {
+  background-color: transparent!important;
+}
+.user_skills /deep/ .el-table th {
+  background-color: transparent!important;
+}
+.user_skills /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
+  background-color: transparent;
+}
 
 .main{
   background-color: #FFFFFF;
