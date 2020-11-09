@@ -79,9 +79,9 @@ export default {
       time:this.$store.getters.getTime.slice(0,10),
       timeDialog:false,
       search:'',
-      
-      
-      
+
+
+
       orderProductionData:
         [
           {
@@ -179,7 +179,7 @@ export default {
 </script>
 <style>
 .main{
-  background-color: #FFFFFF;
+  background-color:#3f5c6d2c;
   margin:20px 20px;
   padding: 60px;
   min-height: 400px;

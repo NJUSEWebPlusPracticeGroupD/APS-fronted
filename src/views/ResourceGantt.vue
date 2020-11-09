@@ -1,6 +1,6 @@
 <template>
   <el-main class="main">
-    <el-row>
+    <el-row style="margin-top: 0">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -11,22 +11,23 @@
       <el-button
         round
         class="button"
+        v-model="value"
         @click="getResource"
+
       >
         确定
       </el-button>
+      <div class="delay">
+        延期
+      </div>
     </el-row>
-    <div class="delay">
-      延期
-    </div>
-
     <GanttChart v-bind:datas="GanntData" > </GanttChart>
   </el-main>
 </template>
 
 <script>
 import GanttChart from '@/components/GanttChart'
-import {testRequest} from '@/api/getGraphic'
+import {testRequest,getResourceGantt} from '@/api/getGraphic'
 export default {
   name: 'ResourceGantt',
   components: {
@@ -123,10 +124,87 @@ export default {
       // console.log(GanttChart.props.datas);
       // console.log("hi3");
 
+      console.log(this.value);
+      // testRequest(this.value).then(res => {
+      //   console.log(res)
+      // });
+      getResourceGantt(new Date(this.value)).then(res => {
+        console.log(res);
+        this.GanntData = res;
+      }).then(res2 =>{
+        this.GanntData = [
+          {
+            name: 'line1',
+            fromDate: '2018-08-01 08:00',
+            toDate: '2018-08-01 10:00',
+            task: 'task1'
+          },
+          {
+            name: 'line1',
+            fromDate: '2018-08-01 12:00',
+            toDate: '2018-08-01 15:00',
+            task: 'task2',
+            delay:true
+          },
+          {
+            name: 'line1',
+            fromDate: '2018-08-01 15:30',
+            toDate: '2018-08-01 21:30',
+            task: 'task4',
+            delay:false
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-08-01 09:00',
+            toDate: '2018-08-01 11:00',
+            task: 'task3',
+            delay:false
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-08-01 13:00',
+            toDate: '2018-08-01 17:00',
+            task: 'task5',
+            delay:false
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-08-01 11:00',
+            toDate: '2018-08-01 16:00',
+            task: 'task2',
+            delay:false
+          },
+          {
+            name: 'line2',
+            fromDate: '2018-08-01 16:00',
+            toDate: '2018-08-01 19:00',
+            task: 'task4',
+            delay:false
+          },
 
-      testRequest().then(res => {
-        console.log(res)
-      });
+          {
+            name: '张三',
+            fromDate: '2018-08-01 16:00',
+            toDate: '2018-08-01 20:00',
+            task: 'task4'
+          },
+          {
+            name: '张三',
+            fromDate: '2018-08-01 20:30',
+            toDate: '2018-08-01 24:00',
+            task: 'task3',
+            delay: false
+          },
+
+          {
+            name: '李四',
+            fromDate: '2018-08-01 13:00',
+            toDate: '2018-08-01 24:00',
+            task: 'task2',
+            delay: false
+          }
+        ]
+      })
     }
   }
 }
@@ -135,10 +213,10 @@ export default {
 <style scoped>
 
 .main{
-  background-color: #FFFFFF;
+  background-color:#3f5c6d2c;
   margin:20px 20px;
   padding: 60px;
-  min-height: 400px;
+  min-height: 300px;
   border-radius: 10px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
 }
@@ -146,9 +224,11 @@ export default {
   padding-top:1vh;
   float:right;
   margin-right: 10vh;
+  margin-top: 10px;
   background-color: #D07473;
   width: 50px;
-  height:30px
+  height:30px;
+  border-radius: 5px;
 }
 .main:hover{
   margin:10px 20px 30px 20px;
