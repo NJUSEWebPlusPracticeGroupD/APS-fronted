@@ -3,7 +3,6 @@
     <el-menu
       class="el-menu-vertical-demo"
       background-color="transparent"
-
     >
       <router-link to="/about">
         <el-menu-item
@@ -133,7 +132,4 @@ span{
 .el-menu-item{
   color: #e5e5e5;
 }
-  .router-link{
-    background-color: ;
-  }
 </style>
