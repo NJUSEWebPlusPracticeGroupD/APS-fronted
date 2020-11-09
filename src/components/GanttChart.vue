@@ -54,7 +54,7 @@ export default {
   methods: {
     addTime(time,num){
       var date=new Date(time)
-      date.setTime(date.getTime()+num*86400000 )
+      date.setTime(date.getTime()+num*86400000)
       return date.toString()[0,10]
     },
     backToChart1(){
@@ -86,7 +86,7 @@ export default {
           index = index + 3
         }
         item['color'] = colorMap[item['task']]
-        if(item['delay']==true){
+        if(item['delay'] === true){
           item['color'] = colorSet.getIndex(9).brighten(0)
         }
         if(!nameMap[item['name']]){
@@ -98,6 +98,7 @@ export default {
       var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis())
       categoryAxis.dataFields.category = 'name'
       categoryAxis.renderer.grid.template.location = 0
+
       categoryAxis.renderer.inversed = true
 
       var dateAxis = chart.xAxes.push(new am4charts.DateAxis())
@@ -131,6 +132,7 @@ export default {
       label.align = 'center'
       label.valign = 'middle'
 
+
       //点击事件
       const that = this
       series1.columns.template.events.on('hit', function (ev) {
@@ -139,7 +141,6 @@ export default {
 
         let chart = am4core.create('chartdiv1', am4charts.XYChart)
         chart.hiddenState.properties.opacity = 0 // this creates initial fade-in
-
 
         chart.paddingRight = 30
         chart.dateFormatter.inputDateFormat = 'yyyy-MM-dd HH:mm'
@@ -181,15 +182,16 @@ export default {
 
         var series1 = chart.series.push(new am4charts.ColumnSeries())
         series1.columns.template.width = am4core.percent(30)
-        series1.columns.template.height=am4core.percent(50)
+        series1.columns.template.height=am4core.percent(30)
         series1.columns.template.tooltipText = '{task}: {openDateX} - {dateX}'
+        //series1.columns.template.tooltipText.fontcolor("#ffffff");
 
         series1.dataFields.openDateX = 'fromDate'
         series1.dataFields.dateX = 'toDate'
         series1.dataFields.categoryY = 'name'
         series1.columns.template.propertyFields.fill = 'color' // get color from data
         series1.columns.template.propertyFields.stroke = 'color'
-        series1.columns.template.strokeOpacity = 1
+        series1.columns.template.strokeOpacity = 0.5
         chart.scrollbarX = new am4core.Scrollbar()
 
         var columnTemplate = series1.columns.template

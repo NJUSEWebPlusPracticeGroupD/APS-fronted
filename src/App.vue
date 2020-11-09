@@ -1,11 +1,12 @@
 <template>
+
   <div id="app">
     <el-container class="container">
       <el-header
         class="header"
         height="80px"
       >
-        <el-col :span="6">
+        <el-col :span="14">
           <i
             class="el-icon-monitor"
           />
@@ -20,7 +21,7 @@
           style="min-height:1px;"
         />
         <el-col
-          :span="6"
+          :span="10"
           class="time-class"
         >
           <i
@@ -148,27 +149,47 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  z-index: -1;
+  zoom: 1;
+  background-image: url("~@/assets/timg1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center 0;
+  opacity: 1;
 }
 .container{
-  min-height: 700px;
+  min-height: 100%;
+  width: 100%;
   border: 1px solid #eee;
   margin: 0;
   padding: 10px 35px;
-  background-color:  #f5f6fa;
+  background-color:  transparent;
 }
 .header {
   font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-  background-color:  #f5f6fa;
-  color: #333;
+  background-color:  #3f5c6d2c;
+  color: #eeeeee;
   text-align: left;
   font-size: 60px;
-  line-height: 80px;
+  font-family: "Papyrus";
+  line-height: 10%;
+  width: 100%;
+
 }
 .time-class{
   font-size:20px;
 }
 .el-icon-s-tools:hover{
   cursor: pointer;
+}
+.el-icon-monitor{
+
 }
 .input{
   margin-top:4vh;

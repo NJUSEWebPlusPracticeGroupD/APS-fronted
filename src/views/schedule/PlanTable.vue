@@ -58,6 +58,7 @@
       <div v-if="showPlanTable">
         <div
           class="planTable"
+          style="background-color: transparent"
         >
           <el-table
             class="table"
@@ -65,6 +66,8 @@
             hieght="250"
             row-key="orderNumber"
             @cell-click="turnToOrderProductionTable"
+
+
           >
             <el-table-column
               prop="orderNumber"
@@ -169,7 +172,7 @@ export default {
         }
       },
 
-      
+
       //plan订单需要的数据
       tableData: [{
         orderNumber: 1,
@@ -227,10 +230,10 @@ export default {
         isSplit: '否',
         turnToOrderProductionTable:true,
       }],
-      
-      
+
+
       //生产单需要的数据
-      orderProductionData: 
+      orderProductionData:
         [
           {
             resource:'资源01',
@@ -288,7 +291,7 @@ export default {
             time24:'订单1',
           },
         ]
-      
+
     }
   },
   methods: {
@@ -381,12 +384,12 @@ export default {
       padding-top:20px;
     }
     .planTable{
-      display: inline;
+      //display: inline;
       float: left;
       margin-left: 20px;
     }
      .main{
-       background-color: #FFFFFF;
+       background-color:#3f5c6d2c;
        margin:20px 20px;
        padding: 60px;
        min-height: 400px;
@@ -402,8 +405,10 @@ export default {
       margin-left:20px;
     }
     .table{
-     width: 750px;
+      width: 750px;
       margin-bottom: 20px;
+      border-radius: 5px;
+      background: transparent;
     }
     .time{
       float:right;
