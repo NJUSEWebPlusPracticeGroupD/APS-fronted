@@ -29,5 +29,7 @@ function getData () {
     return ganttData;
 }
 
-const data = Mock.mock(RegExp(`${domain}/api/chart/getResourceGanttChart?date=` + '.*'), 'get', getData);
-export default { data }
+const data = Mock.mock(RegExp(`/api/chart/getResourceGanttChart` + '.*'), 'get', getData);
+export default {
+  data
+}

@@ -13,7 +13,12 @@
         > {{ progress }}</span>
         <span
           class="progress"
-          :style="{'width':`${progressDelay}%`,'background-color':'#D07473','position': 'absolute','left':`${progress}%`}"
+          :style="{'width':`${ 100 - progress - progressDelay}%`,'background-color':'#ffffaa','position': 'absolute','left':`${progress}%`}"
+        > {{ 100 - progress - progressDelay }}</span>
+
+        <span
+          class="progress"
+          :style="{'width':`${progressDelay}%`,'background-color':'#D07473','position': 'absolute','left':`${100 - progressDelay}%`}"
         > {{ progressDelay }}</span>
       </div>
     </div>

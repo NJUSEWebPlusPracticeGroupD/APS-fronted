@@ -32,17 +32,18 @@ module.exports = {
     overlay: {
       warnings: false,
       errors: true
-    },
-    proxy: {
-      '/api': {
-        target: process.env.VUE_APP_BASE_API || 'http://localhost:8000',
-        changeOrigin: false,
-        pathRewrite: {
-          '^/api': '/api'
-        },
-        logLevel:'debug'
-      }
     }
+    ,
+        proxy: {
+          '/api': {
+            target: process.env.VUE_APP_BASE_API || "http://localhost:8000",
+            changeOrigin: false,
+            pathRewrite: {
+              '^/api': '/api'
+            },
+            logLevel:'debug'
+          }
+        }
   },
 
   configureWebpack: {

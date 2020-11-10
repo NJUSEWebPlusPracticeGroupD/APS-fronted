@@ -163,7 +163,7 @@ export default {
 
       getResourceGantt(final_date).then(res => {
         console.log(res);
-        this.GanntData = res.content;
+        //this.GanntData = res.content;
       });
     }
   }
