@@ -49,7 +49,7 @@
 
 <script>
 import GanttChart from '@/components/GanttChart'
-import {testRequest} from '@/api/getGraphic'
+import {testRequest} from '@/api/APIs'
 export default {
   name: 'ResourceGantt',
   components: {
@@ -119,7 +119,7 @@ export default {
         {
           name: '张三',
           fromDate: '2018-08-01 20:30',
-          toDate: '2018-08-01 24:00',
+          toDate: '2018-08-02 7:00',
           task: 'task3',
           delay: false
         },
@@ -147,7 +147,8 @@ export default {
       // console.log("hi3");
 
 
-      testRequest().then(res => {
+
+      testRequest(this.value).then(res => {
         console.log(res)
       })
     }

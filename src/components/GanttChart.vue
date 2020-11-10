@@ -48,7 +48,7 @@ export default {
   },
   mounted() {
     this.createChart(this.datas)
-    this.beginTime=this.datas[0].fromDate.slice(0,10)+' 07:00'
+    this.beginTime=this.datas[0].fromDate.slice(0,10)
     this.lastTime=this.addTime(this.beginTime,1)
   },
   methods: {
