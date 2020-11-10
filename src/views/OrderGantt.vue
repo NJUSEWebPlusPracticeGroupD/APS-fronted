@@ -71,7 +71,7 @@
           prop="orderId"
           label="订单编号"
           height="60"
-          width="120"
+          width="200"
           align="center"
         />
         <el-table-column

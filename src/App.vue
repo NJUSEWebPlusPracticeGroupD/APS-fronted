@@ -34,6 +34,7 @@
     <el-dialog
       title="修改时间"
       :visible.sync="dialogVisible"
+      :modal-append-to-body="false"
       width="30%"
     >
       调整时间:

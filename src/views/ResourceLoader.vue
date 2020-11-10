@@ -92,8 +92,8 @@
       <DatePaging
         :begin-date="beginTime"
         :data="data"
-        @subPreDate="preDate"
-        @subNextDate="nextDate"
+        @subPreDateFtn="preDate"
+        @subNextDateFtn="nextDate"
       />
     </div>
     <!--      <i-->
@@ -173,6 +173,9 @@ export default {
       date.setTime(date.getTime()+num*86400000 )
       return date.toString().slice(0,10)
     },
+
+
+
     preDate(){
       this.beginTime=this.addTime(this.beginTime,-1)
       this.setTimeString(this.beginTime)

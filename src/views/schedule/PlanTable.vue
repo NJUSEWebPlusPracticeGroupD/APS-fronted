@@ -123,6 +123,7 @@
     <el-dialog
       title="查找时间"
       :visible.sync="timeDialog"
+      :modal-append-to-body="false"
       width="30%"
     >
       <el-date-picker
