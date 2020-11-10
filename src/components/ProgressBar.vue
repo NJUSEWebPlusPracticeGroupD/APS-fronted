@@ -42,8 +42,8 @@ export default {
 }
 </script>
 
-<style  lang="less" scoped>
-.haoroomflex{display: flex;margin:1vh 15px;}
+<style lang="scss" scoped>
+.haoroomflex{display: flex; margin:1vh 15px;}
 .onebar{
   flex:1;
   text-align: center;
@@ -54,8 +54,8 @@ export default {
   }
   .bar{
     height: 35px;
-    width:600px;
-    margin:5px auto;
+    width: 600px;
+    margin: 5px auto;
     -webkit-border-radius: 24px;
     border-radius: 24px;
     overflow: hidden;

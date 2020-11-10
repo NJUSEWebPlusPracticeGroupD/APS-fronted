@@ -99,7 +99,7 @@ export default {
 .aside{
   background-color:#3f5c6d2c;
   width: 200px;
-  min-height:400px;
+  min-height: 400px;
   margin:20px;
   border-radius: 10px;
   text-align: left;

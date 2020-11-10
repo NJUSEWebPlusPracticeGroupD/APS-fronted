@@ -26,7 +26,7 @@
           {{ this.$store.getters.getTime }}
         </el-col>
       </el-header>
-      <el-container>
+      <el-container style = "height: 500px">
         <PageAside />
         <router-view />
       </el-container>
@@ -150,17 +150,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  position: fixed;
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-
+  height: 1000px;
   z-index: -1;
   zoom: 1;
   background-image: url("~@/assets/cloud.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-repeat: initial;
+  //background-size: auto;
   background-position: center 0;
   opacity: 1;
 }
