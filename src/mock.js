@@ -3,7 +3,7 @@ import Mock from 'mockjs'
 const domain = 'http://localhost:8000'; // 定义默认域名，随便写
 //const Random = mock.Random;
 
-function getData () {xw
+function getData () {
     const datalist = [];
     for (let i = 0; i < 1; i++) {
         const newData = {
