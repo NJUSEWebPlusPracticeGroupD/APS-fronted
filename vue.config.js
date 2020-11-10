@@ -35,11 +35,12 @@ module.exports = {
     },
     proxy: {
       '/api': {
-        target: process.env.VUE_APP_BASE_API || 'http://localhost:8000/',
+        target: process.env.VUE_APP_BASE_API || 'http://localhost:8000',
         changeOrigin: false,
         pathRewrite: {
           '^/api': '/api'
-        }
+        },
+        logLevel:'debug'
       }
     }
   },

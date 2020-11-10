@@ -54,3 +54,11 @@ export function getProduceResourceForm(date){
     url: 'api/form/getProduceResourceForm?date=' + date
   })
 }
+
+export function startAPS(date){
+  return request({
+    method: 'POST',
+    url: 'api/aps/startAps',
+    params: date
+  })
+}

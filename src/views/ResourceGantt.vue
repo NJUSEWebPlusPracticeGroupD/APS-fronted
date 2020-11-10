@@ -50,6 +50,7 @@
 <script>
 import GanttChart from '@/components/GanttChart'
 import {testRequest} from '@/api/APIs'
+import {getResourceGantt} from "../api/APIs";
 export default {
   name: 'ResourceGantt',
   components: {
@@ -65,7 +66,8 @@ export default {
           name: 'line1',
           fromDate: '2018-08-01 08:00',
           toDate: '2018-08-01 10:00',
-          task: 'task1'
+          task: 'task1',
+          delay: true
         },
         {
           name: 'line1',
@@ -147,10 +149,23 @@ export default {
       // console.log("hi3");
 
 
+      console.log(this.value);
+      let tmp_datelist = this.value.toString().split(" ");
+      let final_date = tmp_datelist[3]+"-";
+      const monthsBig = ["1", "Jan", "Feb", "Mar", "Apr", "May", "Jun", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const months = ["00","01","02","03","04","05","06","07","08","09","10","11","12"];
+      for( let i = 0; i<=12;i++){
+        if(tmp_datelist[1] === monthsBig[i]){
+          final_date+=months[i];
+        }
+      }
+      final_date+="-";
+      final_date+=tmp_datelist[2];
 
-      testRequest(this.value).then(res => {
-        console.log(res)
-      })
+      getResourceGantt(final_date).then(res => {
+        console.log(res);
+        // this.GanntData = res;
+      });
     }
   }
 }
