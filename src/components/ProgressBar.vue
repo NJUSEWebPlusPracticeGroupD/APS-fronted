@@ -9,12 +9,12 @@
       <div class="bar">
         <span
           class="progress"
-          :style="data!=100?{'width':`${data}%`,'background-color':'#75cce8'}:{'width':`${data}%`,'background-color':'#94e277'}"
-        > {{ data }}</span>
+          :style="progress!=100?{'width':`${progress}%`,'background-color':'#75cce8'}:{'width':`${progress}%`,'background-color':'#94e277'}"
+        > {{ progress }}</span>
         <span
           class="progress"
-          :style="{'width':`${delayData}%`,'background-color':'#D07473','position': 'absolute','left':`${data}%`}"
-        > {{ delayData }}</span>
+          :style="{'width':`${progressDelay}%`,'background-color':'#D07473','position': 'absolute','left':`${progress}%`}"
+        > {{ progressDelay }}</span>
       </div>
     </div>
   </div>
@@ -24,13 +24,13 @@
 export default {
   name: 'ProgressBar',
   props: {
-    data: {
+    progress: {
       type:Number,
       default:()=> 90
     },
-    delayData:{
+    progressDelay:{
       type:Number,
-      default:()=>0
+      default:() => 0
     }
   },
 
