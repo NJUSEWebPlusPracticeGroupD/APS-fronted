@@ -2,6 +2,15 @@
   <el-main class="main">
     <h2>NJUERP</h2>
     <span>我们致力于打造新型的工厂排程系统</span>
+    <el-row style="margin-top: 30px">
+      <el-button
+        type="primary"
+        :loading="load"
+        @click="start"
+      >
+        进行排程
+      </el-button>
+    </el-row>
   </el-main>
 </template>
 
@@ -10,9 +19,15 @@ export default {
   name: 'About',
   data() {
     return {
-
+      load:false,
     }
   },
+  methods:{
+    start(){
+      this.load=true
+      //与后端交互，一旦完成交互  load=false
+    }
+  }
 
 }
 </script>
