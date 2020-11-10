@@ -82,8 +82,8 @@
         >
           <template slot-scope="scope">
             <ProgressBar
-              :delay-data="scope.row.dataDelay"
-              :data="scope.row.data"
+              :progressDelay="scope.row.progressDelay"
+              :progress="scope.row.progress"
             />
           </template>
         </el-table-column>
@@ -152,44 +152,44 @@ export default {
       timeString:'',
       orderProgress:[
         {
-          orderId:41234,
-          data: 20,
-          dataDelay:10
+          orderId: 41234,
+          progress: 20,
+          progressDelay:10
         },
         {
           orderId:41523,
-          data: 80,
-          dataDelay:''
+          progress: 80,
+          progressDelay:''
         },
         {
           orderId:41888,
-          data: 60,
-          dataDelay:20
+          progress: 60,
+          progressDelay:20
         },
         {
           orderId:51666,
-          data: 60,
-          dataDelay:''
+          progress: 60,
+          progressDelay:''
         },
         {
           orderId:64850,
-          data:100,
-          dataDelay:''
+          progress:100,
+          progressDelay:''
         },
         {
           orderId:98564,
-          data:90,
-          dataDelay:10
+          progress:90,
+          progressDelay:10
         },
         {
           orderId:65732,
-          data: 30,
-          dataDelay: 20
+          progress: 30,
+          progressDelay: 20
         },
         {
           orderId:41253,
-          data:60,
-          dataDelay:''
+          progress:60,
+          progressDelay:''
         }
       ],
       value:'',

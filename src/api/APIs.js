@@ -55,10 +55,9 @@ export function getProduceResourceForm(date){
   })
 }
 
-export function startAPS(date){
+export function startAPS(currentDate){
   return request({
     method: 'POST',
-    url: 'api/aps/startAps',
-    params: date
+    url: 'api/aps/startAps?currentDate=' + currentDate
   })
 }

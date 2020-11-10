@@ -49,7 +49,6 @@
 
 <script>
 import GanttChart from '@/components/GanttChart'
-import {testRequest} from '@/api/APIs'
 import {getResourceGantt} from '../api/APIs'
 export default {
   name: 'ResourceGantt',
@@ -164,8 +163,7 @@ export default {
 
       getResourceGantt(final_date).then(res => {
         console.log(res)
-        console.log('MOCK注入')
-        // this.GanntData = res;
+        this.GanntData = res.content
       })
     }
   }
