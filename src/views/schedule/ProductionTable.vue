@@ -153,6 +153,7 @@ export default {
       let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
       return year + '-' + month + '-' + date
     },
+
     getProductionData(){
       if(this.value){
         this.time=this.timeFormate(this.value)
@@ -161,6 +162,7 @@ export default {
 
       //后端交互，获取数据
     },
+
     exportExcel() {
       const wb = XLSX.utils.table_to_book(document.querySelector('.table'))
       const wbout = XLSX.write(wb, {

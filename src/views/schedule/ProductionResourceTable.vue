@@ -90,7 +90,17 @@ export default {
       ]
     }
   },
+  beforeMount() {
+    this.initData()
+  },
+
   methods: {
+    initData(){
+      // 初始化数据 挂载时使用
+    },
+
+
+
     exportExcel() {
       var fix = document.querySelector('.el-table__fixed')
       var wb

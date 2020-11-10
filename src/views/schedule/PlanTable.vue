@@ -296,6 +296,9 @@ export default {
       
     }
   },
+  mounted() {
+    this.getOrderProductionData()
+  },
   methods: {
     timeFormate(timeStamp) {
       let year = new Date(timeStamp).getFullYear()
@@ -339,6 +342,8 @@ export default {
       this.showPlanTable=true
       this.search=''
     },
+
+
 
     turnToOrderProductionTable(row){
       this.showPlanTable=false
