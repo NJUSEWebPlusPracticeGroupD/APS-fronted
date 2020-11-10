@@ -163,7 +163,18 @@ export default {
 
       getResourceGantt(final_date).then(res => {
         console.log(res);
-        //this.GanntData = res.content;
+        this.GanntData = res.content.datalist;
+
+        // this.GanntData = [
+        //   {
+        //     name: 'lisi',
+        //     fromDate: '2018-08-01 13:00',
+        //     toDate: '2018-08-01 24:00',
+        //     task: 'task2',
+        //     delay: false
+        //   }
+        // ]
+        //console.log(this.GanntData);
       });
     }
   }

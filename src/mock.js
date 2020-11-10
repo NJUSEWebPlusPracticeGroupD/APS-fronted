@@ -12,11 +12,11 @@ function getData () {
             // thumbnail_pic_s: Random.dataImage('300x250', 'mock的图片'), // Random.dataImage( size, text ) 生成一段随机的 Base64 图片编码
             // author_name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
             // date: Random.date() + ' ' + Random.time() // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
-          name: "line1",
-          fromDate: "2020-11-10T09:16:58.926Z",
-          toDate: "2020-11-10T09:16:58.926Z",
-          task: "418477",
-          delay: true
+          name: 'lisi',
+          fromDate: '2018-08-02 15:30',
+          toDate: '2018-08-02 21:30',
+          task: 'task2',
+          delay: false
         };
         datalist.push(newData);
     }
@@ -30,6 +30,6 @@ function getData () {
 }
 
 const data = Mock.mock(RegExp(`/api/chart/getResourceGanttChart` + '.*'), 'get', getData);
-export default {
+ export default {
   data
 }

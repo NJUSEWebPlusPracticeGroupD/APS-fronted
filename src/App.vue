@@ -12,11 +12,11 @@
           NJUERP
         </el-col>
         <el-col
-          :span="12"
+          :span="10"
           style="min-height:1px;"
         />
         <el-col
-          :span="4"
+          :span="6"
           class="time-class"
         >
           <i
@@ -150,16 +150,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  height: 1000px;
+  height: 100%;
   z-index: -1;
   zoom: 1;
   background-image: url("~@/assets/cloud.jpg");
   background-repeat: initial;
-  //background-size: auto;
+  background-size: auto;
   background-position: center 0;
   opacity: 1;
 }

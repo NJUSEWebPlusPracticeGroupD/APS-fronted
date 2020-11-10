@@ -48,13 +48,13 @@ export default {
   },
   mounted() {
     this.createChart(this.datas)
-    this.beginTime=this.datas[0].fromDate.slice(0,10)
-    this.lastTime=this.addTime(this.beginTime,1)
+    // this.beginTime=this.datas[0].fromDate.slice(0,10)
+    // this.lastTime=this.addTime(this.beginTime,1)
   },
   methods: {
     addTime(time,num){
       var date=new Date(time)
-      date.setTime(date.getTime()+num*86400000 )
+      date.setTime(date.getTime()+num*86400000)
       return date.toString()[0,10]
     },
     backToChart1(){
