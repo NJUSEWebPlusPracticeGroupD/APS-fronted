@@ -10,7 +10,6 @@ Vue.use(store)
 Vue.config.productionTip = false
 Vue.use(router)
 
-
 Vue.use(ElementUI)
 
 new Vue({
