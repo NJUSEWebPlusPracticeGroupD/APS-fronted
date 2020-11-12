@@ -16,9 +16,7 @@
         width="160"
       />
     </div>
-
-
-    <el-row style="margin-bottom: 10px;margin-top:80px;">
+    <el-row style="margin-top: -250px">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -33,12 +31,15 @@
       >
         确定
       </el-button>
-      <el-popover
-        placement="left-start"
-        style="float: right;margin-top:-50px;margin-right:4%;"
-        width="180"
-        trigger="hover"
-      >
+    </el-row>
+
+    <el-row style="margin-bottom: 10px;margin-top:250px;">
+      <el-input
+        v-model="search"
+        style="width:28%;float:left"
+        placeholder="输入订单编号搜索"
+      />
+      <div style="float: right;margin-top:-100px;margin-right:10%;">
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
             延期部分:
@@ -59,16 +60,13 @@
             已完成订单:
           </div><div style="margin-left:38px;background-color:#94e277;width:50px;height:30px;display: inline-block" />
         </el-row>
-        <el-button slot="reference">
-          颜色提示
-        </el-button>
-      </el-popover>
+      </div>
     </el-row>
 
 
     <div class="user_skills">
       <el-table
-        :data="orderProgress"
+        :data="orderProgress.filter(data => !search || data.orderId.toString().toLowerCase().includes(search.toLowerCase()))"
         min-height="500"
         row-key="orderId"
       >
@@ -153,6 +151,10 @@ export default {
   },
   data() {
     return {
+      //订单搜索
+      search:'',
+
+
       onTimeDelivery:100,
       timeString:'',
       orderProgress:[

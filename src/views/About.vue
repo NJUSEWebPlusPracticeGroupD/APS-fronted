@@ -1,6 +1,6 @@
 <template>
   <el-main class="main">
-    <h2>NJUERP</h2>
+    <h2>NJU—APS</h2>
     <span>我们致力于打造新型的工厂排程系统</span>
     <el-row style="margin-top: 30px">
       <el-button
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-  import {startAPS} from '../api/APIs'
+import {startAPS} from '../api/APIs'
 export default {
   name: 'About',
   data() {
@@ -27,13 +27,13 @@ export default {
     start(){
       this.load=true
       //与后端交互，一旦完成交互  load=false
-      const date = this.$store.getters.getTime.slice(0,19);
+      const date = this.$store.getters.getTime.slice(0,19)
       //console.log(date);
       startAPS(date).then(res=>{
-        console.log(res);
+        console.log(res)
       }).finally(res1 => {
-        this.load = false;
-        console.log("排程结束!");
+        this.load = false
+        console.log('排程结束!')
       })
     }
   }

@@ -165,17 +165,17 @@ export default {
 .productionResourceTable{
   height: 100%;
 }
-.productionResourceTable /deep/ .el-table , .el-table__expanded-cell {
-  background-color: transparent;
-}
+/*.productionResourceTable /deep/ .el-table , .el-table__expanded-cell {*/
+/*  background-color: transparent;*/
+/*}*/
 
-.productionResourceTable /deep/ .el-table tr {
-  background-color: transparent!important;
-}
-.productionResourceTable /deep/ .el-table th {
-  background-color: transparent!important;
-}
-.productionResourceTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
-  background-color: transparent;
-}
+/*.productionResourceTable /deep/ .el-table tr {*/
+/*  background-color: transparent!important;*/
+/*}*/
+/*.productionResourceTable /deep/ .el-table th {*/
+/*  background-color: transparent!important;*/
+/*}*/
+/*.productionResourceTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{*/
+/*  background-color: transparent;*/
+/*}*/
 </style>

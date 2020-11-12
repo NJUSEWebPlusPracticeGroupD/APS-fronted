@@ -213,17 +213,17 @@ export default {
 .user_skills{
   height: 100%;
 }
-.user_skills /deep/ .el-table , .el-table__expanded-cell {
-  background-color: transparent;
-}
+/*.user_skills /deep/ .el-table , .el-table__expanded-cell {*/
+/*  background-color: transparent;*/
+/*}*/
 
-.user_skills /deep/ .el-table tr {
-  background-color: transparent!important;
-}
-.user_skills /deep/ .el-table th {
-  background-color: transparent!important;
-}
-.user_skills /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
-  background-color: transparent;
-}
+/*.user_skills /deep/ .el-table tr {*/
+/*  background-color: transparent!important;*/
+/*}*/
+/*.user_skills /deep/ .el-table th {*/
+/*  background-color: transparent!important;*/
+/*}*/
+/*.user_skills /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{*/
+/*  background-color: transparent;*/
+/*}*/
 </style>

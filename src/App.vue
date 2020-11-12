@@ -9,7 +9,7 @@
           <i
             class="el-icon-monitor"
           />
-          NJUERP
+          NJU—APS
         </el-col>
         <el-col
           :span="10"
@@ -26,7 +26,7 @@
           {{ this.$store.getters.getTime }}
         </el-col>
       </el-header>
-      <el-container style = "height: 500px">
+      <el-container style="height: 500px">
         <PageAside />
         <router-view />
       </el-container>
