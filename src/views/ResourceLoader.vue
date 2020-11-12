@@ -198,7 +198,7 @@ export default {
       //跟后端交互
       console.log('getting progress date');
       getResourceLoad(this.beginTime).then(res => {
-        console.log(res);
+        console.log(res.content);
         this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
         this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
         this.data = res.content.resourceLoadItems;

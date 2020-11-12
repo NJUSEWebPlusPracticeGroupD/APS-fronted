@@ -228,7 +228,7 @@ export default {
       //获取订单甘特数据，与后端交接
       console.log("getOrderGantt starts!")
       getOrderGantt(this.date).then(res => {
-        console.log(res);
+        console.log(res.content);
         this.onTimeDelivery = res.content.onTimeDelivery;
         this.orderProgress = res.content.orderGanttItems;
       }).finally(res2 =>{
