@@ -398,19 +398,19 @@ export default {
     .planTable{
       height: 100%;
     }
-    .planTable /deep/ .el-table , .el-table__expanded-cell {
-      background-color: transparent;
-    }
+    /*.planTable /deep/ .el-table , .el-table__expanded-cell {*/
+    /*  background-color: transparent;*/
+    /*}*/
 
-    .planTable /deep/ .el-table tr {
-      background-color: transparent!important;
-    }
-    .planTable /deep/ .el-table th {
-      background-color: transparent!important;
-    }
-    .planTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{
-      background-color: transparent;
-    }
+    /*.planTable /deep/ .el-table tr {*/
+    /*  background-color: transparent!important;*/
+    /*}*/
+    /*.planTable /deep/ .el-table th {*/
+    /*  background-color: transparent!important;*/
+    /*}*/
+    /*.planTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{*/
+    /*  background-color: transparent;*/
+    /*}*/
      .main{
        background-color: #FFFFFF;
        margin:20px 20px;
