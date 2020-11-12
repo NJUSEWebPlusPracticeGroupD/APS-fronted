@@ -165,7 +165,7 @@ export default {
       final_date += tmp_datelist[2]
 
       getResourceGantt(final_date).then(res => {
-        console.log(res)
+        console.log(res);
         this.GanntData = res.content.datalist
 
         // this.GanntData = [

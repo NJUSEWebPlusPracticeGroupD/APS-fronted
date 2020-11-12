@@ -12,8 +12,8 @@ const getGanntChart = function (opt) {
       // author_name: Random.cname(), // Random.cname() 随机生成一个常见的中文姓名
       // date: Random.date() + ' ' + Random.time() // Random.date()指示生成的日期字符串的格式,默认为yyyy-MM-dd；Random.time() 返回一个随机的时间字符串
       name: 'line1',
-      fromDate: '2020-11-10T09:16:58.926Z',
-      toDate: '2020-11-10T09:16:58.926Z',
+      fromDate: '2020-11-10 09:16',
+      toDate: '2020-11-10 10:16',
       task: '418477',
       delay: true
     }
@@ -26,8 +26,33 @@ const getGanntChart = function (opt) {
     content: content
   }
   return ganttData
+};
+
+const getProgress = function (date) {
+  console.log(date);
+
+};
+
+const getLoadChart = function (date) {
+  console.log(date);
+  const content = {
+    totalEquipmentLoadRate: 50,
+    totalPersonnelLoadRate: 80,
+    startDate: "2018-07-13",
+    resourceLoadItems: [{
+        date: "2018-07-13",
+        name: "line1",
+        rates: [30, 20, 40, 50, 80, 20,10 ] } ]
+  };
+  return {
+    success: true,
+    message: "string",
+    content: content
+  };
+  
 }
 
 export default {
-  getGanntChart
+  getGanntChart,
+  getProgress
 }
