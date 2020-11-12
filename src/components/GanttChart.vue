@@ -94,6 +94,23 @@ export default {
         }
       }
 
+      let cellSize = 50
+      chart.events.on('datavalidated', function(ev) {
+
+        // Get objects of interest
+        let chart = ev.target
+        let categoryAxis = chart.yAxes.getIndex(0)
+
+        // Calculate how we need to adjust chart height
+        let adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight
+
+        // get current chart height
+        let targetHeight = chart.pixelHeight + adjustHeight
+
+        // Set it on chart's container
+        chart.svgContainer.htmlElement.style.height = targetHeight + 'px'
+      })
+
       chart.data = datas
       var categoryAxis = chart.yAxes.push(new am4charts.CategoryAxis())
       categoryAxis.dataFields.category = 'name'
@@ -139,7 +156,22 @@ export default {
 
         let chart = am4core.create('chartdiv1', am4charts.XYChart)
         chart.hiddenState.properties.opacity = 0 // this creates initial fade-in
+        let cellSize = 50
+        chart.events.on('datavalidated', function(ev) {
 
+          // Get objects of interest
+          let chart = ev.target
+          let categoryAxis = chart.yAxes.getIndex(0)
+
+          // Calculate how we need to adjust chart height
+          let adjustHeight = chart.data.length * cellSize - categoryAxis.pixelHeight
+
+          // get current chart height
+          let targetHeight = chart.pixelHeight + adjustHeight
+
+          // Set it on chart's container
+          chart.svgContainer.htmlElement.style.height = targetHeight + 'px'
+        })
 
         chart.paddingRight = 30
         chart.dateFormatter.inputDateFormat = 'yyyy-MM-dd HH:mm'
@@ -181,7 +213,7 @@ export default {
 
         var series1 = chart.series.push(new am4charts.ColumnSeries())
         series1.columns.template.width = am4core.percent(30)
-        series1.columns.template.height=am4core.percent(50)
+        series1.columns.template.minHeight=am4core.percent(50)
         series1.columns.template.tooltipText = '{task}: {openDateX} - {dateX}'
 
         series1.dataFields.openDateX = 'fromDate'
@@ -213,6 +245,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
   Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   min-height:100%;
+  overflow: scroll;
 }
 #chartdiv1 {
   width: 100%;

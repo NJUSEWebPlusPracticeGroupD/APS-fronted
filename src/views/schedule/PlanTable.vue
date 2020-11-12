@@ -98,6 +98,7 @@
                 <i
                   v-if="scope.row.turnToOrderProductionTable"
                   class="el-icon-right"
+                  style="cursor: pointer"
                   @click="turnToOrderProductionTable(scope.row)"
                 />
               </template>
@@ -386,7 +387,7 @@ export default {
 
 
 
-    
+
     getOrderProductionData(orderId,time){
       /*
       与后端交互
