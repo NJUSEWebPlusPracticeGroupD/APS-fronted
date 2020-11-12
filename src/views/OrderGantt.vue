@@ -230,8 +230,11 @@ export default {
       //console.log(this.time)
       getOrderGantt(this.time).then(res => {
         console.log(res.content);
-        this.onTimeDelivery = res.content.onTimeDelivery.toFixed(1);
+        this.onTimeDelivery =100 * res.content.onTimeDelivery.toFixed(1);
         this.orderProgress = res.content.orderGanttItems;
+        // this.orderProgress.forEach(e=>{
+        //
+        // })
       }).finally(res2 =>{
         console.log('getOrderGantt finished!')
       })

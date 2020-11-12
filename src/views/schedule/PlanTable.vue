@@ -394,8 +394,8 @@ export default {
       结果赋值给orderProductionData
       */
 
-      console.log('hi');
-      getProduceRelationForm(time, orderId).then(res=>{
+      console.log(orderId);
+      getProduceRelationForm(time, orderId.toString()).then(res=>{
         console.log(res);
         this.orderProductionData = [];
         for(var i = 0; i< res.content.length;i++){
@@ -407,9 +407,10 @@ export default {
             tmp_obj[index] = res.content[i].orderFor24Hours[j-1];
           }
           this.orderProductionData.push(tmp_obj);
+          console.log(this.orderProductionData)
         }
       }).finally(res2=>{
-        console.log(this.orderProductionData);
+        //console.log(this.orderProductionData);
         console.log("getProduceForm done!");
       })
 

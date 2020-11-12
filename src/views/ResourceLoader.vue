@@ -211,10 +211,27 @@ export default {
       console.log('getting progress date')
       console.log(this.beginTime)
       getResourceLoad(this.beginTime).then(res => {
-        console.log(res.content);
-        this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
-        this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
-        this.data = res.content.resourceLoadItems;
+        if(res.content.totalEquipmentLoadRate === 'NaN'){
+          this.totalEquipmentLoadRate = 0;
+          this.totalPersonnelLoadRate = 0;
+          this.data = [];
+        }
+        else{
+          console.log(res.content);
+          this.totalEquipmentLoadRate =  res.content.totalEquipmentLoadRate.toFixed(1);
+          this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate.toFixed(1);
+          this.data = res.content.resourceLoadItems;
+          this.data.forEach(e=>{
+            e=e.rates.forEach(f=>{
+              f=f.toFixed(1);
+            })
+          })
+          for(let i = 0; i< this.data.length;i++){
+            for(let j = 0; j< this.data[i].rates.length; j++){
+              this.data[i].rates[j] = this.data[i].rates[j].toFixed(1)
+            }
+          }
+        }
       }).finally( res2 =>{
         console.log('progress date already gotten!')
       })

@@ -62,6 +62,7 @@
 <script>
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
+import {getProduceResourceForm} from "../../api/APIs";
 
 export default {
   name: 'ProductionResourceTable',
@@ -93,6 +94,18 @@ export default {
   mounted() {
     this.initData()
   },
+  watch: {
+    tableData: {
+      handler(val) {
+        this.tableData = val;
+      }
+    },
+    cols: {
+      handler(val) {
+        this.cols = val;
+      }
+    }
+  },
 
   methods: {
     initData(){
@@ -102,31 +115,41 @@ export default {
       /*
       * 获取数据
       * 使用formateTableData(resourceItems)
-      * 使用formateCols(resourceItems)
+      * 使用formateCols(allResourceLabels)
       */
+      getProduceResourceForm().then(res=>{
+        console.log(res)
+        this.formateTableData(res.content.resourceItems);
+        this.formateCols(res.content.allResourcesLabels);
+      }).finally(res2=>{
+        console.log("getProduceResourceForm done!");
+      })
+
 
     },
 
     formateTableData(data){
       this.tableData=[]
-      for(let i=0;i<data.length();i++){
+      for(let i=0;i<data.length;i++){
         var item={}
-        item['orderId']=data.get(i).orderId
-        for(let j=0;j<data.get(i).usedResources.length();j++){
-          item[data.get(i).usedResources.get(j)]='√'
+        item['orderId']=data[i].orderId
+        for(let j=0;j<data[i].usedResources.length;j++){
+          item[data[i].usedResources[j]]='√'
         }
+        console.log(item);
         this.tableData.push(item)
       }
     },
 
     formateCols(data){
       this.cols=[]
-      for(let i=0;i<data.length();i++){
+      for(let i=0;i < data.length;i++){
         var item={}
-        item['props']=data.get(i)
-        item['label']=data.get(i)
+        item['prop']=data[i]
+        item['label']=data[i]
         this.cols.push(item)
       }
+
     },
 
     exportExcel() {

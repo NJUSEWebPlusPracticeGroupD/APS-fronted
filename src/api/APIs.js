@@ -34,10 +34,10 @@ export function getOrderPlanForm(){
   })
 }
 
-export function getProduceRelationForm(date,orderId){
+export function getProduceRelationForm(date, orderId){
   return request({
     method:'GET',
-    url: '/api/form/getOrderProduceRelationForm?date=' + date + '?orderId=' + orderId
+    url: '/api/form/getOrderProduceRelationForm?date=' + date + '&orderId=' + orderId
   })
 }
 
@@ -48,10 +48,10 @@ export function getProduceForm(date){
   })
 }
 
-export function getProduceResourceForm(date){
+export function getProduceResourceForm(){
   return request({
     method:'GET',
-    url: '/api/form/getProduceResourceForm?date=' + date
+    url: '/api/form/getProduceResourceForm'
   })
 }
 
