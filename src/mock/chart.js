@@ -51,8 +51,8 @@ const getProgress = function (date) {
 const getLoadChart = function (date) {
   console.log(date);
   const content = {
-    totalEquipmentLoadRate: 50,
-    totalPersonnelLoadRate: 80,
+    totalEquipmentLoadRate: 40,
+    totalPersonnelLoadRate: 60,
     startDate: "2018-08-13",
     resourceLoadItems: [{
         date: "2018-08-13",
