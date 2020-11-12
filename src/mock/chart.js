@@ -30,7 +30,7 @@ const getGanntChart = function (opt) {
 
 const getProgress = function (date) {
   console.log(date);
-
+  return "";
 };
 
 const getLoadChart = function (date) {
@@ -49,10 +49,11 @@ const getLoadChart = function (date) {
     message: "string",
     content: content
   };
-  
+
 }
 
 export default {
   getGanntChart,
-  getProgress
+  getProgress,
+  getLoadChart
 }

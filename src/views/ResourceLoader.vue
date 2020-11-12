@@ -44,8 +44,9 @@
       <el-button
         round
         class="button"
-        @click="getRatesByTime"
-      >
+        @click="getRatesByTime">
+<!--        v-model="beginTime"-->
+
         确定
       </el-button>
       <el-popover
@@ -126,6 +127,7 @@
 <script>
 
 import DatePaging from '@/components/DatePaging'
+import {getResourceLoad} from '../api/APIs'
 
 export default {
   name: 'ResourceLoader',
@@ -138,7 +140,7 @@ export default {
       value:'',
       totalEquipmentLoadRate:50,
       totalPersonnelLoadRate:80,
-      beginTime:this.$store.getters.getTime.slice(0,10),
+      beginTime: this.$store.getters.getTime.slice(0,10),
       timeString:'2018年7月5日~2018年7月13日',
       data:[
         {
@@ -192,7 +194,14 @@ export default {
 
     },
     getRatesByTime(){
-      //选择初始时间
+      console.log('hi');
+      // console.log(beginDate);
+      // getResourceLoad(beginDate).then(res => {
+      //   console.log(res);
+      //   this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
+      //   this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
+      //   this.data = res.content.resourceLoadItems;
+      // })
     }
   }
 
