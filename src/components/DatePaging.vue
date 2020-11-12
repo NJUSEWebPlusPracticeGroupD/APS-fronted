@@ -77,7 +77,6 @@ export default {
   watch:{
     beginDate: {
       handler() {
-        console.log('beginDate监听')
         this.getTableData()
       }
     },

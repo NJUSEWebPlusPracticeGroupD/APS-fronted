@@ -3,7 +3,7 @@
     <el-table
       class="orderProductionTable"
       style="width: 750px;background-color: transparent"
-      :data="orderProductionData.filter(data => !search || data.resource.toString().toLowerCase().includes(search.toLowerCase()))"
+      :data="data.filter(item => !search || item.resource.toString().toLowerCase().includes(search.toLowerCase()))"
     >
       <el-table-column
         prop="resource"
@@ -200,6 +200,18 @@ export default {
           time24:'订单1',
         },
       ]
+    }
+  },
+  data(){
+    return {
+      data: []
+    }
+  },
+  watch:{
+    orderProductionData:{
+      handler() {
+        this.data=this.orderProductionData
+      }
     }
   },
 
