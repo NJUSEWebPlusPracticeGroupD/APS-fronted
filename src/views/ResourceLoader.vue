@@ -154,7 +154,7 @@ export default {
   },
   beforeMount() {
     this.setTimeString(this.beginTime)
-    this.initProgressRate()
+    this.getProgressRate()
   },
   methods:{
     timeFormate(timeStamp) {
@@ -173,27 +173,28 @@ export default {
       date.setTime(date.getTime()+num*86400000 )
       return date.toString().slice(0,10)
     },
-
-
-
     preDate(){
       this.beginTime=this.addTime(this.beginTime,-1)
       this.setTimeString(this.beginTime)
       console.log(this.beginTime)
-      //跟后端交互
+      this.getProgressRate()
     },
     nextDate(){
       this.beginTime=this.addTime(this.beginTime,1)
       this.setTimeString(this.beginTime)
-      //跟后端交互
-    },
-    initProgressRate(){
-      //初始化七天的数据，跟后端交互
-
+      this.getProgressRate()
     },
     getRatesByTime(){
-      //选择初始时间，点击事件响应
-    }
+      var date=new Date(this.value)
+      this.beginTime=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+      this.setTimeString(this.beginTime)
+      this.getProgressRate()
+    },
+
+    getProgressRate(){
+      //跟后端交互
+
+    },
   }
 
 }

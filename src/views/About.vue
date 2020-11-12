@@ -4,11 +4,20 @@
     <span>我们致力于打造新型的工厂排程系统</span>
     <el-row style="margin-top: 30px">
       <el-button
+        v-if="!loaded"
         type="primary"
         :loading="load"
         @click="start"
       >
         进行排程
+      </el-button>
+      <el-button
+        v-if="loaded"
+        :loading="load"
+        disabled
+        @click="start"
+      >
+        已排程
       </el-button>
     </el-row>
   </el-main>
@@ -20,6 +29,7 @@ export default {
   name: 'About',
   data() {
     return {
+      loaded:false,
       load:false,
     }
   },
@@ -34,6 +44,7 @@ export default {
       }).finally(res1 => {
         this.load = false
         console.log('排程结束!')
+        this.loaded=true
       })
     }
   }

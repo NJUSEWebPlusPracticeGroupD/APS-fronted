@@ -220,6 +220,10 @@ export default {
 
 
     getOrder(){
+      var date=new Date(this.value)
+      this.time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+      this.setTimeString()
+
       //获取订单甘特数据，与后端交接
     }
 
