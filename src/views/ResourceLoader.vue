@@ -173,7 +173,7 @@ export default {
     addTime(time,num){
       var date=new Date(time)
       date.setTime(date.getTime()+num*86400000 )
-      return date.toString().slice(0,10)
+      return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
     },
     preDate(){
       this.beginTime=this.addTime(this.beginTime,-1)
