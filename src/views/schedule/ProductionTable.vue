@@ -73,6 +73,7 @@
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
 import GanttTable from '@/components/GanttTable'
+import {getProduceForm} from "../../api/APIs";
 
 export default {
   name: 'ProductionTable',
@@ -83,9 +84,6 @@ export default {
       time:this.$store.getters.getTime.slice(0,10),
       timeDialog:false,
       search:'',
-      
-      
-      
       orderProductionData:
         [
           {
@@ -142,7 +140,7 @@ export default {
             time22:'',
             time23:'',
             time24:'订单1',
-          },
+          }
         ]
     }
   },
@@ -159,8 +157,25 @@ export default {
         this.time=this.timeFormate(this.value)
       }
       this.timeDialog=false
-
       //后端交互，获取数据
+      console.log('hi');
+      getProduceForm(this.time).then(res=>{
+        console.log(res);
+        this.orderProductionData = [];
+        for(var i = 0; i< res.content.length;i++){
+          let tmp_obj = {
+            resource: res.content[i].resource
+          };
+          for(var j = 1; j<=24; j++){
+            const index = "time" + j.toString();
+            tmp_obj[index] = res.content[i].orderFor24Hours[j-1];
+          }
+          this.orderProductionData.push(tmp_obj);
+        }
+      }).finally(res2=>{
+        console.log(this.orderProductionData);
+        console.log("getProduceForm done!");
+      })
     },
 
     exportExcel() {

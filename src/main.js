@@ -4,7 +4,10 @@ import router from './router/index.js'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import store from './store/index'
-//process.env.VUE_APP_MOCK && import('./mock/index')
+if(process.env.VUE_APP_MOCK === true) {
+  import('./mock/index')
+  //console.log('mockmockmock');
+}
 
 console.log(process.env.VUE_APP_MOCK);
 //process.env.VUE_APP_MOCK && import('./mock/chart')

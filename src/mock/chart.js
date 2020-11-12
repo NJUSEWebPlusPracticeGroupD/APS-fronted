@@ -19,11 +19,11 @@ const getGanntChart = function (opt) {
     }
     datalist.push(newData)
   }
-  const content = {datalist}
+  //const content = {datalist}
   const ganttData = {
     success: true,
     message: 'string',
-    content: content
+    content: datalist
   }
   return ganttData
 }

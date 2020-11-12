@@ -227,9 +227,10 @@ export default {
       this.setTimeString()
       //获取订单甘特数据，与后端交接
       console.log('getOrderGantt starts!')
-      getOrderGantt(this.date).then(res => {
+      //console.log(this.time)
+      getOrderGantt(this.time).then(res => {
         console.log(res.content);
-        this.onTimeDelivery = res.content.onTimeDelivery;
+        this.onTimeDelivery = res.content.onTimeDelivery.toFixed(1);
         this.orderProgress = res.content.orderGanttItems;
       }).finally(res2 =>{
         console.log('getOrderGantt finished!')
