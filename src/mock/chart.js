@@ -30,7 +30,22 @@ const getGanntChart = function (opt) {
 
 const getProgress = function (date) {
   console.log(date);
-  return "";
+  const onTimeDelivery = 0.5;
+  const GanttItem = {
+    orderId: "418477",
+    progress: 60,
+    progressDelay: 40
+  };
+  const orderGanttItems = [];
+  orderGanttItems.push(GanttItem);
+  return {
+    success: true,
+    message: "mock success",
+    content: {
+      onTimeDelivery: onTimeDelivery,
+      orderGanttItems: orderGanttItems
+    }
+  }
 };
 
 const getLoadChart = function (date) {
@@ -38,9 +53,9 @@ const getLoadChart = function (date) {
   const content = {
     totalEquipmentLoadRate: 50,
     totalPersonnelLoadRate: 80,
-    startDate: "2018-07-13",
+    startDate: "2018-08-13",
     resourceLoadItems: [{
-        date: "2018-07-13",
+        date: "2018-08-13",
         name: "line1",
         rates: [30, 20, 40, 50, 80, 20,10 ] } ]
   };

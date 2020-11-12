@@ -36,9 +36,11 @@
     <el-row style="margin-bottom: 10px;margin-top:250px;">
       <el-input
         v-model="search"
-        style="width:28%;float:left"
+        style="width:20%;float:left"
         placeholder="输入订单编号搜索"
       />
+
+
       <div style="float: right;margin-top:-100px;margin-right:10%;">
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
@@ -144,6 +146,8 @@
 
 <script>
 import  ProgressBar from '@/components/ProgressBar'
+import {getOrderGantt} from "../api/APIs";
+
 export default {
   name: 'OrderGantt',
   components:{
@@ -153,8 +157,6 @@ export default {
     return {
       //订单搜索
       search:'',
-
-
       onTimeDelivery:100,
       timeString:'',
       orderProgress:[
@@ -220,11 +222,19 @@ export default {
 
 
     getOrder(){
-      var date=new Date(this.value)
-      this.time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
-      this.setTimeString()
-
+      var date=new Date(this.value);
+      this.time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
+      this.setTimeString();
       //获取订单甘特数据，与后端交接
+      console.log("getOrderGantt starts!")
+      getOrderGantt(this.date).then(res => {
+        console.log(res);
+        this.onTimeDelivery = res.content.onTimeDelivery;
+        this.orderProgress = res.content.orderGanttItems;
+      }).finally(res2 =>{
+        console.log("getOrderGantt finished!");
+      })
+
     }
 
 

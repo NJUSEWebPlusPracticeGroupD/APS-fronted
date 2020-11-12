@@ -128,7 +128,7 @@
 
 import DatePaging from '@/components/DatePaging'
 import {getResourceLoad} from '../api/APIs'
-
+import {request} from "../utils/request";
 export default {
   name: 'ResourceLoader',
   components: {DatePaging},
@@ -187,6 +187,7 @@ export default {
       this.getProgressRate()
     },
     getRatesByTime(){
+      //console.log('hi');
       var date=new Date(this.value)
       this.beginTime=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
       this.setTimeString(this.beginTime)
@@ -195,7 +196,15 @@ export default {
 
     getProgressRate(){
       //跟后端交互
-
+      console.log('getting progress date');
+      getResourceLoad(this.beginTime).then(res => {
+        console.log(res);
+        this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
+        this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
+        this.data = res.content.resourceLoadItems;
+      }).finally( res2 =>{
+        console.log('progress date already gotten!');
+      })
     },
   }
 

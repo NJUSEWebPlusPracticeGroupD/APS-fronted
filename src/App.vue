@@ -9,7 +9,7 @@
           <i
             class="el-icon-monitor"
           />
-          NJU—APS
+          NJUAPS
         </el-col>
         <el-col
           :span="10"
