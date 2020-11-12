@@ -26,44 +26,54 @@ const getGanntChart = function (opt) {
     content: content
   }
   return ganttData
-};
+}
 
 const getProgress = function (date) {
-  console.log(date);
-  const onTimeDelivery = 0.5;
+  console.log(date)
+  const onTimeDelivery = 0.5
   const GanttItem = {
-    orderId: "418477",
+    orderId: '418477',
     progress: 60,
     progressDelay: 40
-  };
-  const orderGanttItems = [];
-  orderGanttItems.push(GanttItem);
+  }
+  const orderGanttItems = []
+  orderGanttItems.push(GanttItem)
   return {
     success: true,
-    message: "mock success",
+    message: 'mock success',
     content: {
       onTimeDelivery: onTimeDelivery,
       orderGanttItems: orderGanttItems
     }
   }
-};
+}
 
 const getLoadChart = function (date) {
-  console.log(date);
-  const content = {
-    totalEquipmentLoadRate: 50,
-    totalPersonnelLoadRate: 80,
-    startDate: "2018-08-13",
-    resourceLoadItems: [{
-        date: "2018-08-13",
-        name: "line1",
-        rates: [30, 20, 40, 50, 80, 20,10 ] } ]
-  };
+  var content
+  if(date.url.toString().indexOf('2018-08-13')!=-1) {
+    content = {
+      totalEquipmentLoadRate: 50,
+      totalPersonnelLoadRate: 80,
+      startDate: '2018-08-13',
+      resourceLoadItems: [{
+        name: 'line1',
+        rates: [30, 20, 40, 50, 80, 20, 10]
+      }]
+    }
+  }
+  else{
+    content={
+      totalEquipmentLoadRate: 100,
+      totalPersonnelLoadRate: 80,
+      resourceLoadItems:[]
+    }
+  }
+
   return {
     success: true,
-    message: "string",
+    message: 'string',
     content: content
-  };
+  }
 
 }
 

@@ -76,17 +76,23 @@ export default {
   },
   watch:{
     beginDate: {
-      deep: true,
+      handler() {
+        console.log('beginDate监听')
+        this.getTableData()
+      }
+    },
+    data: {
       handler() {
         this.getTableData()
       }
-    }
+    },
   },
   beforeMount() {
     this.getTableData()
   },
   methods:{
     getTableData(){
+      console.log('data:')
       console.log(this.data)
       this.tableData=[]
       this.dates=[]
@@ -94,7 +100,6 @@ export default {
         this.dates.push(this.addTime(this.beginDate,i))
       }
       var data=this.data
-      console.log(this.data)
       for(let j=0;j<data.length;j++){
         var item={}
         item['name']=data[j]['name']
