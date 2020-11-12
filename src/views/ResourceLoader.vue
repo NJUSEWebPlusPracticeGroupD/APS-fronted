@@ -211,10 +211,10 @@ export default {
       console.log('getting progress date')
       console.log(this.beginTime)
       getResourceLoad(this.beginTime).then(res => {
-        console.log(res)
-        this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate
-        this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate
-        this.data = res.content.resourceLoadItems
+        console.log(res.content);
+        this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
+        this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
+        this.data = res.content.resourceLoadItems;
       }).finally( res2 =>{
         console.log('progress date already gotten!')
       })

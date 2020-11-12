@@ -174,8 +174,6 @@ export default {
           return time.getTime() > new Date(this.lastTime).getTime() || time.getTime() <  new Date(this.beginTime).getTime()
         }
       },
-
-      
       //plan订单需要的数据
       tableData: [{
         orderNumber: 1,
@@ -232,8 +230,6 @@ export default {
         isSplit: '否',
         turnToOrderProductionTable:true,
       }],
-      
-      
       //生产单需要的数据
       orderNumber: 3,
       orderProductionData: 
@@ -294,7 +290,7 @@ export default {
             time24:'订单1',
           },
         ]
-      
+
     }
   },
   mounted() {
@@ -343,8 +339,6 @@ export default {
       this.showPlanTable=true
       this.search=''
     },
-
-
 
     turnToOrderProductionTable(row){
       this.showPlanTable=false

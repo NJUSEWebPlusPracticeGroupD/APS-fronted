@@ -323,8 +323,9 @@ export default {
       final_date += tmp_datelist[2]
 
       getResourceGantt(final_date).then(res => {
-        console.log(res)
-        this.GanntData = res.content.datalist
+        //console.log(res.content)
+        this.GanntData = res.content
+        console.log(this.GanntData);
 
         // this.GanntData = [
         //   {
