@@ -154,7 +154,7 @@ export default {
   },
   beforeMount() {
     this.setTimeString(this.beginTime)
-    this.initDateRate()
+    this.initProgressRate()
   },
   methods:{
     timeFormate(timeStamp) {
@@ -187,12 +187,12 @@ export default {
       this.setTimeString(this.beginTime)
       //跟后端交互
     },
-    initDateRate(){
+    initProgressRate(){
       //初始化七天的数据，跟后端交互
 
     },
     getRatesByTime(){
-      //选择初始时间
+      //选择初始时间，点击事件响应
     }
   }
 
