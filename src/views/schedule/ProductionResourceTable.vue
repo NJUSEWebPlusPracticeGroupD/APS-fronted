@@ -90,16 +90,44 @@ export default {
       ]
     }
   },
-  beforeMount() {
+  mounted() {
     this.initData()
   },
 
   methods: {
     initData(){
       // 初始化数据 挂载时使用
+
+
+      /*
+      * 获取数据
+      * 使用formateTableData(resourceItems)
+      * 使用formateCols(resourceItems)
+      */
+
     },
 
+    formateTableData(data){
+      this.tableData=[]
+      for(let i=0;i<data.length();i++){
+        var item={}
+        item['orderId']=data.get(i).orderId
+        for(let j=0;j<data.get(i).usedResources.length();j++){
+          item[data.get(i).usedResources.get(j)]='√'
+        }
+        this.tableData.push(item)
+      }
+    },
 
+    formateCols(data){
+      this.cols=[]
+      for(let i=0;i<data.length();i++){
+        var item={}
+        item['props']=data.get(i)
+        item['label']=data.get(i)
+        this.cols.push(item)
+      }
+    },
 
     exportExcel() {
       var fix = document.querySelector('.el-table__fixed')

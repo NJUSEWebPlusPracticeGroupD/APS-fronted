@@ -62,78 +62,237 @@ export default {
       value: '',
       time: this.$store.getters.getTime.slice(0, 10),
       GanttFresh: false,
-      GanntData: [
-        {
-          name: 'line1',
-          fromDate: '2018-08-01 08:00',
-          toDate: '2018-08-01 10:00',
-          task: 'task1',
-          delay: true
-        },
-        {
-          name: 'line1',
-          fromDate: '2018-08-01 12:00',
-          toDate: '2018-08-01 15:00',
-          task: 'task2',
-          delay: true
-        },
-        {
-          name: 'line1',
-          fromDate: '2018-08-01 15:30',
-          toDate: '2018-08-01 21:30',
-          task: 'task4',
-          delay: false
-        },
-        {
-          name: 'line2',
-          fromDate: '2018-08-01 09:00',
-          toDate: '2018-08-01 11:00',
-          task: 'task3',
-          delay: false
-        },
-        {
-          name: 'line2',
-          fromDate: '2018-08-01 13:00',
-          toDate: '2018-08-01 17:00',
-          task: 'task5',
-          delay: false
-        },
-        {
-          name: 'line2',
-          fromDate: '2018-08-01 11:00',
-          toDate: '2018-08-01 16:00',
-          task: 'task2',
-          delay: false
-        },
-        {
-          name: 'line2',
-          fromDate: '2018-08-01 16:00',
-          toDate: '2018-08-01 19:00',
-          task: 'task4',
-          delay: false
-        },
-
-        {
-          name: '张三',
-          fromDate: '2018-08-01 16:00',
-          toDate: '2018-08-01 20:00',
-          task: 'task4'
-        },
-        {
-          name: '张三',
-          fromDate: '2018-08-01 20:30',
-          toDate: '2018-08-02 7:00',
-          task: 'task3',
-          delay: false
-        },
-
-        {
-          name: 'lisi',
-          fromDate: '2018-08-01 13:00',
-          toDate: '2018-08-01 24:00',
-          task: 'task2',
-          delay: false
-        }
+      GanntData: [ {
+        'name': '26组-杨丽（5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': '27组-徐贤燕（5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': '40组-高海燕（5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': '5组-童小玲 （5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': 'line35',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '762485',
+        'delay': false
+      },
+      {
+        'name': 'line36',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': 'line37',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': 'line38',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '764098',
+        'delay': false
+      },
+      {
+        'name': '13组-刘金燕（3）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '14组-周清（4）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '24组-张娟1（3）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '36组-谢春霞（4）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '39组-刘霞（3）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '4组-赵东勤（3）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': 'line33',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': 'line34',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '自动包装机',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 16:00',
+        'task': '762838',
+        'delay': false
+      },
+      {
+        'name': '33组-许丽萍（5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 16:00',
+        'task': '762838',
+        'delay': false
+      },
+      {
+        'name': '10组-陈云（5）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417830',
+        'delay': false
+      },
+      {
+        'name': '11组-张娟（4）',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-07 19:00',
+        'task': '417830',
+        'delay': false
+      },
+      {
+        'name': 'line06',
+        'fromDate': '2018-09-07 12:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417830',
+        'delay': false
+      },
+      {
+        'name': '1组-彭晓慧 （5）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '764310',
+        'delay': false
+      },
+      {
+        'name': '23组-吴永凤（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '764310',
+        'delay': false
+      },
+      {
+        'name': 'line14',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '764310',
+        'delay': false
+      },
+      {
+        'name': '15组-李长娟（5）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '762485',
+        'delay': false
+      },
+      {
+        'name': '16组-朱绍美（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '19组-王秀（3）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '20组-王树梅（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '2组-丁雪梅（3）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '30组-陈梅（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '31组-史义玲（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417174',
+        'delay': false
+      },
+      {
+        'name': '12组-姚先兰（5）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417830',
+        'delay': false
+      },
+      {
+        'name': '28组-杜碧珍（4）',
+        'fromDate': '2018-09-07 19:00',
+        'toDate': '2018-09-08 06:00',
+        'task': '417830',
+        'delay': false
+      }
       ]
     }
   },
