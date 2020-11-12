@@ -3,20 +3,7 @@
     class="main"
     style=" background-color:rgba(255,255,255,0.8);"
   >
-    <div class="onTimeDelivery">
-      <h3 style="font-size: 30px;margin-bottom: -5px">
-        按期交货率
-      </h3>
-      <h3>{{ timeString }}</h3>
-      <el-progress
-        type="circle"
-        :percentage="onTimeDelivery"
-        stroke-width="26"
-        :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
-        width="160"
-      />
-    </div>
-    <el-row style="margin-top: -250px">
+    <el-row style="margin-top:50px;margin-bottom: 0px">
       <el-date-picker
         v-model="value"
         class="date-picker"
@@ -32,8 +19,21 @@
         确定
       </el-button>
     </el-row>
+    <div class="onTimeDelivery">
+      <h3 style="font-size: 30px;margin-bottom: -5px">
+        按期交货率
+      </h3>
+      <h3>{{ timeString }}</h3>
+      <el-progress
+        type="circle"
+        :percentage="onTimeDelivery"
+        stroke-width="26"
+        :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
+        width="160"
+      />
+    </div>
 
-    <el-row style="margin-bottom: 10px;margin-top:250px;">
+    <el-row style="margin-bottom: 10px;margin-top:40px;margin-left: 20px">
       <el-input
         v-model="search"
         style="width:20%;float:left"
