@@ -49,6 +49,7 @@ const getProgress = function (date) {
 }
 
 const getLoadChart = function (date) {
+
   var content
   if(date.url.toString().indexOf('2018-08-13')!=-1) {
     content = {
@@ -69,11 +70,12 @@ const getLoadChart = function (date) {
     }
   }
 
-  return {
-    success: true,
-    message: 'string',
-    content: content
-  }
+
+return {
+success: true,
+message: 'string',
+content: content
+}
 
 }
 

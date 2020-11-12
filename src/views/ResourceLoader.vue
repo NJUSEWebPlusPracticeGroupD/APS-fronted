@@ -139,8 +139,8 @@ export default {
   data() {
     return {
       value:'',
-      totalEquipmentLoadRate:50,
-      totalPersonnelLoadRate:80,
+      totalEquipmentLoadRate: 50,
+      totalPersonnelLoadRate: 80,
       beginTime: this.$store.getters.getTime.slice(0,10),
       timeString:'2018年7月5日~2018年7月13日',
 
