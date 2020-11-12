@@ -28,7 +28,7 @@
         type="circle"
         :percentage="onTimeDelivery"
         stroke-width="26"
-        :color="onTimeDelivery<=20?'#d6a3dc':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
+        :color="onTimeDelivery<100?'#75cce8':onTimeDelivery<=40?'#f7db70':onTimeDelivery<=60?'#eabebf':onTimeDelivery<=80?'#75cceb':'#94e277'"
         width="160"
       />
     </div>
@@ -146,7 +146,7 @@
 
 <script>
 import  ProgressBar from '@/components/ProgressBar'
-import {getOrderGantt} from "../api/APIs";
+import {getOrderGantt} from '../api/APIs'
 
 export default {
   name: 'OrderGantt',
@@ -222,17 +222,17 @@ export default {
 
 
     getOrder(){
-      var date=new Date(this.value);
-      this.time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate();
-      this.setTimeString();
+      var date=new Date(this.value)
+      this.time=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+      this.setTimeString()
       //获取订单甘特数据，与后端交接
-      console.log("getOrderGantt starts!")
+      console.log('getOrderGantt starts!')
       getOrderGantt(this.date).then(res => {
         console.log(res.content);
         this.onTimeDelivery = res.content.onTimeDelivery;
         this.orderProgress = res.content.orderGanttItems;
       }).finally(res2 =>{
-        console.log("getOrderGantt finished!");
+        console.log('getOrderGantt finished!')
       })
 
     }

@@ -141,7 +141,7 @@
         <el-button @click="timeDialog = false">取 消</el-button>
         <el-button
           type="primary"
-          @click="getOrderProductionData"
+          @click="getOrderProductionDataByTime"
         >确 定</el-button>
       </span>
     </el-dialog>
@@ -207,7 +207,6 @@ export default {
           },
         ],
       }, {
-        orderNumber: 3,
         isSplit: '是',
         startTime: '2020-01-29',
         endTime: '2020-01-29',
@@ -231,7 +230,8 @@ export default {
         turnToOrderProductionTable:true,
       }],
       //生产单需要的数据
-      orderProductionData:
+      orderNumber: 3,
+      orderProductionData: 
         [
           {
             resource:'资源01',
@@ -293,7 +293,7 @@ export default {
     }
   },
   mounted() {
-    this.getOrderProductionData()
+    this.getOrderData()
   },
   methods: {
     timeFormate(timeStamp) {
@@ -359,11 +359,13 @@ export default {
       根据time获取当天的生产单数据
       赋值给orderProductionData
        */
-      console.log(row.orderNumber)
+      this.orderNumber=row.orderNumber
+      this.getOrderProductionData(this.orderNumber,this.beginTime)
+
     },
 
 
-    getOrderProductionData(){
+    getOrderProductionDataByTime(){
       if(this.value){
         this.time=this.timeFormate(this.value)
       }
@@ -373,7 +375,29 @@ export default {
      根据time获取当天的生产单数据
      赋值给orderProductionData
       */
-    }
+      this.getOrderProductionData(this.orderNumber,this.time)
+    },
+
+
+
+    
+    getOrderProductionData(orderId,time){
+      /*
+      与后端交互
+      获取生产单
+      结果赋值给orderProductionData
+      */
+
+    },
+    getOrderData(){
+      /*
+      与后端交互
+     获取订单数据
+     赋值给tableData
+      */
+
+
+    },
   },
 
 }

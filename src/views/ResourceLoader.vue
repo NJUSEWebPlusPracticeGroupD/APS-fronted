@@ -44,8 +44,9 @@
       <el-button
         round
         class="button"
-        @click="getRatesByTime">
-<!--        v-model="beginTime"-->
+        @click="getRatesByTime"
+      >
+        <!--        v-model="beginTime"-->
 
         确定
       </el-button>
@@ -128,7 +129,7 @@
 
 import DatePaging from '@/components/DatePaging'
 import {getResourceLoad} from '../api/APIs'
-import {request} from "../utils/request";
+import {request} from '../utils/request'
 export default {
   name: 'ResourceLoader',
   components: {DatePaging},
@@ -142,6 +143,7 @@ export default {
       totalPersonnelLoadRate: 80,
       beginTime: this.$store.getters.getTime.slice(0,10),
       timeString:'2018年7月5日~2018年7月13日',
+
       data:[
         {
           name:'line1',
@@ -154,7 +156,7 @@ export default {
       ]
     }
   },
-  beforeMount() {
+  mounted() {
     this.setTimeString(this.beginTime)
     this.getProgressRate()
   },
@@ -176,34 +178,45 @@ export default {
       return date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
     },
     preDate(){
-      this.beginTime=this.addTime(this.beginTime,-1)
+      var timeStamp=this.addTime(this.beginTime,-1)
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      this.beginTime=year + '-' + month + '-' + date
       this.setTimeString(this.beginTime)
-      console.log(this.beginTime)
       this.getProgressRate()
     },
     nextDate(){
-      this.beginTime=this.addTime(this.beginTime,1)
+      var timeStamp=this.addTime(this.beginTime,1)
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      this.beginTime=year + '-' + month + '-' + date
       this.setTimeString(this.beginTime)
       this.getProgressRate()
     },
     getRatesByTime(){
       //console.log('hi');
-      var date=new Date(this.value)
-      this.beginTime=date.getFullYear()+'-'+(date.getMonth()+1)+'-'+date.getDate()
+      var timeStamp=this.value
+      let year = new Date(timeStamp).getFullYear()
+      let month =new Date(timeStamp).getMonth() + 1 < 10? '0' + (new Date(timeStamp).getMonth() + 1): new Date(timeStamp).getMonth() + 1
+      let date =new Date(timeStamp).getDate() < 10? '0' + new Date(timeStamp).getDate(): new Date(timeStamp).getDate()
+      this.beginTime=year + '-' + month + '-' + date
       this.setTimeString(this.beginTime)
       this.getProgressRate()
     },
 
     getProgressRate(){
       //跟后端交互
-      console.log('getting progress date');
+      console.log('getting progress date')
+      console.log(this.beginTime)
       getResourceLoad(this.beginTime).then(res => {
         console.log(res.content);
         this.totalEquipmentLoadRate = res.content.totalEquipmentLoadRate;
         this.totalPersonnelLoadRate = res.content.totalPersonnelLoadRate;
         this.data = res.content.resourceLoadItems;
       }).finally( res2 =>{
-        console.log('progress date already gotten!');
+        console.log('progress date already gotten!')
       })
     },
   }
