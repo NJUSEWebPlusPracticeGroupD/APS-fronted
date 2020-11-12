@@ -34,7 +34,7 @@
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
             同一订单:
-            <div style="margin-left:20px;vertical-align: center;display:table-cell;height: 30px;line-height: 30px">
+            <div style="margin-left:20px;float:right;vertical-align: center;display:table-cell;height: 30px;line-height: 30px">
               相同颜色
             </div>
           </div>

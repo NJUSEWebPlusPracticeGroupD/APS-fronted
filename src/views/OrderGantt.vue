@@ -41,13 +41,18 @@
       >
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
-            延期订单:
+            延期部分:
           </div><div style="margin-left:52px;background-color:#D07473;width:50px;height:30px;display: inline-block" />
         </el-row>
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
-            未完成订单:
+            已完成部分:
           </div><div style="margin-left:38px;background-color:#75cce8;width:50px;height:30px;display: inline-block" />
+        </el-row>
+        <el-row>
+          <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
+            未完成部分:
+          </div><div style="margin-left:38px;background-color:#dcdccc;width:50px;height:30px;display: inline-block" />
         </el-row>
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
@@ -82,7 +87,7 @@
         >
           <template slot-scope="scope">
             <ProgressBar
-              :progressDelay="scope.row.progressDelay"
+              :progress-delay="scope.row.progressDelay"
               :progress="scope.row.progress"
             />
           </template>
