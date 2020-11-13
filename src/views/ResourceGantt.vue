@@ -296,6 +296,9 @@ export default {
       ]
     }
   },
+  beforeMount() {
+    this.getResource()
+  },
   methods: {
     getResource() {
       //获取资源甘特图需要的数据，与后端交互
@@ -325,7 +328,7 @@ export default {
       getResourceGantt(final_date).then(res => {
         //console.log(res.content)
         this.GanntData = res.content
-        console.log(this.GanntData);
+        console.log(this.GanntData)
 
         // this.GanntData = [
         //   {

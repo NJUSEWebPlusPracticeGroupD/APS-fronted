@@ -62,7 +62,7 @@
 <script>
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
-import {getProduceResourceForm} from "../../api/APIs";
+import {getProduceResourceForm} from '../../api/APIs'
 
 export default {
   name: 'ProductionResourceTable',
@@ -91,20 +91,20 @@ export default {
       ]
     }
   },
-  mounted() {
-    this.initData()
-  },
   watch: {
     tableData: {
       handler(val) {
-        this.tableData = val;
+        this.tableData = val
       }
     },
     cols: {
       handler(val) {
-        this.cols = val;
+        this.cols = val
       }
     }
+  },
+  beforeMount() {
+    this.initData()
   },
 
   methods: {
@@ -119,10 +119,10 @@ export default {
       */
       getProduceResourceForm().then(res=>{
         console.log(res)
-        this.formateTableData(res.content.resourceItems);
-        this.formateCols(res.content.allResourcesLabels);
+        this.formateTableData(res.content.resourceItems)
+        this.formateCols(res.content.allResourcesLabels)
       }).finally(res2=>{
-        console.log("getProduceResourceForm done!");
+        console.log('getProduceResourceForm done!')
       })
 
 
@@ -136,7 +136,7 @@ export default {
         for(let j=0;j<data[i].usedResources.length;j++){
           item[data[i].usedResources[j]]='√'
         }
-        console.log(item);
+        console.log(item)
         this.tableData.push(item)
       }
     },
