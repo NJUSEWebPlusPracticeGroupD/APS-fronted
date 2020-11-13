@@ -296,6 +296,7 @@ export default {
     }
   },
   beforeMount() {
+
     this.getOrderData()
   },
   methods: {

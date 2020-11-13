@@ -297,6 +297,7 @@ export default {
     }
   },
   beforeMount() {
+    this.value=this.time
     this.getResource()
   },
   methods: {

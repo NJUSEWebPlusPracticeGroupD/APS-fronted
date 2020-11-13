@@ -145,6 +145,7 @@ export default {
     }
   },
   beforeMount() {
+    this.value=this.time
     this.getProductionData()
   },
   methods: {

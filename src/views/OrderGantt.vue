@@ -206,7 +206,8 @@ export default {
     }
   },
   beforeMount() {
-    this.setTimeString()
+    this.value=this.time
+    this.getOrder()
   },
   methods:{
     timeFormate(timeStamp) {
@@ -229,9 +230,9 @@ export default {
       console.log('getOrderGantt starts!')
       //console.log(this.time)
       getOrderGantt(this.time).then(res => {
-        console.log(res.content);
-        this.onTimeDelivery = res.content.onTimeDelivery.toFixed(1);
-        this.orderProgress = res.content.orderGanttItems;
+        console.log(res.content)
+        this.onTimeDelivery = res.content.onTimeDelivery.toFixed(1)
+        this.orderProgress = res.content.orderGanttItems
         // this.orderProgress.forEach(e=>{
         //
         // })
