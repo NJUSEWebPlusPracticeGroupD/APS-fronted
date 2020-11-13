@@ -154,7 +154,7 @@
 import FileSaver from 'file-saver'
 import XLSX from 'xlsx'
 import GanttTable from '@/components/GanttTable'
-import {getOrderPlanForm, getProduceForm, getProduceRelationForm} from "../../api/APIs";
+import {getOrderPlanForm, getProduceForm, getProduceRelationForm} from '../../api/APIs'
 
 export default {
   name: 'PlanTable',
@@ -295,7 +295,7 @@ export default {
 
     }
   },
-  mounted() {
+  beforeMount() {
     this.getOrderData()
   },
   methods: {
@@ -394,24 +394,24 @@ export default {
       结果赋值给orderProductionData
       */
 
-      console.log(orderId);
+      console.log(orderId)
       getProduceRelationForm(time, orderId.toString()).then(res=>{
-        console.log(res);
-        this.orderProductionData = [];
+        console.log(res)
+        this.orderProductionData = []
         for(var i = 0; i< res.content.length;i++){
           let tmp_obj = {
             resource: res.content[i].resource
-          };
-          for(var j = 1; j<=24; j++){
-            const index = "time" + j.toString();
-            tmp_obj[index] = res.content[i].orderFor24Hours[j-1];
           }
-          this.orderProductionData.push(tmp_obj);
+          for(var j = 1; j<=24; j++){
+            const index = 'time' + j.toString()
+            tmp_obj[index] = res.content[i].orderFor24Hours[j-1]
+          }
+          this.orderProductionData.push(tmp_obj)
           console.log(this.orderProductionData)
         }
       }).finally(res2=>{
         //console.log(this.orderProductionData);
-        console.log("getProduceForm done!");
+        console.log('getProduceForm done!')
       })
 
 
@@ -422,10 +422,9 @@ export default {
      获取订单数据
      赋值给tableData
       */
-      console.log('gopf')
       getOrderPlanForm().then(res =>{
-        console.log(res);
-        this.tableData = res.content;
+        console.log(res)
+        this.tableData = res.content
       })
 
     },
