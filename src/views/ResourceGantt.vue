@@ -296,8 +296,7 @@ export default {
       ]
     }
   },
-  beforeMount() {
-    this.value=this.time
+  mounted() {
     this.getResource()
   },
   methods: {
@@ -311,11 +310,12 @@ export default {
       // GanttChart.props.datas.default().cleanData();
       // console.log(GanttChart.props.datas);
       // console.log("hi3");
-
-
-      console.log(this.value)
+      let final_date
+      if(!this.value){
+        this.value=new Date(this.time)
+      }
       let tmp_datelist = this.value.toString().split(' ')
-      let final_date = tmp_datelist[3] + '-'
+      final_date = tmp_datelist[3] + '-'
       const monthsBig = ['1', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'July', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
       const months = ['00', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
       for (let i = 0; i <= 12; i++) {

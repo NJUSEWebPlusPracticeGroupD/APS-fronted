@@ -37,7 +37,7 @@ export default {
     start(){
       this.load=true
       //与后端交互，一旦完成交互  load=false
-      const date = this.$store.getters.getTime.slice(0,17) + '00';
+      const date = this.$store.getters.getTime.slice(0,14) + '00:00';
       console.log(date);
       startAPS(date).then(res=>{
         console.log(res)
