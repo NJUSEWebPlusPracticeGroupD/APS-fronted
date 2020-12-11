@@ -3,7 +3,7 @@
     class="main"
     style=" background-color:rgba(255,255,255,0.8);"
   >
-    <el-row style="margin-top:30px">
+    <el-row>
       <div
         class="time"
         @click="timeDialog=true"
@@ -15,38 +15,36 @@
       class="allPage"
     >
       <div
-        style="display: inline; float: left; padding-left:20px;width: 100% "
+        style="overflow:hidden;width: 100% "
       >
-        <el-row style="margin: -20px 0 30px 0">
-          <el-input
-            v-model="search"
-            style="width:28%;float:left"
-            placeholder="输入关键字搜索"
+        <el-input
+          v-model="search"
+          class="search"
+          style="float:left"
+          placeholder="输入关键字搜索"
+        />
+        <el-button
+          type="primary"
+          plain
+          class="button"
+          icon="el-icon-download"
+          @click="exportOrderProductionExcel"
+        >
+          导出表单
+        </el-button>
+        <el-row style="margin-top: 20px">
+          <GanttTable
+            :order-production-data="orderProductionData"
+            :search="search"
           />
         </el-row>
-        <div
-          class="toexcel"
-        >
-          <el-button
-            type="primary"
-            plain
-            icon="el-icon-download"
-            @click="exportOrderProductionExcel"
-          >
-            导出表单
-          </el-button>
-        </div>
-        <GanttTable
-          :order-production-data="orderProductionData"
-          :search="search"
-        />
       </div>
     </div>
     <el-dialog
       title="查找时间"
       :visible.sync="timeDialog"
+      class="select"
       :modal-append-to-body="false"
-      width="30%"
     >
       <el-date-picker
         v-model="value"
@@ -220,11 +218,11 @@ export default {
   margin-left:20px;
 }
 .allPage{
-  padding-top:20px;
+  margin:20px 0;
 }
 .time{
-  float:right;
-  margin:-50px 28px 0 0;
+  float:left;
+  margin:-40px 0 0 0;
   font-size:20px;
   border: 1px solid #fff;
   box-shadow: 0 1px 5px rgba(0, 0, 0, .12), 0 0 5px rgba(0, 0, 0, .04);
@@ -233,5 +231,52 @@ export default {
   padding-top:15px;
   width:150px;
   height:40px
+}
+.search{
+       width: 28%;
+}
+.button{
+  margin-left: 15%;
+  width:20%;
+}
+.select{
+  width: 100%;
+  position: static;
+}
+@media screen and (max-width: 900px) {
+  .main {
+    padding: 10px;
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .main:hover {
+    margin: 0;
+  }
+  .search{
+    width: 40%;
+  }
+  .button{
+    margin-left: 15%;
+    width:40%;
+  }
+  .select{
+    width: 500px;
+    position: absolute;
+    left:-20%;
+  }
+  .time{
+    margin:10px 0 0;
+    font-size:16px;
+    border: 0.5px solid #fff;
+    box-shadow: 0 0.5px 2.5px rgba(0, 0, 0, .12), 0 0 5px rgba(0, 0, 0, .04);
+    border-radius: 6px;
+    cursor: pointer;
+    padding-top:10px;
+    width:40%;
+    height:30px
+
+  }
 }
 </style>

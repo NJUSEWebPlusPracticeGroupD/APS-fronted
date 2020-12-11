@@ -7,15 +7,15 @@
     >
       <el-table-column
         prop="name"
-        height="60"
-        width="100"
+        height="40"
+        width="70"
         align="center"
       >
         <template
           slot="header"
         >
           <i
-            style="font-size:24px"
+            style="font-size:20px"
             class="el-icon-caret-left table-header-icon"
             @click="preDate"
           />
@@ -24,8 +24,8 @@
       <el-table-column
         v-for="date in dates"
         :key="date"
-        height="60"
-        width="100"
+        height="40"
+        width="70"
         :label="date"
         :prop="date"
         align="center"
@@ -37,15 +37,15 @@
         </template>
       </el-table-column>
       <el-table-column
-        height="60"
-        width="100"
+        height="40"
+        width="60"
         align="center"
       >
         <template
           slot="header"
         >
           <i
-            style="font-size:24px"
+            style="font-size:20px"
             class="el-icon-caret-right table-header-icon"
             @click="nextDate"
           />
@@ -57,7 +57,7 @@
 <script>
 import VerticalProgressBar from '@/components/VerticalProgressBar'
 export default {
-  name: 'DatePaging',
+  name: 'PhoneDatePaging',
   components: {VerticalProgressBar},
   props:{
     beginDate:{

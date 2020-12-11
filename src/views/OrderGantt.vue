@@ -36,12 +36,16 @@
     <el-row style="margin-bottom: 10px;margin-top:40px;margin-left: 20px">
       <el-input
         v-model="search"
-        style="width:20%;float:left"
+        style="float:left"
+        class="search"
         placeholder="输入订单编号搜索"
       />
 
 
-      <div style="float: right;margin-top:-100px;margin-right:10%;">
+      <div
+        style="float: right;margin-top:-100px;margin-right:10%;"
+        class="color-tips"
+      >
         <el-row>
           <div style="vertical-align: center;display:table-cell;height: 30px;float:left;line-height: 30px">
             延期部分:
@@ -66,7 +70,7 @@
     </el-row>
 
 
-    <div class="user_skills">
+    <div class="user_skills not_phone_table">
       <el-table
         :data="orderProgress.filter(data => !search || data.orderId.toString().toLowerCase().includes(search.toLowerCase()))"
         min-height="500"
@@ -76,12 +80,41 @@
           prop="orderId"
           label="订单编号"
           height="60"
-          width="200"
+          width="200px"
           align="center"
         />
         <el-table-column
           height="60"
-          width="650"
+          width="650px"
+          label="订单进度"
+          align="center"
+        >
+          <template slot-scope="scope">
+            <ProgressBar
+              :progress-delay="scope.row.progressDelay"
+              :progress="scope.row.progress"
+            />
+          </template>
+        </el-table-column>
+      </el-table>
+    </div>
+
+    <div class="user_skills phone_table">
+      <el-table
+        :data="orderProgress.filter(data => !search || data.orderId.toString().toLowerCase().includes(search.toLowerCase()))"
+        min-height="500"
+        row-key="orderId"
+      >
+        <el-table-column
+          prop="orderId"
+          label="订单编号"
+          height="60"
+          width="120"
+          align="center"
+        />
+        <el-table-column
+          height="60"
+          width="350"
           label="订单进度"
           align="center"
         >
@@ -295,7 +328,12 @@ export default {
   font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
   font-size: 20px;
 }
-
+/*.orderIdTable{*/
+/*  width: 200px;*/
+/*}*/
+/*.orderProgressTable{*/
+/*  width: 650px;*/
+/*}*/
 .onTimeDelivery{
   height:260px;
   width:400px;
@@ -324,5 +362,52 @@ export default {
 }
 .button:hover {
   cursor: pointer
+}
+.search{
+  width: 20%;
+}
+.phone_table{
+  display: none;
+}
+@media screen and (max-width: 900px) {
+  .main{
+    padding:10px;
+    margin:0;
+    height: 100%;
+    border-radius:0;
+  }
+  .main:hover{
+    margin:0;
+  }
+  .onTimeDelivery{
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+    height: fit-content;
+    width: fit-content;
+  }
+  .date-picker{
+    margin: 0 ;
+    width: 60%;
+  }
+  .color-tips{
+    display: none;
+  }
+  .button{
+    left:68%;
+    margin: 0 ;
+    width:30%;
+    float: right;
+  }
+  .search{
+    width: 50%;
+  }
+  .not_phone_table{
+    display: none;
+  }
+  .phone_table{
+    display: block;
+  }
+
 }
 </style>

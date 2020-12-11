@@ -38,23 +38,35 @@
             </div>
           </div>
         </el-row>
-        <el-button slot="reference">
+        <el-button
+          slot="reference"
+          class="phone-button"
+        >
           颜色提示
         </el-button>
       </el-popover>
     </el-row>
 
-    <GanttChart :datas="GanntData" />
+    <GanttChart
+      :datas="GanntData"
+      class="gantt"
+    />
+    <PhoneGanttChart
+      :datas="GanntData"
+      class="phone-gantt"
+    />
   </el-main>
 </template>
 
 <script>
 import GanttChart from '@/components/GanttChart'
 import {getResourceGantt} from '../api/APIs'
+import PhoneGanttChart from '@/components/PhoneGanttChart'
 
 export default {
   name: 'ResourceGantt',
   components: {
+    PhoneGanttChart,
     GanttChart
   },
   data() {
@@ -397,5 +409,39 @@ export default {
 
 .button:hover {
   cursor: pointer;
+}
+.phone-gantt {
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .main{
+    padding:10px;
+    margin:0;
+    height: 100%;
+    border-radius:0;
+  }
+  .main:hover{
+    margin:0;
+  }
+  .phone-button{
+    display: none;
+  }
+  .date-picker{
+    margin: 0 ;
+    width: 65%;
+  }
+  .button{
+    margin: 0 ;
+    width:30%;
+    float: right;
+  }
+  .phone-gantt{
+    display: block;
+  }
+  .gantt{
+    display: none;
+  }
+
 }
 </style>

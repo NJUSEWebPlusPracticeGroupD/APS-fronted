@@ -9,9 +9,20 @@
     >
       <el-input
         v-model="search"
-        style="width:28%;float:left"
+        class="search"
+        style="float:left"
         placeholder="输入关键字搜索"
       />
+      <el-button
+        type="primary"
+        class="button"
+        style="float: left"
+        plain
+        icon="el-icon-download"
+        @click="exportPlanExcel"
+      >
+        导出表单
+      </el-button>
     </div>
     <el-page-header
       v-if="!showPlanTable"
@@ -32,19 +43,16 @@
         v-if="!showPlanTable"
         style="display: inline; float: left; padding-left: 20px;width:100%"
       >
-        <el-row style="margin: 10px 0">
+        <div style="overflow: hidden;margin: 20px 0">
           <el-input
             v-model="search"
-            style="width:28%;float:left"
+            class="search"
+            style="float:left"
             placeholder="输入关键字搜索"
           />
-        </el-row>
-
-
-        <div
-          class="toexcel"
-        >
           <el-button
+            class="button"
+            style="float: left"
             type="primary"
             plain
             icon="el-icon-download"
@@ -105,18 +113,6 @@
             </el-table-column>
           </el-table>
         </div>
-        <div
-          class="toexcel"
-        >
-          <el-button
-            type="primary"
-            plain
-            icon="el-icon-download"
-            @click="exportPlanExcel"
-          >
-            导出表单
-          </el-button>
-        </div>
       </div>
     </div>
 
@@ -125,7 +121,7 @@
       title="查找时间"
       :visible.sync="timeDialog"
       :modal-append-to-body="false"
-      width="30%"
+      class="select"
     >
       <el-date-picker
         v-model="value"
@@ -446,6 +442,9 @@ export default {
     .planTable{
       height: 100%;
     }
+    .select{
+      position: static;
+    }
     /*.planTable /deep/ .el-table , .el-table__expanded-cell {*/
     /*  background-color: transparent;*/
     /*}*/
@@ -470,11 +469,7 @@ export default {
     .main:hover{
       margin:10px 20px 30px 20px;
     }
-    .toexcel{
-      display: inline;
-      float: right;
-      margin-left:20px;
-    }
+
     .table{
      width: 750px;
       margin-bottom: 20px;
@@ -490,5 +485,57 @@ export default {
       padding-top:15px;
       width:150px;
       height:40px
+    }
+    .search{
+      width: 28%;
+    }
+    .button{
+      margin-left: 15%;
+      width:20%;
+    }
+    .select{
+      width: 100%;
+    }
+    @media screen and (max-width: 900px) {
+      .main {
+        padding: 10px;
+        margin: 0;
+        height: 100%;
+        border-radius: 0;
+      }
+
+      .main:hover {
+        margin: 0;
+      }
+      .select{
+        width: 500px;
+        position: absolute;
+        left:-20%;
+      }
+      .search{
+        width: 40%;
+      }
+      .button{
+        margin-left: 15%;
+        width:40%;
+      }
+      .time{
+        margin:10px 0;
+        font-size:16px;
+        border: 0.5px solid #fff;
+        box-shadow: 0 0.5px 2.5px rgba(0, 0, 0, .12), 0 0 5px rgba(0, 0, 0, .04);
+        border-radius: 6px;
+        cursor: pointer;
+        padding-top:10px;
+        width:40%;
+        height:30px
+
+      }
+      .date-picker{
+        width: 10px;
+      }
+      .planTable{
+        margin-left: 10px;
+      }
     }
 </style>

@@ -70,6 +70,13 @@ export default {
 
     }
   }
+  @media screen and(max-width: 900px){
+    .sfont{
+      color:#999;
+      font-size:15px;
+      margin-left:0px;
+    }
+  }
 }
 
 </style>

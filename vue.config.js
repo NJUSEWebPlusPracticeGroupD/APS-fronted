@@ -21,9 +21,14 @@ module.exports = {
    * In most cases please use '/' !!!
    * Detail: https://cli.vuejs.org/config/#publicpath
    */
-  publicPath: '/',
-  outputDir: 'dist',
-  assetsDir: 'static',
+  'transpileDependencies': [
+    'vuetify'
+  ],
+  publicPath: './',
+  outputDir: './www/',
+  assetsDir: '',
+  indexPath: 'index.html',
+  filenameHashing: process.env.NODE_ENV === 'production' ? 'false' : 'true',
   lintOnSave: process.env.NODE_ENV === 'development',
   productionSourceMap: false,
   devServer: {
@@ -34,16 +39,16 @@ module.exports = {
       errors: true
     }
     ,
-        proxy: {
-          '/api': {
-            target: process.env.VUE_APP_BASE_API || "http://localhost:8000",
-            changeOrigin: false,
-            pathRewrite: {
-              '^/api': '/api'
-            },
-            logLevel:'debug'
-          }
-        }
+    proxy: {
+      '/api': {
+        target: process.env.VUE_APP_BASE_API || 'http://localhost:8000',
+        changeOrigin: false,
+        pathRewrite: {
+          '^/api': '/api'
+        },
+        logLevel:'debug'
+      }
+    }
   },
 
   configureWebpack: {

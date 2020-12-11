@@ -3,13 +3,26 @@
     class="main"
     style=" background-color:rgba(255,255,255,0.8);"
   >
-    <el-row style="margin: 20px 0 30px 0">
+    <div
+      style="overflow: hidden;margin-bottom: 20px"
+    >
       <el-input
         v-model="search"
-        style="width:28%;float:left"
+        class="search"
+        style="float:left"
         placeholder="输入关键字搜索"
       />
-    </el-row>
+      <el-button
+        type="primary"
+        class="button"
+        style="float: left"
+        plain
+        icon="el-icon-download"
+        @click="exportPlanExcel"
+      >
+        导出表单
+      </el-button>
+    </div>
     <div
       class="productionResourceTable"
       style="display: inline; float: left; margin-left: 20px;"
@@ -41,19 +54,6 @@
           <!--          </template>-->
         </el-table-column>
       </el-table>
-    </div>
-    <div
-      class="toexcel"
-      style="display: inline; float: left; margin-left: 4%; "
-    >
-      <el-button
-        type="primary"
-        plain
-        icon="el-icon-download"
-        @click="exportExcel"
-      >
-        导出表单
-      </el-button>
     </div>
   </el-main>
 </template>
@@ -216,6 +216,13 @@ export default {
 .productionResourceTable{
   height: 100%;
 }
+.search{
+  width: 28%;
+}
+.button{
+  margin-left: 15%;
+  width:20%;
+}
 /*.productionResourceTable /deep/ .el-table , .el-table__expanded-cell {*/
 /*  background-color: transparent;*/
 /*}*/
@@ -229,4 +236,24 @@ export default {
 /*.productionResourceTable /deep/  .el-table--enable-row-transition .el-table__body td, .el-table .cell{*/
 /*  background-color: transparent;*/
 /*}*/
+
+@media screen and (max-width: 900px) {
+  .main {
+    padding: 10px;
+    margin: 0;
+    height: 100%;
+    border-radius: 0;
+  }
+
+  .main:hover {
+    margin: 0;
+  }
+  .search{
+    width: 40%;
+  }
+  .button{
+    margin-left: 15%;
+    width:40%;
+  }
+}
 </style>

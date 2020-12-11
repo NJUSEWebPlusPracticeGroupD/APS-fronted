@@ -2,7 +2,7 @@
   <div class="user_skills">
     <el-table
       class="orderProductionTable"
-      style="width: 750px;background-color: transparent"
+      style="width: 750px"
       :data="data.filter(item => !search || item.resource.toString().toLowerCase().includes(search.toLowerCase()))"
     >
       <el-table-column

@@ -81,7 +81,10 @@
             80~100% :
           </div><div style="margin-left:22px;background-color:#94e277;width:50px;height:30px;display: inline-block" />
         </el-row>
-        <el-button slot="reference">
+        <el-button
+          slot="reference"
+          class="color-tips"
+        >
           颜色提示
         </el-button>
       </el-popover>
@@ -94,6 +97,15 @@
       <DatePaging
         :begin-date="beginTime"
         :data="data"
+        class="date-paging"
+        @subPreDateFtn="preDate"
+        @subNextDateFtn="nextDate"
+      />
+
+      <PhoneDatePaging
+        :begin-date="beginTime"
+        :data="data"
+        class="phone-date-paging"
         @subPreDateFtn="preDate"
         @subNextDateFtn="nextDate"
       />
@@ -126,13 +138,13 @@
 </template>
 
 <script>
-
+import PhoneDatePaging from '@/components/PhoneDatePaging'
 import DatePaging from '@/components/DatePaging'
 import {getResourceLoad} from '../api/APIs'
 import {request} from '../utils/request'
 export default {
   name: 'ResourceLoader',
-  components: {DatePaging},
+  components: {DatePaging,PhoneDatePaging},
   props:{
 
   },
@@ -306,9 +318,8 @@ export default {
   display: inline-block;
   margin: -30px 20px 20px;
 }
-.datePaging{
-  height:90px;
-  margin-top:40px;
+.phone-date-paging{
+  display: none;
 }
 .id{
   height:60px;
@@ -336,5 +347,52 @@ export default {
 }
 .el-icon-caret-right:hover{
   color:   rgb(236,245,255);
+}
+
+@media screen and (max-width: 900px) {
+  .main{
+    padding:20px;
+    margin:0;
+    height: 100%;
+    border-radius:0;
+  }
+  .date-picker{
+    margin: 0 ;
+    width: 65%;
+  }
+  .color-tips{
+    display: none;
+  }
+  .button{
+    margin: 0 ;
+    width:30%;
+    float: right;
+  }
+  .main:hover{
+    margin:0;
+  }
+  .totalPersonnelLoad{
+    margin: 10px 0;
+
+  }
+  .totalEquipmentLoad{
+    margin: 0;
+  }
+  .totalResource{
+    margin-top: 0;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    justify-self: center;
+    flex-direction: column;
+  }
+  .phone-date-paging{
+    margin-top: 10px;
+    display: block;
+  }
+  .date-paging{
+    margin-top: 10px;
+    display: none;
+  }
 }
 </style>

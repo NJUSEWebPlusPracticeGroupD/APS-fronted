@@ -5,14 +5,14 @@
         class="header"
         height="80px"
       >
-        <el-col :span="8">
+        <el-col :span="12">
           <i
             class="el-icon-monitor"
           />
           NJUAPS
         </el-col>
         <el-col
-          :span="10"
+          :span="6"
           style="min-height:1px;"
         />
         <el-col
@@ -27,11 +27,21 @@
           {{ this.$store.getters.getTime }}
         </el-col>
       </el-header>
+      <el-header
+        class="phone-header"
+        height="60px"
+      >
+        NJUAPS
+      </el-header>
       <el-container style="height: 500px">
-        <PageAside />
+        <PageAside class="page-aside" />
         <router-view />
       </el-container>
+      <phone-page-footer class="phone-footer" />
     </el-container>
+
+
+
     <el-dialog
       title="修改时间"
       :visible.sync="dialogVisible"
@@ -71,9 +81,10 @@
 
 <script>
 import PageAside from '@/components/PageAside'
+import PhonePageFooter from '@/components/PhonePageFooter'
 export default {
   name: 'App',
-  components:{PageAside},
+  components:{PhonePageFooter, PageAside},
   data(){
     return{
       value:'',
@@ -199,5 +210,48 @@ margin-top: 20px;
 html,
 body {
   margin: 0;
+}
+
+
+/* 响应式编程 到900px的话，改变布局*/
+.phone-header{
+  display: none;
+}
+.phone-footer{
+  display: none;
+}
+
+@media screen and (max-width: 900px) {
+  .header{
+    display: none;
+  }
+  .container{
+    padding: 0;
+  }
+  .page-aside{
+    display: none;
+  }
+  .phone-footer{
+    display: flex;
+    width: 100%;
+  }
+  .phone-header{
+    display:flex;
+    justify-content:center;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    color: #000000;
+    text-align: left;
+    font-size: 40px;
+    font-weight: bold;
+    font-family: "Papyrus";
+    width: 100%;
+    background-color: rgba(26, 142, 180,0.5);
+  }
+  .phone-footer{
+    margin: 0;
+    padding: 0;
+    font-size: 10px;
+  }
+
 }
 </style>
