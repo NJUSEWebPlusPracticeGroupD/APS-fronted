@@ -25,7 +25,7 @@ module.exports = {
     'vuetify'
   ],
   publicPath: './',
-  outputDir: './www/',
+  outputDir: './dist/',
   assetsDir: '',
   indexPath: 'index.html',
   filenameHashing: process.env.NODE_ENV === 'production' ? 'false' : 'true',
