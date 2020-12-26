@@ -109,12 +109,12 @@
           prop="orderId"
           label="订单编号"
           height="60"
-          width="120"
+          width="100"
           align="center"
         />
         <el-table-column
           height="60"
-          width="350"
+          width="250"
           label="订单进度"
           align="center"
         >

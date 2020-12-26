@@ -82,10 +82,10 @@ export default {
 @media screen and (max-width: 900px) {
   .onebar {
     .sfont{
-      font-size:12px;
+      font-size:10px;
     }
     .bar {
-      width: 310px;
+      width: 210px;
     }
   }
 }

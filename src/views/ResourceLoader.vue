@@ -372,14 +372,14 @@ export default {
     margin:0;
   }
   .totalPersonnelLoad{
-    margin: 10px 0;
+    margin:0;
 
   }
   .totalEquipmentLoad{
     margin: 0;
   }
   .totalResource{
-    margin-top: 0;
+    margin-top: -20px;
     height: fit-content;
     width: fit-content;
     display: flex;

@@ -6,6 +6,18 @@
       {{ this.$store.getters.getTime }}
     </div>
     <el-row style="margin-top: 30px">
+      <el-select
+        v-model="value"
+        class="select_aps"
+        placeholder="请选择排程方式"
+      >
+        <el-option
+          v-for="item in options"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        />
+      </el-select>
       <el-button
         v-if="!loaded"
         type="primary"
@@ -34,21 +46,52 @@ export default {
     return {
       loaded:false,
       load:false,
+      value:'',
+      options:[
+        {
+          value:'high_resource',
+          label:'高资源利用率排程'
+        },
+        {
+          value:'low_delay',
+          label:'最小延期率排程'
+        }
+      ]
     }
   },
   methods:{
     start(){
-      this.load=true
-      //与后端交互，一旦完成交互  load=false
-      const date = this.$store.getters.getTime.slice(0,14) + '00:00'
-      console.log(date)
-      startAPS(date).then(res=>{
-        console.log(res)
-      }).finally(res1 => {
-        this.load = false
-        console.log('排程结束!')
-        this.loaded=true
-      })
+      console.log(this.value)
+      if(!this.value.toString()){
+        alert('请选择排程方式')
+      }
+      else{
+        this.load=true
+        //与后端交互，一旦完成交互  load=false
+        const date = this.$store.getters.getTime.slice(0,14) + '00:00'
+        if(this.value=='high_resource'){
+          //修改这块的api
+          startAPS(date).then(res=>{
+            console.log(res)
+          }).finally(res1 => {
+            this.load = false
+            console.log('排程结束!')
+            this.loaded=true
+          })
+        }
+        else{
+          //修改这块的api
+          startAPS(date).then(res=>{
+            console.log(res)
+          }).finally(res1 => {
+            this.load = false
+            console.log('排程结束!')
+            this.loaded=true
+          })
+        }
+      }
+
+
     }
   }
 
@@ -102,6 +145,9 @@ export default {
       margin:0;
       height: 100%;
       border-radius:0;
+    }
+    .select_aps{
+      margin: 30px;
     }
 
   }
