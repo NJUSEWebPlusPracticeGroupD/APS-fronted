@@ -353,7 +353,7 @@ export default {
   .main{
     padding:20px;
     margin:0;
-    height: 100%;
+    height: 111%;
     border-radius:0;
   }
   .date-picker{

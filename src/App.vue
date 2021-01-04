@@ -234,6 +234,7 @@ body {
   .phone-footer{
     display: flex;
     width: 100%;
+    //height: 30px;
   }
   .phone-header{
     display:flex;
@@ -248,7 +249,7 @@ body {
     background-color: rgba(26, 142, 180,0.5);
   }
   .phone-footer{
-    margin: 0;
+    margin-bottom: 10px;
     padding: 0;
     font-size: 10px;
   }

@@ -418,7 +418,7 @@ export default {
   .main{
     padding:10px;
     margin:0;
-    height: 100%;
+    height: 111%;
     border-radius:0;
   }
   .main:hover{

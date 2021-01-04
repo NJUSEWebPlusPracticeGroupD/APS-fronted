@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {startAPS} from '../api/APIs'
+import {startAPS, startHighestResourceRateAps, startLowestOrderDelayedAps} from '../api/APIs'
 export default {
   name: 'About',
   data() {
@@ -68,10 +68,11 @@ export default {
       else{
         this.load=true
         //与后端交互，一旦完成交互  load=false
-        const date = this.$store.getters.getTime.slice(0,14) + '00:00'
+        const date = this.$store.getters.getTime.slice(0,14) + '00:00';
+        console.log(date);
         if(this.value=='high_resource'){
           //修改这块的api
-          startAPS(date).then(res=>{
+          startHighestResourceRateAps(date).then(res=>{
             console.log(res)
           }).finally(res1 => {
             this.load = false
@@ -81,7 +82,7 @@ export default {
         }
         else{
           //修改这块的api
-          startAPS(date).then(res=>{
+          startLowestOrderDelayedAps(date).then(res=>{
             console.log(res)
           }).finally(res1 => {
             this.load = false
@@ -143,7 +144,7 @@ export default {
     .main{
       padding:40px;
       margin:0;
-      height: 100%;
+      height: 111%;
       border-radius:0;
     }
     .select_aps{

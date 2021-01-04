@@ -61,3 +61,16 @@ export function startAPS(currentDate){
     url: '/api/aps/startAps?currentDate=' + currentDate
   })
 }
+export function startLowestOrderDelayedAps(currentDate) {
+  return request({
+    method: 'POST',
+    url: '/api/aps/lowestOrderDelayedAps?currentDate=' + currentDate
+  })
+}
+
+export function startHighestResourceRateAps(currentDate) {
+  return request({
+    method: 'POST',
+    url: '/api/aps/highestResourceRateAps?currentDate=' + currentDate
+  })
+}
