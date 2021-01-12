@@ -141,7 +141,6 @@
 import PhoneDatePaging from '@/components/PhoneDatePaging'
 import DatePaging from '@/components/DatePaging'
 import {getResourceLoad} from '../api/APIs'
-import {request} from '../utils/request'
 export default {
   name: 'ResourceLoader',
   components: {DatePaging,PhoneDatePaging},
@@ -244,7 +243,7 @@ export default {
             }
           }
         }
-      }).finally( res2 =>{
+      }).finally( () =>{
         console.log('progress date already gotten!')
       })
     },
@@ -353,7 +352,7 @@ export default {
   .main{
     padding:20px;
     margin:0;
-    height: 111%;
+    height: 100%;
     border-radius:0;
   }
   .date-picker{

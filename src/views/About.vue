@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import {startAPS, startHighestResourceRateAps, startLowestOrderDelayedAps} from '../api/APIs'
+import {startHighestResourceRateAps, startLowestOrderDelayedAps} from '../api/APIs'
 export default {
   name: 'About',
   data() {
@@ -68,13 +68,13 @@ export default {
       else{
         this.load=true
         //与后端交互，一旦完成交互  load=false
-        const date = this.$store.getters.getTime.slice(0,14) + '00:00';
-        console.log(date);
+        const date = this.$store.getters.getTime.slice(0,14) + '00:00'
+        console.log(date)
         if(this.value=='high_resource'){
           //修改这块的api
           startHighestResourceRateAps(date).then(res=>{
             console.log(res)
-          }).finally(res1 => {
+          }).finally(() => {
             this.load = false
             console.log('排程结束!')
             this.loaded=true
@@ -84,7 +84,7 @@ export default {
           //修改这块的api
           startLowestOrderDelayedAps(date).then(res=>{
             console.log(res)
-          }).finally(res1 => {
+          }).finally(() => {
             this.load = false
             console.log('排程结束!')
             this.loaded=true
@@ -111,7 +111,7 @@ export default {
     box-shadow: 0 2px 10px rgba(0, 0, 0, .12), 0 0 12px rgba(0, 0, 0, .04);
   }
   .main:hover{
-    margin:10px 20px;
+
   }
   .main h2{
     font-family: serif;
@@ -144,7 +144,7 @@ export default {
     .main{
       padding:40px;
       margin:0;
-      height: 111%;
+      height: 100%;
       border-radius:0;
     }
     .select_aps{

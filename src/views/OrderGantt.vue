@@ -269,7 +269,7 @@ export default {
         // this.orderProgress.forEach(e=>{
         //
         // })
-      }).finally(res2 =>{
+      }).finally(() =>{
         console.log('getOrderGantt finished!')
       })
 
@@ -373,7 +373,7 @@ export default {
   .main{
     padding:10px;
     margin:0;
-    height: 111%;
+    height: 100%;
     border-radius:0;
   }
   .main:hover{
